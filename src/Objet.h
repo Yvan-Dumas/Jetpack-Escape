@@ -13,8 +13,8 @@
   class Objet {
     private: 
         unsigned int idTypeObjet; ///< Identifiant de l'objet.
-        unsigned int x; ///< Position x de l'objet.
-        unsigned int y; ///< Position y de l'objet.
+        int x; ///< Position x de l'objet.
+        int y; ///< Position y de l'objet.
         unsigned int largeur; ///< Largeur de l'objet.
         unsigned int hauteur; ///< Hauteur y de l'objet.
 
@@ -26,9 +26,9 @@
         
         /**
          * @brief Fonction qui renvoie l'identifiant de l'objet si le personnage est en contact avec l'objet.
-         * @param unsignedint Hauteur du personnage.
+         * @param y int Hauteur du personnage.
          */
-        unsigned int collecterObjet(unsigned int y);
+        unsigned int collecterObjet(int y);
 
         /**
          * @brief Procédure pour actualiser la position de l'objet.

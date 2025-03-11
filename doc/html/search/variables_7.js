@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vitessedefilement_0',['vitesseDefilement',['../classPartie.html#a7d8696eeb30588c9c70c4a63b1a65def',1,'Partie']]]
+  ['score_0',['score',['../classPartie.html#addde0a56f5a1ef5661cec7c5fcd6ae3a',1,'Partie']]]
 ];

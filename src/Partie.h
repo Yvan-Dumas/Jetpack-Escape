@@ -29,7 +29,7 @@
      void generationObjet();///<Génère un objet et l'ajoute au tableau
      void ajouterPiece(); ///<Augmente le score tant que enMarche est vrai
      void ajouterDistance(); ///<Augmente le score tant que enMarche est vrai
-     void utiliserObjet(int id); ///<Utilise l'objet ramassé
+     void utiliserObjet(unsigned int id); ///<Utilise l'objet ramassé
 
  
  public:
@@ -39,7 +39,6 @@
      void charger(); ///<Charge
      void generationObstacle();///<Génère un obstacle et l'ajoute à la file
      void generationObjet();///<Génère un objet et l'ajoute à la file
-     void ajouterScore(); ///<Augmente le score tant que enMarche est vrai
      void setNbVies(); ///<Défini le nombre de vies
      void lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
  };

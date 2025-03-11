@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tabobjets_0',['tabObjets',['../classPartie.html#a2460efcea7dce476c0f74c2df28c4c86',1,'Partie']]],
-  ['tabobstacle_1',['tabObstacle',['../classPartie.html#a3a995edba77380be008c5da2a67a2d86',1,'Partie']]]
+  ['partie_0',['partie',['../classAffichageConsole.html#a9f76bfdcae57bafab955d981980f3769',1,'AffichageConsole::partie'],['../classAffichageGraphique.html#aca247b6c5547cbaf9de3a0cd42d8a28d',1,'AffichageGraphique::partie']]],
+  ['perso_1',['perso',['../classPartie.html#a6f4c4dbc37b0019348d7d2c10f40506b',1,'Partie']]]
 ];

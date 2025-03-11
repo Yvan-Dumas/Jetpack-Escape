@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['distance_0',['distance',['../classPartie.html#a51111e8d6691301bfd41c50a631bedfd',1,'Partie']]]
+  ['carburant_0',['carburant',['../classPersonnage.html#a6affd4bfb1a6104f94f69553d085db30',1,'Personnage']]]
 ];
