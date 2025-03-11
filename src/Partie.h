@@ -27,19 +27,19 @@
 
      void generationObstacle();///<Génère un obstacle et l'ajoute au tableau
      void generationObjet();///<Génère un objet et l'ajoute au tableau
-     void ajouterPiece(); ///<Augmente le score tant que enMarche est vrai
-     void ajouterDistance(); ///<Augmente le score tant que enMarche est vrai
+     void ajouterPiece(); ///<Augmente le score quand le joueur ramasse une pièce
+     void ajouterDistance(); ///<Augmente le score tant que le joueur est en vie
      void utiliserObjet(int id); ///<Utilise l'objet ramassé
 
  
  public:
 
      Partie(); ///<Le constructeur de la classe
-     void sauvegarder(); ///<Sauvegarde le score
-     void charger(); ///<Charge
-     void generationObstacle();///<Génère un obstacle et l'ajoute à la file
-     void generationObjet();///<Génère un objet et l'ajoute à la file
-     void ajouterScore(); ///<Augmente le score tant que enMarche est vrai
+     ~Partie(); ///<Le destructeur de la classe
+     void sauvegarder(); ///<Sauvegarde le score dans un fichier
+     void charger(); ///<Charger depuis un fichier
+     void generationObstacle();///<Génère un obstacle et l'ajoute au tableau dynamique
+     void generationObjet();///<Génère un objet et l'ajoute au tableau dynamique
      void setNbVies(); ///<Défini le nombre de vies
      void lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
  };
