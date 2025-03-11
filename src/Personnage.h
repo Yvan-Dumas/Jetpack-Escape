@@ -1,3 +1,8 @@
+/**
+ *@file Personnage.h
+ *@brief Définition de la classe Personnage
+ */
+
 #ifndef Personnage_h
 #define Personnage_h
 

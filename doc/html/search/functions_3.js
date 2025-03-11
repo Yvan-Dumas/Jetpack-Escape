@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['partie_0',['Partie',['../classPartie.html#ae40831aad10fc4a391295e2ea1447b5a',1,'Partie']]]
+  ['lancerpartie_0',['lancerPartie',['../classPartie.html#afd8250677d1ed3b220675535fb810887',1,'Partie']]]
 ];

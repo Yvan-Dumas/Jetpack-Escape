@@ -18,8 +18,6 @@
  class Partie {
  private:
      Personnage perso; ///< Le personnage contrôlé par le joueur
-     ArrierePlan fond;///< L'arrière-plan du jeu
-     bool enMarche; ///< Indique si le jeu est en cours
      std::vector<Obstacle> tabObstacle; ///< Tableau des obstacles présents
      std::vector<Objet> tabObjets; ///< Tableau des objets récupérables
      int vitesseDefilement; ///< Vitesse du jeu

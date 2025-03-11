@@ -1,3 +1,8 @@
+/**
+ *@file Objet.h
+ *@brief Définition de la classe Objet
+ */
+
 #ifndef Objet_h
 #define Objet_h
 
