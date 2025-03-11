@@ -15,11 +15,11 @@
   */
  class AffichageGraphique {
  private:
-    Partie p; ///<  La partie en cours
+     Partie partie; ///<  La partie en cours
  
  public:
-    AffichageGraphique(); ///< Le constructeur de AffichageGraphique
-    void run(); ///< La fonction qui gère tout l'affichage
+     AffichageGraphique(); ///< Le constructeur de AffichageGraphique
+     void run(); ///< La procédure qui gère tout l'affichage
  };
  
  #endif

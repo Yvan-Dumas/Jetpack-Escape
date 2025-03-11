@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['utiliserobjet_0',['utiliserObjet',['../classPartie.html#a1994835fa1962adef365ced267c16d1c',1,'Partie']]]
+  ['partie_0',['Partie',['../classPartie.html#ae40831aad10fc4a391295e2ea1447b5a',1,'Partie']]],
+  ['personnage_1',['Personnage',['../classPersonnage.html#abec36eb0310adc71f3375297fc590c65',1,'Personnage']]]
 ];

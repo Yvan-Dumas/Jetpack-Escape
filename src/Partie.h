@@ -27,9 +27,9 @@
 
      void generationObstacle();///<Génère un obstacle et l'ajoute au tableau
      void generationObjet();///<Génère un objet et l'ajoute au tableau
-     void ajouterPiece(); ///<Augmente le score quand le joueur ramasse une pièce
-     void ajouterDistance(); ///<Augmente le score tant que le joueur est en vie
-     void utiliserObjet(int id); ///<Utilise l'objet ramassé
+     void ajouterPiece(); ///<Augmente le score tant que enMarche est vrai
+     void ajouterDistance(); ///<Augmente le score tant que enMarche est vrai
+     void utiliserObjet(unsigned int id); ///<Utilise l'objet ramassé
 
  
  public:

@@ -14,11 +14,11 @@
   */
  class AffichageConsole {
  private:
-     Partie p; ///<  La partie en cours
+     Partie partie; ///<  La partie en cours
  
  public:
-    AffichageConsole(); ///< Le constructeur de AffichageConsole
-    void run(); ///< Procédure qui gère tout l'affichage
+     AffichageConsole(); ///< Le constructeur de AffichageConsole
+     void run(); ///< La procédure qui gère tout l'affichage
  };
  
  #endif

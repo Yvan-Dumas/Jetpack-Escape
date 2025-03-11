@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['score_0',['score',['../classPartie.html#addde0a56f5a1ef5661cec7c5fcd6ae3a',1,'Partie']]]
+  ['nbvies_0',['nbVies',['../classPartie.html#aefd4df1f8b71c7ddd8e8dfe937288825',1,'Partie']]]
 ];
