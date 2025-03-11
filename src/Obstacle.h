@@ -13,8 +13,8 @@
   class Obstacle {
     private: 
         unsigned int idTypeObstacle; ///< Identifiant de l'Obstacle.
-        unsigned int x; ///< Position x de l'Obstacle.
-        unsigned int y; ///< Position y de l'Obstacle.
+        int x; ///< Position x de l'Obstacle.
+        int y; ///< Position y de l'Obstacle.
         unsigned int largeur; ///< Largeur de l'Obstacle.
         unsigned int hauteur; ///< Hauteur y de l'Obstacle.
 
@@ -26,7 +26,7 @@
         
         /**
          * @brief Fonction booléene qui renvoie vrai si le personnage est en contact avec l'obstacle.
-         * @param unsignedint Hauteur du personnage.
+         * @param y Hauteur du personnage.
          */
         bool collisionObstacle(unsigned int y);
 

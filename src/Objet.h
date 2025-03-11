@@ -13,8 +13,8 @@
   class Objet {
     private: 
         unsigned int idTypeObjet; ///< Identifiant de l'objet.
-        unsigned int x; ///< Position x de l'objet.
-        unsigned int y; ///< Position y de l'objet.
+        int x; ///< Position x de l'objet.
+        int y; ///< Position y de l'objet.
         unsigned int largeur; ///< Largeur de l'objet.
         unsigned int hauteur; ///< Hauteur y de l'objet.
 
