@@ -30,10 +30,11 @@ class Personnage {
          * @brief Mutateur pour la position y du personnage
          * @param y entier non-signé 
          */
-        void setHauteur(int y);
+        void setHauteur(unsigned int y);
 
          /**
          * @brief Accesseur pour la position y du personnage
+         * @return Retourne un entier non-signé
          */
         unsigned int getHauteur();
 
