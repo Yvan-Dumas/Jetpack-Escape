@@ -16,7 +16,7 @@
         int x; ///< Position x de l'objet.
         int y; ///< Position y de l'objet.
         unsigned int largeur; ///< Largeur de l'objet.
-        unsigned int hauteur; ///< Hauteur y de l'objet.
+        unsigned int longueur; ///< Hauteur y de l'objet.
 
     public:
         /**
@@ -26,14 +26,15 @@
         
         /**
          * @brief Fonction qui renvoie l'identifiant de l'objet si le personnage est en contact avec l'objet.
-         * @param y int Hauteur du personnage.
+         * @param hauteur int Hauteur du personnage.
          */
-        unsigned int collecterObjet(int y);
+        unsigned int collecterObjet(int hauteur);
 
         /**
          * @brief Procédure pour actualiser la position de l'objet.
+         * @param vitesse int Vitesse de défilement du jeu
          */
-        void mettreAJourPosition();
+        void mettreAJourPosition(int vitesse);
   };
 
 #endif
