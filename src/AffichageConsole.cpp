@@ -3,6 +3,7 @@
 #include <unistd.h>
 using namespace std;
 
+int i = 0;
 const int HAUTEUR = 20;
 const int LARGEUR = 30;
 
@@ -29,7 +30,7 @@ void AffichageConsole::afficher() {
     cout << "Vies : " << partie.nbVies << endl;
     cout << "Distance : " << partie.distance << "m" << endl;
     cout << "Score : " << partie.score  << endl;
-
+    
     for (int i = 0; i < HAUTEUR; i++) {
         for (int j = 0; j < LARGEUR; j++)
             cout << grille[i][j];

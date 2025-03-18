@@ -15,7 +15,7 @@ Partie::Partie() {
     vitesseDefilement = 1;
     score = 0;
     distance = 0;
-    nbVies = 1;
+    nbVies = 3;
 }
 
 void Partie::sauvegarder() {
@@ -92,13 +92,9 @@ bool Partie::lancerPartie() {
         if (touche == 'z' || touche == 'Z') {
             perso.monter();  // Appel de la méthode monter() du personnage
         }*/
-    // Réinitialisation des paramètres de la partie
-    score = 0;
-    distance = 0;
-    nbVies = 3; // On donne 3 vies au joueur pour commencer
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
-        if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
+        if (distance % 2 == 0) { // Tous les 20 mètres, on génère quelque chose
             generationObstacle();
             generationObjet();
         }
@@ -133,7 +129,7 @@ bool Partie::lancerPartie() {
             }
         }
         
-        // Mise à jour de la distance et du score
+        // Mise à jour de la distance
         ajouterDistance();
 
 
