@@ -7,7 +7,7 @@
     idTypeObstacle = 0 ;
 }
  
- bool Obstacle::collisionObstacle(int hauteur) {
+ bool const Obstacle::collisionObstacle(int hauteur) {
      bool abscisse = (x-longueur<0) && (x + longueur >= 0) ; 
      bool ordonez = (y + largeur > hauteur) && (y - largeur <= hauteur);
      return abscisse && ordonez ;
