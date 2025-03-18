@@ -18,6 +18,7 @@
  
  public:
      AffichageConsole(); ///< Le constructeur de AffichageConsole
+     void afficher(); ///< procédure qui affiche les éléments
      void run(); ///< La procédure qui gère tout l'affichage
  };
  

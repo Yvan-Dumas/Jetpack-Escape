@@ -55,3 +55,11 @@ void Partie::generationObstacle() {
 void Partie::generationObjet() {
 
 }
+
+unsigned int Partie::getHauteurPerso() const {
+    return perso.getHauteur();
+}
+
+const std::vector<Obstacle>& Partie::getObstacles() const {
+    return tabObstacle;
+}
