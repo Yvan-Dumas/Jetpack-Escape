@@ -28,7 +28,7 @@
          * @brief Fonction booléene qui renvoie vrai si le personnage est en contact avec l'obstacle.
          * @param hauteur int Hauteur du personnage.
          */
-        bool collisionObstacle(int hauteur);
+        bool collisionObstacle(int hauteur) const;
 
         /**
          * @brief Procédure pour actualiser la position de l'obstacle.

@@ -28,7 +28,7 @@
          * @brief Fonction qui renvoie l'identifiant de l'objet si le personnage est en contact avec l'objet.
          * @param hauteur int Hauteur du personnage.
          */
-        unsigned int collecterObjet(int hauteur);
+        unsigned int collecterObjet(int hauteur) const;
 
         /**
          * @brief Procédure pour actualiser la position de l'objet.

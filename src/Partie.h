@@ -35,12 +35,9 @@
  public:
 
      Partie(); ///<Le constructeur de la classe
-     ~Partie(); ///<Le destructeur de la classe
      void sauvegarder(); ///<Sauvegarde le score dans un fichier
      void charger(); ///<Charger depuis un fichier
-     void generationObstacle();///<Génère un obstacle et l'ajoute au tableau dynamique
-     void generationObjet();///<Génère un objet et l'ajoute au tableau dynamique
-     void setNbVies(); ///<Défini le nombre de vies
+     void setNbVies(unsigned int nb); ///<Défini le nombre de vies
      void lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
  };
  

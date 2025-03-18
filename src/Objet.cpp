@@ -7,10 +7,10 @@
     idTypeObjet = 0;
  }
  
- unsigned int Objet::collecterObjet(int hauteur) {
+ unsigned int Objet::collecterObjet(int hauteur) const {
      bool abscisse = (x-longueur<0) && (x + longueur >= 0) ; 
-     bool ordonez = (y + largeur > hauteur) && (y - largeur <= hauteur);
-     if (abscisse && ordonez){
+     bool ordonnee = (y + largeur > hauteur) && (y - largeur <= hauteur);
+     if (abscisse && ordonnee){
         return idTypeObjet;
      }
      return 0;
