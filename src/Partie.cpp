@@ -6,7 +6,13 @@
 #include <iostream>
 #include "Partie.h"
 #include <random>
-#include <termios.h>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif // WIN32
+#include "winTxt.h"
+
 
 using namespace std;
 
@@ -91,11 +97,12 @@ vector<Objet>& Partie::getObjets() {
 }
 
 bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
-    // Vérification de l'appui sur la touche Z
-    /*char touche = getch(); // Récupère immédiatement la touche
+    WinTXT win( 0,0);
+    //Vérification de l'appui sur la touche Z
+    int touche = win.getCh(); // Récupère immédiatement la touche
         if (touche == 'z' || touche == 'Z') {
             perso.monter();  // Appel de la méthode monter() du personnage
-        }*/
+        }
     // Réinitialisation des paramètres de la partie
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles

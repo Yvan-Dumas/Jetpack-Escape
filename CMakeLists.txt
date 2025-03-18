@@ -16,6 +16,7 @@ set(SOURCES
     src/Partie.cpp
     src/AffichageConsole.cpp
     src/mainConsole.cpp
+    src/winTxt.cpp
 )
 
 # Création de l'exécutable
