@@ -68,8 +68,6 @@ void AffichageConsole::afficher() {
             cout << grille[i][j];
         cout << endl;
     }
-
-    // commentaire
 }
 
 

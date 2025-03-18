@@ -109,13 +109,15 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
             if (obstacle->getX() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
             } else if (obstacle->collisionObstacle(perso.getHauteur())) {
-                nbVies --;
+                nbVies--;
                 if (nbVies <= 0) {
                     enMarche = false;
                     break;
                 }
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle après collision
-            } 
+            } else {
+                ++obstacle;
+            }
         }
 
         // Vérification des objets ramassés
@@ -132,7 +134,7 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
             }
         }
         
-        // Mise à jour de la distance
+        // Mise à jour de la distance et du score
         ajouterDistance();
 
 
