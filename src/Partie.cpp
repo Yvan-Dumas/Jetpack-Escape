@@ -109,7 +109,7 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
             if (obstacle->getX() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
             } else if (obstacle->collisionObstacle(perso.getHauteur())) {
-                setNbVies(nbVies-1);
+                nbVies --;
                 if (nbVies <= 0) {
                     enMarche = false;
                     break;
