@@ -82,7 +82,7 @@ unsigned int Partie::getHauteurPerso() const {
     return perso.getHauteur();
 }
 
-std::vector<Obstacle>& Partie::getObstacles() {
+vector<Obstacle>& Partie::getObstacles() {
     return tabObstacle;
 }
 
