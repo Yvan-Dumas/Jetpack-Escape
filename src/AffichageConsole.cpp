@@ -69,7 +69,6 @@ void AffichageConsole::afficher() {
         cout << endl;
     }
 
-    // commentaire
 }
 
 
