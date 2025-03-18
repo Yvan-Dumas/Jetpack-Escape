@@ -43,6 +43,7 @@ class Partie {
         unsigned int getHauteurPerso() const; ///< Retourne La hauteur du personnage
         vector<Obstacle>& getObstacles(); ///< Retourne le tableau d'obstacles
         vector<Objet>& getObjets();
+        char getKey();
  };
  
  #endif

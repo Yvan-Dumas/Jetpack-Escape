@@ -7,6 +7,7 @@
 #include "Partie.h"
 #include <random>
 #include <termios.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -68,10 +69,10 @@ void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
 void Partie::generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, 20); // Plage de 0 à 20
+    std::uniform_int_distribution<int> dist(0, HAUTEUR); // Plage de 0 à 20
     int y = dist(gen); // Position y de l'Obstacle.
     unsigned int id; // Identifiant du type de l'Obstacle.
-    int x = 100; // Position x de l'Obstacle.
+    int x = LARGEUR; // Position x de l'Obstacle.
     unsigned int largeur = 2; // Largeur de l'Obstacle.
     unsigned int longueur = 2; // Longeur de l'Obstacle.
     Objet objet(id,x,y,largeur,longueur);
@@ -90,12 +91,13 @@ vector<Objet>& Partie::getObjets() {
     return tabObjets;
 }
 
+
 bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
     // Vérification de l'appui sur la touche Z
-    /*char touche = getch(); // Récupère immédiatement la touche
-        if (touche == 'z' || touche == 'Z') {
-            perso.monter();  // Appel de la méthode monter() du personnage
-        }*/
+    /*char touche = getKey(); // Récupère immédiatement la touche
+    if (touche == 'z' || touche == 'Z') {
+        perso.monter();  // Appel de la méthode monter() du personnage
+    }*/
     // Réinitialisation des paramètres de la partie
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
@@ -136,9 +138,6 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
         
         // Mise à jour de la distance et du score
         ajouterDistance();
-
-
-
     return enMarche ;
 }
 
