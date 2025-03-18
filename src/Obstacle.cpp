@@ -7,8 +7,8 @@
     : idTypeObstacle(id), x(x), y(y), largeur(larg), longueur(longueur) {}
  
  bool Obstacle::collisionObstacle(int hauteur) const {
-     bool abscisse = (x-longueur<0) && (x + longueur >= 0) ; 
-     bool ordonnee = (y + largeur > hauteur) && (y - largeur <= hauteur);
+    bool abscisse = (x >= 5 - largeur) && (x<=5+largeur) ; 
+    bool ordonnee = y == hauteur;
      return abscisse && ordonnee ;
  }
  void Obstacle::mettreAJourPosition(int vitesse) {
