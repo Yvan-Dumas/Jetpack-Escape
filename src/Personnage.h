@@ -36,7 +36,7 @@ class Personnage {
          * @brief Accesseur pour la position y du personnage
          * @return Retourne un entier non-signé
          */
-        unsigned int getHauteur();
+        unsigned int getHauteur() const;
 
         /**
          * @brief Fonction pour le déplacement vertical du personnage.

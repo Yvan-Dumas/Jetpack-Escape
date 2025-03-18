@@ -18,15 +18,15 @@ void Personnage::setHauteur(unsigned int y){
     hauteur = y;
 }
 
-unsigned int Personnage::getHauteur() {
+unsigned int Personnage::getHauteur() const {
     return hauteur;
 }
 
 void Personnage::monter() {
     if (carburant !=0) {
         velociteY = velociteY + 0.5;
-        hauteur = hauteur + 1*velociteY;
-        carburant = carburant - 0.2;
+        // hauteur = hauteur + 1*velociteY;
+        carburant -= 0.2;
     }
 }
 
