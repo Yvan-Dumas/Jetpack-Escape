@@ -10,6 +10,8 @@
 #include "Obstacle.h"
 #include "Objet.h"
 #include <vector>
+
+using namespace std;
  
 /**
     *@class Partie

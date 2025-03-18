@@ -13,16 +13,16 @@ void AffichageConsole::afficher() {
 
     char grille[LARGEUR][HAUTEUR] = {};
 
-    for (int i = 0; i < LARGEUR; i++)
-        for (int j = 0; j < HAUTEUR; j++)
+    for (int i = 0; i < HAUTEUR; i++)
+        for (int j = 0; j < LARGEUR; j++)
             grille[i][j] = ' ';
 
     // Placer le personnage
-    grille[0][partie.getHauteurPerso()] = '@';
+    grille[partie.getHauteurPerso()][2] = '@';
 
     for(Obstacle& obs : partie.getObstacles()){
         if(obs.getX() < LARGEUR) {
-            grille[obs.getX()][obs.getY()] = 'X';
+            grille[obs.getY()][obs.getX()] = 'X';
         }
     }
 
@@ -30,13 +30,12 @@ void AffichageConsole::afficher() {
     cout << "Distance : " << partie.distance << "m" << endl;
     cout << "Score : " << partie.score  << endl;
 
-    for (int i = 0; i < LARGEUR; i++) {
-        for (int j = 0; j < HAUTEUR; j++)
+    for (int i = 0; i < HAUTEUR; i++) {
+        for (int j = 0; j < LARGEUR; j++)
             cout << grille[i][j];
         cout << endl;
     }
 }
-
 
 
 void AffichageConsole::run() {
