@@ -92,6 +92,7 @@ bool Partie::lancerPartie() {
         if (touche == 'z' || touche == 'Z') {
             perso.monter();  // Appel de la méthode monter() du personnage
         }*/
+    // Réinitialisation des paramètres de la partie
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if (distance % 2 == 0) { // Tous les 20 mètres, on génère quelque chose
@@ -104,15 +105,13 @@ bool Partie::lancerPartie() {
             if (obstacle->getX() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
             } else if (obstacle->collisionObstacle(perso.getHauteur())) {
-                nbVies--;
+                setNbVies(nbVies-1);
                 if (nbVies <= 0) {
                     enMarche = false;
                     break;
                 }
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle après collision
-            } else {
-                ++obstacle;
-            }
+            } 
         }
 
         // Vérification des objets ramassés

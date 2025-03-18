@@ -3,34 +3,37 @@
 #include <unistd.h>
 using namespace std;
 
-int i = 0;
-const int HAUTEUR = 20;
-const int LARGEUR = 30;
+const int HAUTEUR = 5;
+const int LARGEUR = 100;
 
 AffichageConsole::AffichageConsole() {}
 
 void AffichageConsole::afficher() {
     system("clear");
 
-    char grille[LARGEUR][HAUTEUR] = {};
+    // Initialisation de la grille (origine en haut à gauche)
+    char grille[HAUTEUR][LARGEUR] = {};
 
     for (int i = 0; i < HAUTEUR; i++)
         for (int j = 0; j < LARGEUR; j++)
             grille[i][j] = ' ';
 
     // Placer le personnage
-    grille[partie.getHauteurPerso()][2] = '@';
+    int hauteurPerso = partie.getHauteurPerso();
+    if (hauteurPerso >= 0 && hauteurPerso < HAUTEUR) {
+        grille[HAUTEUR - 1 - hauteurPerso][5] = '@';
+    }
 
-    for(Obstacle& obs : partie.getObstacles()){
-        if(obs.getX() < LARGEUR) {
-            grille[obs.getY()][obs.getX()] = 'X';
+    for (Obstacle& obs : partie.getObstacles()) {
+        if (obs.getX() >= 0 && obs.getX() < LARGEUR && obs.getY() >= 0 && obs.getY() < HAUTEUR) {
+            grille[HAUTEUR - 1 - obs.getY()][obs.getX()] = 'X';
         }
     }
 
     cout << "Vies : " << partie.nbVies << endl;
     cout << "Distance : " << partie.distance << "m" << endl;
     cout << "Score : " << partie.score  << endl;
-    
+
     for (int i = 0; i < HAUTEUR; i++) {
         for (int j = 0; j < LARGEUR; j++)
             cout << grille[i][j];
