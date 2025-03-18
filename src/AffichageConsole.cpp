@@ -20,9 +20,9 @@ void AffichageConsole::afficher() {
     // Placer le personnage
     grille[0][partie.getHauteurPerso()] = '@';
 
-    for(const Obstacle& obs : partie.getObstacles()){
+    for(Obstacle& obs : partie.getObstacles()){
         if(obs.getX() < LARGEUR) {
-            grille[obs.getX()][obs.getY()] = 'X'
+            grille[obs.getX()][obs.getY()] = 'X';
         }
     }
 

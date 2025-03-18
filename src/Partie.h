@@ -39,7 +39,7 @@ class Partie {
         void setNbVies(unsigned int nb); ///<Défini le nombre de vies
         bool lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
         unsigned int getHauteurPerso() const; ///< Retourne La hauteur du personnage
-        const vector<Obstacle>& getObstacles() const; ///< Retourne le tableau d'obstacles
+        vector<Obstacle>& getObstacles() ; ///< Retourne le tableau d'obstacles
  };
  
  #endif

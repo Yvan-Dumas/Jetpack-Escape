@@ -22,7 +22,7 @@
         /**
          * @brief Constructeur par défaut de la classe Obstacle
          */
-        Obstacle();
+        Obstacle(unsigned int id, int x, int  y,unsigned int  larg, unsigned int longueur );
         
         /**
          * @brief Fonction booléene qui renvoie vrai si le personnage est en contact avec l'obstacle.
@@ -35,6 +35,15 @@
          * @param vitesse int vitesse du jeu
          */
         void mettreAJourPosition(int vitesse);
+        /**
+         * @brief renvoie le x de l'obstacle
+         */
+        int getX();
+
+        /**
+         * @brief renvoie le y de l'obstacle
+        */
+        int getY();
   };
 
 #endif
