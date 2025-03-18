@@ -1,4 +1,4 @@
-#include "AffichageConsole.h"
+#infdszclude "AffichageConsole.h"
 #include <iostream>
 #include <unistd.h>
 using namespace std;
@@ -69,7 +69,6 @@ void AffichageConsole::afficher() {
         cout << endl;
     }
 
-    // commentaire
 }
 
 
