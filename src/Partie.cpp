@@ -71,10 +71,10 @@ void Partie::generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR) {
     mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(0, HAUTEUR); // Plage de 0 à 20
     int y = dist(gen); // Position y de l'Obstacle.
-    unsigned int id; // Identifiant du type de l'Obstacle.
+    unsigned int id= 1 ; // Identifiant du type de l'Obstacle.
     int x = LARGEUR; // Position x de l'Obstacle.
-    unsigned int largeur = 2; // Largeur de l'Obstacle.
-    unsigned int longueur = 2; // Longeur de l'Obstacle.
+    unsigned int largeur = 1; // Largeur de l'objet.
+    unsigned int longueur = 1; // Longeur de l'objet.
     Objet objet(id,x,y,largeur,longueur);
     tabObjets.push_back(objet);
 }
@@ -103,6 +103,8 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
             generationObstacle(HAUTEUR, LARGEUR);
+        }
+        if (distance % 50 == 0) { // Tous les 50 mètres, on génère quelque chose
             generationObjet(HAUTEUR, LARGEUR);
         }
         // Vérification des collisions avec obstacles
@@ -136,7 +138,7 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
             }
         }
         
-        // Mise à jour de la distance et du score
+        // Mise à jour de la distance
         ajouterDistance();
     return enMarche ;
 }
