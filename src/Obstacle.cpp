@@ -3,9 +3,8 @@
  using namespace std;
 
 
- Obstacle::Obstacle() {
-    idTypeObstacle = 0 ;
-}
+ Obstacle::Obstacle(unsigned int id, int x, int  y, unsigned int  larg, unsigned int longueur ) 
+    : idTypeObstacle(id), x(x), y(y), largeur(larg), longueur(longueur) {}
  
  bool const Obstacle::collisionObstacle(int hauteur) {
      bool abscisse = (x-longueur<0) && (x + longueur >= 0) ; 
@@ -16,3 +15,4 @@
      x -= 1*vitesse; ///< Déplacement de l'obstacle vers la gauche (ajusté selon la vitesse du jeu)
  }
 
+ int Obstacle::getX() {return x;}

@@ -22,7 +22,7 @@
         /**
          * @brief Constructeur par défaut de la classe Objet
          */
-        Objet();
+        Objet(unsigned int id, int x, int  y,unsigned int  larg, unsigned int longueur );
         
         /**
          * @brief Fonction qui renvoie l'identifiant de l'objet si le personnage est en contact avec l'objet.
@@ -35,6 +35,10 @@
          * @param vitesse int Vitesse de défilement du jeu
          */
         void mettreAJourPosition(int vitesse);
+        /**
+         * @brief renvoie le x de l'objet
+         */
+        int getX();
   };
 
 #endif

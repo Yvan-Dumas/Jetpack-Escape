@@ -35,11 +35,10 @@
  public:
 
      Partie(); ///<Le constructeur de la classe
-     ~Partie(); ///<Le destructeur de la classe
      void sauvegarder(); ///<Sauvegarde le score dans un fichier
      void charger(); ///<Charger depuis un fichier
      void setNbVies(unsigned int nb); ///<Défini le nombre de vies
-     void lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
+     bool lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
  };
  
  #endif
