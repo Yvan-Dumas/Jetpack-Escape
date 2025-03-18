@@ -78,6 +78,13 @@ void Partie::generationObjet() {
     tabObjets.push_back(objet);
 }
 
+unsigned int Partie::getHauteurPerso() const {
+    return perso.getHauteur();
+}
+
+std::vector<Obstacle>& Partie::getObstacles() {
+    return tabObstacle;
+}
 
 bool Partie::lancerPartie() {
     // Vérification de l'appui sur la touche Z

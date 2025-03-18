@@ -8,11 +8,13 @@
  
  bool Obstacle::collisionObstacle(int hauteur) const {
      bool abscisse = (x-longueur<0) && (x + longueur >= 0) ; 
-     bool ordonez = (y + largeur > hauteur) && (y - largeur <= hauteur);
-     return abscisse && ordonez ;
+     bool ordonnee = (y + largeur > hauteur) && (y - largeur <= hauteur);
+     return abscisse && ordonnee ;
  }
  void Obstacle::mettreAJourPosition(int vitesse) {
      x -= 1*vitesse; ///< Déplacement de l'obstacle vers la gauche (ajusté selon la vitesse du jeu)
  }
 
  int Obstacle::getX() {return x;}
+
+ int Obstacle::getY() {return y;}

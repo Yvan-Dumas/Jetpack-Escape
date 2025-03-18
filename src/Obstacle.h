@@ -39,6 +39,11 @@
          * @brief renvoie le x de l'obstacle
          */
         int getX();
+
+        /**
+         * @brief renvoie le y de l'obstacle
+        */
+        int getY();
   };
 
 #endif
