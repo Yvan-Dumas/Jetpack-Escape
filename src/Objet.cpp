@@ -20,4 +20,5 @@
  }
 
  int Objet::getX() {return x;}
+ int Objet::getY() {return y;}
  

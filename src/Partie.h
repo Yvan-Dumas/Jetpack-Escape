@@ -24,8 +24,8 @@ class Partie {
         std::vector<Objet> tabObjets; ///< Tableau des objets récupérables
         int vitesseDefilement; ///< Vitesse du jeu
 
-        void generationObstacle();///<Génère un obstacle et l'ajoute au tableau
-        void generationObjet();///<Génère un objet et l'ajoute au tableau
+        void generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR);///<Génère un obstacle et l'ajoute au tableau
+        void generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR);///<Génère un objet et l'ajoute au tableau
         void ajouterPiece(); ///<Augmente le score tant que enMarche est vrai
         void ajouterDistance(); ///<Augmente le score tant que enMarche est vrai
         void utiliserObjet(unsigned int id); ///<Utilise l'objet ramassé
@@ -39,9 +39,10 @@ class Partie {
         void sauvegarder(); ///<Sauvegarde le score dans un fichier
         void charger(); ///<Charger depuis un fichier
         void setNbVies(unsigned int nb); ///<Défini le nombre de vies
-        bool lancerPartie(); ///< Appele les différentes fonction nécéssaire a la partie
+        bool lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR); ///< Appele les différentes fonction nécéssaire a la partie
         unsigned int getHauteurPerso() const; ///< Retourne La hauteur du personnage
-        vector<Obstacle>& getObstacles() ; ///< Retourne le tableau d'obstacles
+        vector<Obstacle>& getObstacles(); ///< Retourne le tableau d'obstacles
+        vector<Objet>& getObjets();
  };
  
  #endif
