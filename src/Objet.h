@@ -39,6 +39,8 @@
          * @brief renvoie le x de l'objet
          */
         int getX();
+
+        int getY();
   };
 
 #endif

@@ -14,19 +14,28 @@ void AffichageConsole::afficher() {
     // Initialisation de la grille (origine en haut à gauche)
     char grille[HAUTEUR][LARGEUR] = {};
 
+    // Remplissage de la gille avec des caractères vides
     for (int i = 0; i < HAUTEUR; i++)
         for (int j = 0; j < LARGEUR; j++)
             grille[i][j] = ' ';
 
-    // Placer le personnage
+    // Placement le personnage
     int hauteurPerso = partie.getHauteurPerso();
     if (hauteurPerso >= 0 && hauteurPerso < HAUTEUR) {
         grille[HAUTEUR - 1 - hauteurPerso][5] = '@';
     }
 
+    //Placement des obstacles
     for (Obstacle& obs : partie.getObstacles()) {
         if (obs.getX() >= 0 && obs.getX() < LARGEUR && obs.getY() >= 0 && obs.getY() < HAUTEUR) {
             grille[HAUTEUR - 1 - obs.getY()][obs.getX()] = 'X';
+        }
+    }
+
+    //Placement des objets
+    for (Objet& obj : partie.getObjets()) {
+        if (obj.getX() >= 0 && obj.getX() < LARGEUR && obj.getY() >= 0 && obj.getY() < HAUTEUR) {
+            grille[HAUTEUR - 1 - obj.getY()][obj.getX()] = 'o';
         }
     }
 
@@ -34,6 +43,7 @@ void AffichageConsole::afficher() {
     cout << "Distance : " << partie.distance << "m" << endl;
     cout << "Score : " << partie.score  << endl;
 
+    // Affichage de la grille
     for (int i = 0; i < HAUTEUR; i++) {
         for (int j = 0; j < LARGEUR; j++)
             cout << grille[i][j];
@@ -43,7 +53,7 @@ void AffichageConsole::afficher() {
 
 
 void AffichageConsole::run() {
-    while (partie.lancerPartie() == true)
+    while (partie.lancerPartie(HAUTEUR, LARGEUR) == true)
     {
         afficher();
         usleep(100000); // Pause (100ms)

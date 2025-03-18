@@ -51,13 +51,13 @@ void Partie::utiliserObjet(unsigned int id){
     }
 }
 
-void Partie::generationObstacle() {
+void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, 20); // Plage de 0 à 20
+    std::uniform_int_distribution<int> dist(0, HAUTEUR); // Plage de 0 à HAUTEUR
     int y = dist(gen); // Position y de l'Obstacle.
     unsigned int id = 0; // Identifiant du type de l'Obstacle.
-    int x = 100; // Position x de l'Obstacle.
+    int x = LARGEUR;// Position x de l'Obstacle.
     unsigned int largeur = 5; // Largeur de l'Obstacle.
     unsigned int longueur = 5; // Longeur de l'Obstacle.
     Obstacle obstacle(id,x,y,largeur,longueur);
@@ -65,7 +65,7 @@ void Partie::generationObstacle() {
 
 }
 
-void Partie::generationObjet() {
+void Partie::generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(0, 20); // Plage de 0 à 20
@@ -86,7 +86,11 @@ vector<Obstacle>& Partie::getObstacles() {
     return tabObstacle;
 }
 
-bool Partie::lancerPartie() {
+vector<Objet>& Partie::getObjets() {
+    return tabObjets;
+}
+
+bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
     // Vérification de l'appui sur la touche Z
     /*char touche = getch(); // Récupère immédiatement la touche
         if (touche == 'z' || touche == 'Z') {
@@ -95,9 +99,9 @@ bool Partie::lancerPartie() {
     // Réinitialisation des paramètres de la partie
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
-        if (distance % 2 == 0) { // Tous les 20 mètres, on génère quelque chose
-            generationObstacle();
-            generationObjet();
+        if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
+            generationObstacle(HAUTEUR, LARGEUR);
+            generationObjet(HAUTEUR, LARGEUR);
         }
         // Vérification des collisions avec obstacles
         for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
