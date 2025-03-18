@@ -18,3 +18,6 @@
  int Obstacle::getX() {return x;}
 
  int Obstacle::getY() {return y;}
+
+ int Obstacle::getLargeur() {return largeur;}
+ int Obstacle::getLongueur() {return longueur;}

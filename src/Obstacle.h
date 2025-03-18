@@ -44,6 +44,9 @@
          * @brief renvoie le y de l'obstacle
         */
         int getY();
+
+        int getLargeur();
+        int getLongueur();
   };
 
 #endif

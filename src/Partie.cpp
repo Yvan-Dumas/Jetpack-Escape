@@ -58,8 +58,8 @@ void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
     int y = dist(gen); // Position y de l'Obstacle.
     unsigned int id = 0; // Identifiant du type de l'Obstacle.
     int x = LARGEUR;// Position x de l'Obstacle.
-    unsigned int largeur = 5; // Largeur de l'Obstacle.
-    unsigned int longueur = 5; // Longeur de l'Obstacle.
+    unsigned int largeur = 3; // Largeur de l'Obstacle.
+    unsigned int longueur = 1; // Longeur de l'Obstacle.
     Obstacle obstacle(id,x,y,largeur,longueur);
     tabObstacle.push_back(obstacle);
 

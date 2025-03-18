@@ -25,10 +25,29 @@ void AffichageConsole::afficher() {
         grille[HAUTEUR - 1 - hauteurPerso][5] = '@';
     }
 
+    /*
     //Placement des obstacles
     for (Obstacle& obs : partie.getObstacles()) {
         if (obs.getX() >= 0 && obs.getX() < LARGEUR && obs.getY() >= 0 && obs.getY() < HAUTEUR) {
             grille[HAUTEUR - 1 - obs.getY()][obs.getX()] = 'X';
+        }
+    }
+
+    */
+    for (Obstacle& obs : partie.getObstacles()) {
+        int obsX = obs.getX();
+        int obsY = obs.getY();
+        int obsLargeur = obs.getLargeur();  // Largeur de l'obstacle
+        int obsLongueur = obs.getLongueur(); // Longueur de l'obstacle
+
+        // Vérification que l'obstacle ne sort pas de la grille
+        for (int i = 0; i < obsLargeur; i++) {
+            for (int j = 0; j < obsLongueur; j++) {
+                // Vérification si la position (obsX + i, obsY + j) est dans les limites de la grille
+                if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
+                    grille[HAUTEUR - 1 - (obsY + j)][obsX + i] = 'X';  // Placer l'obstacle sur la grille
+                }
+            }
         }
     }
 
