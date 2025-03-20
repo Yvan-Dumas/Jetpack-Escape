@@ -92,11 +92,12 @@ Personnage& Partie::getPerso() {
     return perso;
 }
 
-void actionsClavier(const char touche) {
+void Partie::actionsClavier(const char touche, unsigned int HAUTEUR) {
     switch (touche)
     {
     case 'z':
-        perso.monter();
+        if (perso.getHauteur()< HAUTEUR) {
+        perso.monter(); }
         break;
     
     default:

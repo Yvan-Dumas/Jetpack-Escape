@@ -24,7 +24,7 @@ unsigned int Personnage::getHauteur() const {
 
 void Personnage::monter() {
     if (carburant !=0) {
-        velociteY = velociteY + 1;
+        velociteY = 1;
         hauteur = hauteur + 1*velociteY;
         carburant -= 0.2;
     }

@@ -39,7 +39,7 @@ class Partie {
         void sauvegarder(); ///<Sauvegarde le score dans un fichier
         void charger(); ///<Charger depuis un fichier
         void setNbVies(unsigned int nb); ///<Défini le nombre de vies
-        void actionsClavier(const char touche);
+        void actionsClavier(const char touche, unsigned int HAUTEUR);
         bool actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR); ///< Appele les différentes fonction nécéssaire a la partie
         unsigned int getHauteurPerso() const; ///< Retourne La hauteur du personnage
         vector<Obstacle>& getObstacles(); ///< Retourne le tableau d'obstacles

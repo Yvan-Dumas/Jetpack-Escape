@@ -81,7 +81,7 @@ void AffichageConsole::afficher(WinTXT &win) {
 
     // Placement du personnage
     int hauteurPerso = partie.getHauteurPerso();
-    win.print(3, HAUTEUR - 1 - hauteurPerso, '@');
+    win.print(5, HAUTEUR - 1 - hauteurPerso, '@');
 
      //Placement des obstacles
      for (Obstacle& obs : partie.getObstacles()) {
@@ -103,18 +103,20 @@ void AffichageConsole::afficher(WinTXT &win) {
     for (Objet& obj : partie.getObjets()) {
         win.print(obj.getX(), HAUTEUR - 1 - obj.getY(), 'o');
     }
-
+    /*
     char texte[] = "Vies : ";
-    win.print(0, 0, texte);
-    win.print(1, 0, partie.nbVies);
-
+    win.print(0, 6, texte);
+    win.print(1, 6, partie.nbVies);*/
     win.draw();
+    cout << "Vies : ";
+    cout << partie.nbVies << endl;
+    cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
 }
 
 
 void AffichageConsole::run() {
     termClear();
-    WinTXT win(LARGEUR, HAUTEUR);
+    WinTXT win(LARGEUR, HAUTEUR+1);
     int c;
     bool ok;
     win.clear();
@@ -130,7 +132,7 @@ void AffichageConsole::run() {
             break;
 
         case 'z':
-            partie.actionClavier(z);
+            partie.actionsClavier('z', HAUTEUR-1);
             break;
 
         default:
