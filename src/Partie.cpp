@@ -7,7 +7,6 @@
 #include "Partie.h"
 #include <random>
 #include <termios.h>
-#include <unistd.h>
 
 using namespace std;
 
@@ -94,10 +93,10 @@ vector<Objet>& Partie::getObjets() {
 
 bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
     // Vérification de l'appui sur la touche Z
-    /*char touche = getKey(); // Récupère immédiatement la touche
-    if (touche == 'z' || touche == 'Z') {
-        perso.monter();  // Appel de la méthode monter() du personnage
-    }*/
+    /*char touche = getch(); // Récupère immédiatement la touche
+        if (touche == 'z' || touche == 'Z') {
+            perso.monter();  // Appel de la méthode monter() du personnage
+        }*/
     // Réinitialisation des paramètres de la partie
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
