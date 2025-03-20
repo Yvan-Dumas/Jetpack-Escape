@@ -75,13 +75,19 @@ void AffichageConsole::afficher(WinTXT &win) {
     win.clear();
 
     // Remplissage de la gille avec des caractères vides
-    for (int i = 0; i < LARGEUR; i++)
-        for (int j = 0; j < HAUTEUR; j++)
-            win.print(i, j, '-');
+    for (int i = 0; i < LARGEUR; i++) {
+        for (int j = 0; j < HAUTEUR; j++) {
+            win.print(i, j+1, ' ');
+        }
+    }
 
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        win.print(i,0,'_');
+    }
+    
     // Placement du personnage
     int hauteurPerso = partie.getHauteurPerso();
-    win.print(5, HAUTEUR - 1 - hauteurPerso, '@');
+    win.print(5, HAUTEUR - hauteurPerso, '@');
 
      //Placement des obstacles
      for (Obstacle& obs : partie.getObstacles()) {
@@ -93,7 +99,7 @@ void AffichageConsole::afficher(WinTXT &win) {
         for (int i = 0; i < obsLargeur; i++) {
             for (int j = 0; j < obsLongueur; j++) {
                 if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
-                    win.print(obsX + i, HAUTEUR - 1 - (obsY + j), 'X');
+                    win.print(obsX + i, HAUTEUR - (obsY + j), 'X');
                 }
             }
         }
@@ -101,22 +107,24 @@ void AffichageConsole::afficher(WinTXT &win) {
 
     //Placement des objets
     for (Objet& obj : partie.getObjets()) {
-        win.print(obj.getX(), HAUTEUR - 1 - obj.getY(), 'o');
+        win.print(obj.getX(), HAUTEUR - obj.getY(), 'o');
     }
-    /*
-    char texte[] = "Vies : ";
-    win.print(0, 6, texte);
-    win.print(1, 6, partie.nbVies);*/
+
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        win.print(i,6,'-');
+    }
+
     win.draw();
     cout << "Vies : ";
     cout << partie.nbVies << endl;
+    cout << "Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
 }
 
 
 void AffichageConsole::run() {
     termClear();
-    WinTXT win(LARGEUR, HAUTEUR+1);
+    WinTXT win(LARGEUR, HAUTEUR+3);
     int c;
     bool ok;
     win.clear();
@@ -146,6 +154,6 @@ void AffichageConsole::run() {
     win.clear();
     
 
-    cout << "Game Over ! Distance parcourue : " << partie.distance << endl;
-    cout << "Score : " << partie.score;
+    cout << "Game Over ! Distance parcourue : " << partie.distance << "m" << endl;
+    cout << "Score : " << partie.score << endl;
 }
