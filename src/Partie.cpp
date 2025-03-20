@@ -88,16 +88,11 @@ vector<Objet>& Partie::getObjets() {
     return tabObjets;
 }
 
-Personnage& Partie::getPerso() {
-    return perso;
-}
-
 void Partie::actionsClavier(const char touche, unsigned int HAUTEUR) {
     switch (touche)
     {
     case 'z':
-        if (perso.getHauteur()< HAUTEUR) {
-        perso.monter(); }
+        perso.monter(HAUTEUR);
         break;
     
     default:
@@ -146,10 +141,9 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
                 ++it;
             }
         }
-
-        perso.appliquerGravite();
         // Mise à jour de la distance
         ajouterDistance();
+        perso.appliquerGravite(HAUTEUR);
     return enMarche ;
 }
 

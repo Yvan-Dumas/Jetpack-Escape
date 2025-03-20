@@ -15,11 +15,10 @@
 class Personnage {
     private:
         unsigned int hauteur; ///< Position y du personnnage (valeur entière).
-        float velociteY; ///< Vitesse du personnage selon l'axe y.
 
     public:
         float carburant; ///< Quantité de carburant du joueur.
-
+        float velociteY; ///< Vitesse du personnage selon l'axe y.
         /**
          * @brief Constructeur par défaut de la classe Personnage
          * Initialise la position du personnage et sa vitesse selon l'axe y à 0.
@@ -41,12 +40,12 @@ class Personnage {
         /**
          * @brief Fonction pour le déplacement vertical du personnage.
          */
-        void monter();
+        void monter(unsigned int HAUTEUR);
 
         /**
          * @brief Fonction appliquant la gravité au personnage.
          */
-        void appliquerGravite();
+        void appliquerGravite(unsigned int HAUTEUR);
     };
 
 #endif
