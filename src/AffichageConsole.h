@@ -11,7 +11,7 @@
  /**
   * @class AffichageConsole
   * @brief Affiche l'ensemble du jeu dans la console, à l'aide de caractères
-  */
+*/
  class AffichageConsole {
  private:
      Partie partie; ///<  La partie en cours

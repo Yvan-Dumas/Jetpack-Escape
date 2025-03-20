@@ -273,6 +273,30 @@ src/mainConsole.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/mainConsole.cpp.s
 .PHONY : src/mainConsole.cpp.s
 
+src/winTxt.o: src/winTxt.cpp.o
+.PHONY : src/winTxt.o
+
+# target to build an object file
+src/winTxt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.o
+.PHONY : src/winTxt.cpp.o
+
+src/winTxt.i: src/winTxt.cpp.i
+.PHONY : src/winTxt.i
+
+# target to preprocess a source file
+src/winTxt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.i
+.PHONY : src/winTxt.cpp.i
+
+src/winTxt.s: src/winTxt.cpp.s
+.PHONY : src/winTxt.s
+
+# target to generate assembly for a file
+src/winTxt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.s
+.PHONY : src/winTxt.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -300,6 +324,9 @@ help:
 	@echo "... src/mainConsole.o"
 	@echo "... src/mainConsole.i"
 	@echo "... src/mainConsole.s"
+	@echo "... src/winTxt.o"
+	@echo "... src/winTxt.i"
+	@echo "... src/winTxt.s"
 .PHONY : help
 
 

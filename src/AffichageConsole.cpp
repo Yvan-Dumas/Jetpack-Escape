@@ -25,7 +25,6 @@ void AffichageConsole::afficher() {
         grille[HAUTEUR - 1 - hauteurPerso][5] = '@';
     }
 
-    /*
     //Placement des obstacles
     for (Obstacle& obs : partie.getObstacles()) {
         if (obs.getX() >= 0 && obs.getX() < LARGEUR && obs.getY() >= 0 && obs.getY() < HAUTEUR) {
@@ -33,7 +32,7 @@ void AffichageConsole::afficher() {
         }
     }
 
-    */
+    
     for (Obstacle& obs : partie.getObstacles()) {
         int obsX = obs.getX();
         int obsY = obs.getY();

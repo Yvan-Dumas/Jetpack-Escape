@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/JetpackEscape.dir/src/Personnage.cpp.o.d"
   "CMakeFiles/JetpackEscape.dir/src/mainConsole.cpp.o"
   "CMakeFiles/JetpackEscape.dir/src/mainConsole.cpp.o.d"
+  "CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.o"
+  "CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.o.d"
   "JetpackEscape"
   "JetpackEscape.pdb"
 )
