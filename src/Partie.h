@@ -39,11 +39,12 @@ class Partie {
         void sauvegarder(); ///<Sauvegarde le score dans un fichier
         void charger(); ///<Charger depuis un fichier
         void setNbVies(unsigned int nb); ///<Défini le nombre de vies
-        bool lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR); ///< Appele les différentes fonction nécéssaire a la partie
+        void actionsClavier(const char touche);
+        bool actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR); ///< Appele les différentes fonction nécéssaire a la partie
         unsigned int getHauteurPerso() const; ///< Retourne La hauteur du personnage
         vector<Obstacle>& getObstacles(); ///< Retourne le tableau d'obstacles
-        vector<Objet>& getObjets();
-        char getKey();
+        vector<Objet>& getObjets(); ///< Retourne le tableau d'objets
+        Personnage& getPerso();
  };
  
  #endif

@@ -11,7 +11,6 @@
 using namespace std;
 
 Partie::Partie() {
-    Personnage perso;
     vitesseDefilement = 1;
     score = 0;
     distance = 0;
@@ -46,7 +45,6 @@ void Partie::utiliserObjet(unsigned int id){
         break;
     
     default:
-        
         break;
     }
 }
@@ -90,14 +88,25 @@ vector<Objet>& Partie::getObjets() {
     return tabObjets;
 }
 
+Personnage& Partie::getPerso() {
+    return perso;
+}
 
-bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
-    // Vérification de l'appui sur la touche Z
-    /*char touche = getch(); // Récupère immédiatement la touche
-        if (touche == 'z' || touche == 'Z') {
-            perso.monter();  // Appel de la méthode monter() du personnage
-        }*/
+void actionsClavier(const char touche) {
+    switch (touche)
+    {
+    case 'z':
+        perso.monter();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
     // Réinitialisation des paramètres de la partie
+
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
@@ -136,7 +145,8 @@ bool Partie::lancerPartie(unsigned int HAUTEUR, unsigned int LARGEUR) {
                 ++it;
             }
         }
-        
+
+        perso.appliquerGravite();
         // Mise à jour de la distance
         ajouterDistance();
     return enMarche ;
