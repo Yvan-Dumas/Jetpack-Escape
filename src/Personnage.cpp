@@ -11,7 +11,7 @@ using namespace std;
 Personnage::Personnage() {
     hauteur = 0;
     velociteY = 0;
-    carburant = 5;
+    carburant = 50000000000000;
 }
 
 void Personnage::setHauteur(unsigned int y){
@@ -21,18 +21,54 @@ void Personnage::setHauteur(unsigned int y){
 unsigned int Personnage::getHauteur() const {
     return hauteur;
 }
-
+/*
 void Personnage::monter() {
-    if (carburant !=0) {
-        velociteY = 1;
-        hauteur = hauteur + 1*velociteY;
-        carburant -= 0.2;
+    if (velociteY < 0) {
+        velociteY = 0;
     }
+    if (velociteY == 0) {
+        velociteY = 0.5;
+    }
+    //if (carburant != 0) {
+        hauteur = hauteur + 1*velociteY;
+        velociteY = velociteY + velociteY;
+        carburant -= 0.2;
+    //}
 }
 
 void Personnage::appliquerGravite(){
-    /*if (hauteur > 0) {
-        velociteY = velociteY + 0.5;
-        hauteur = hauteur - 1*velociteY;
-    }*/
+    if (hauteur > 0) {
+        velociteY = velociteY - 0.5*abs(velociteY);
+        if (velociteY < 0) {hauteur = hauteur + velociteY; }
+    }
+}*/
+void Personnage::monter(unsigned int HAUTEUR) {
+    if (carburant > 0) {  // Vérifier si on a du carburant
+        if (velociteY < 0) {
+            velociteY = 0;  // On empêche une descente immédiate
+        }
+        if (velociteY <= 0.5) {velociteY+= 0.5;}  // Augmentation plus progressive de la poussée
+        // Appliquer la poussée mais ne pas dépasser HAUTEUR
+        if (hauteur + velociteY >= HAUTEUR) {
+            hauteur = HAUTEUR;
+            //velociteY = 0;
+        } else {
+            hauteur += velociteY;
+        }
+
+        carburant -= 0.2;  // Consommer du carburant
+    }
+}
+
+void Personnage::appliquerGravite(unsigned int HAUTEUR) {
+    if (hauteur > 0) {
+        velociteY -= 0.5;  // Gravité légèrement plus forte pour équilibrer
+        if (hauteur + velociteY < HAUTEUR) {hauteur += velociteY;}  // Appliquer la vitesse verticale
+
+        // Ne pas tomber sous le sol
+        if (hauteur < 0) {
+            hauteur = 0;
+            velociteY = 0;
+        }
+    }
 }
