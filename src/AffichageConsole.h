@@ -19,8 +19,8 @@
  
  public:
      AffichageConsole(); ///< Le constructeur de AffichageConsole
-     void afficher(WinTXT &win); ///< procédure qui affiche les éléments
-     void run(); ///< La procédure qui gère tout l'affichage
+     void afficher(WinTXT &win); ///< Procédure qui affiche les éléments
+     void run(); ///< Procédure qui gère tout l'affichage et récupère les actions claviers
  };
  
  #endif

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src
+CXX_INCLUDES = -I/home/yvan/polytech/S4/lifapcd-jetpack-escape/src
 
 CXX_FLAGS = -std=gnu++17
 

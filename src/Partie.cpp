@@ -2,7 +2,6 @@
  *@file Partie.cpp
  *@brief Implémentation de la classe Partie
  */
-
 #include <iostream>
 #include "Partie.h"
 #include <random>
@@ -21,7 +20,7 @@ void Partie::sauvegarder() {
 
 }
 
-void Partie::charger(){
+void Partie::charger() {
 
 }
 
@@ -37,14 +36,13 @@ void Partie::ajouterDistance() {
     distance++;
 }
 
-void Partie::utiliserObjet(unsigned int id){
-    switch (id)
-    {
-    case 1:
-        ajouterPiece();
+void Partie::utiliserObjet(unsigned int id) {
+    switch (id) {
+        case 1:
+            ajouterPiece();
         break;
     
-    default:
+        default:
         break;
     }
 }
@@ -52,7 +50,7 @@ void Partie::utiliserObjet(unsigned int id){
 void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, HAUTEUR); // Plage de 0 à HAUTEUR
+    std::uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
     int y = dist(gen); // Position y de l'Obstacle.
     unsigned int id = 0; // Identifiant du type de l'Obstacle.
     int x = LARGEUR;// Position x de l'Obstacle.
@@ -66,7 +64,7 @@ void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
 void Partie::generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, HAUTEUR); // Plage de 0 à 20
+    uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR-1
     int y = dist(gen); // Position y de l'Obstacle.
     unsigned int id= 1 ; // Identifiant du type de l'Obstacle.
     int x = LARGEUR; // Position x de l'Obstacle.
@@ -80,11 +78,11 @@ unsigned int Partie::getHauteurPerso() const {
     return perso.getHauteur();
 }
 
-vector<Obstacle>& Partie::getObstacles() {
+const vector<Obstacle>& Partie::getObstacles() const {
     return tabObstacle;
 }
 
-vector<Objet>& Partie::getObjets() {
+const vector<Objet>& Partie::getObjets() const{
     return tabObjets;
 }
 
@@ -102,7 +100,6 @@ void Partie::actionsClavier(const char touche, unsigned int HAUTEUR) {
 
 bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
     // Réinitialisation des paramètres de la partie
-
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
@@ -141,11 +138,10 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
                 ++it;
             }
         }
+
         // Mise à jour de la distance
         ajouterDistance();
+
         perso.appliquerGravite(HAUTEUR);
     return enMarche ;
 }
-
-
-
