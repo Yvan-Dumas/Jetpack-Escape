@@ -42,6 +42,8 @@ void Personnage::appliquerGravite(){
         if (velociteY < 0) {hauteur = hauteur + velociteY; }
     }
 }*/
+
+/*
 void Personnage::monter(unsigned int HAUTEUR) {
     if (carburant > 0) {  // Vérifier si on a du carburant
         if (velociteY < 0) {
@@ -71,4 +73,29 @@ void Personnage::appliquerGravite(unsigned int HAUTEUR) {
             velociteY = 0;
         }
     }
+}
+
+*/
+
+void Personnage::monter(unsigned int HAUTEUR) {
+    if (carburant > 0) {
+        velociteY = 2.0; // Une poussée plus franche pour un effet plus réactif
+        carburant -= 0.2;
+    }
+}
+
+void Personnage::appliquerGravite(unsigned int HAUTEUR_SOL) {
+    velociteY -= 0.5;  // Applique une accélération vers le bas
+
+    if (velociteY < -2) velociteY = -2; // Limite la vitesse de chute
+
+    hauteur += velociteY; // Mise à jour de la hauteur
+
+    // Empêche de descendre en dessous du sol
+    if (hauteur < 0) {
+        hauteur = 0;
+        velociteY = 0;  // Arrête la chute
+    }
+    // Empêche de dépasser la hauteur maximale (si applicable)
+    if (hauteur > HAUTEUR_SOL) hauteur = HAUTEUR_SOL;
 }
