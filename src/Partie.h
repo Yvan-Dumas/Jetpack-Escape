@@ -43,6 +43,8 @@ class Partie {
         unsigned int getHauteurPerso() const; ///< Retourne la hauteur du personnage
         const vector<Obstacle>& getObstacles() const; ///< Retourne le tableau d'obstacles
         const vector<Objet>& getObjets() const; ///< Retourne le tableau d'objets
+
+        float getCarburant() const;
  };
  
  #endif

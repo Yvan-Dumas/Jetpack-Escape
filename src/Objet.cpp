@@ -26,4 +26,8 @@ int Objet::getX() const {
 int Objet::getY() const {
     return y;
 }
+
+int Objet::getID() const {
+   return idTypeObjet;
+}
  

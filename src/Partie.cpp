@@ -58,7 +58,6 @@ void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
     unsigned int longueur = 1; // Longeur de l'Obstacle.
     Obstacle obstacle(id,x,y,largeur,longueur);
     tabObstacle.push_back(obstacle);
-
 }
 
 void Partie::generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR) {
@@ -144,4 +143,8 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
 
         perso.appliquerGravite(HAUTEUR);
     return enMarche ;
+}
+
+float Partie::getCarburant() const {
+    return perso.carburant;
 }

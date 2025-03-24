@@ -11,7 +11,7 @@ using namespace std;
 Personnage::Personnage() {
     hauteur = 0;
     velociteY = 0;
-    carburant = 50000000000000;
+    carburant = 5;
 }
 
 void Personnage::setHauteur(unsigned int y){
@@ -21,27 +21,7 @@ void Personnage::setHauteur(unsigned int y){
 unsigned int Personnage::getHauteur() const {
     return hauteur;
 }
-/*
-void Personnage::monter() {
-    if (velociteY < 0) {
-        velociteY = 0;
-    }
-    if (velociteY == 0) {
-        velociteY = 0.5;
-    }
-    //if (carburant != 0) {
-        hauteur = hauteur + 1*velociteY;
-        velociteY = velociteY + velociteY;
-        carburant -= 0.2;
-    //}
-}
 
-void Personnage::appliquerGravite(){
-    if (hauteur > 0) {
-        velociteY = velociteY - 0.5*abs(velociteY);
-        if (velociteY < 0) {hauteur = hauteur + velociteY; }
-    }
-}*/
 void Personnage::monter(unsigned int HAUTEUR) {
     if (carburant > 0) {  // Vérifier si on a du carburant
         if (velociteY < 0) {
@@ -56,7 +36,7 @@ void Personnage::monter(unsigned int HAUTEUR) {
             hauteur += velociteY;
         }
 
-        carburant -= 0.2;  // Consommer du carburant
+        carburant -= 0.1;  // Consommer du carburant
     }
 }
 
