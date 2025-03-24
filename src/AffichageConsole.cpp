@@ -62,7 +62,6 @@ void AffichageConsole::afficher(WinTXT &win) {
     cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
 }
 
-
 void AffichageConsole::run() {
     termClear();
     WinTXT window(LARGEUR, HAUTEUR+3);
@@ -74,6 +73,7 @@ void AffichageConsole::run() {
         ok = partie.actionsAutomatiques(HAUTEUR, LARGEUR);
 
         c = window.getCh();
+        cout << "Touche détectée : " << c << endl;
         switch (c)
         {
         case 'q':

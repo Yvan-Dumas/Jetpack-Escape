@@ -36,42 +36,71 @@ void Partie::ajouterDistance() {
     distance++;
 }
 
+void Partie::ajouterCarburant(){
+    perso.carburant = perso.carburant + 1 ;
+}
+
 void Partie::utiliserObjet(unsigned int id) {
     switch (id) {
         case 1:
             ajouterPiece();
-        break;
-    
+            break;
+        case 2:
+            ajouterCarburant();
+            break;
         default:
-        break;
+            break;
     }
 }
 
-void Partie::generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR) {
+void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
     int y = dist(gen); // Position y de l'Obstacle.
-    unsigned int id = 0; // Identifiant du type de l'Obstacle.
     int x = LARGEUR;// Position x de l'Obstacle.
-    unsigned int largeur = 3; // Largeur de l'Obstacle.
-    unsigned int longueur = 1; // Longeur de l'Obstacle.
-    Obstacle obstacle(id,x,y,largeur,longueur);
-    tabObstacle.push_back(obstacle);
+    switch (id) {
+        case 1: // Création d'un obstacle
+            unsigned int largeur = 3; 
+            unsigned int longueur = 1;
+            Obstacle obstacle(id, x, y, largeur, longueur);
+            tabObstacle.push_back(obstacle);
+            break;
+        case 2: // Création d'un carburant
+            unsigned int largeur = 1; // Largeur de l'objet.
+            unsigned int longueur = 3; // Longeur de l'objet.
+            Obstacle obstacle(id, x, y, largeur, longueur);
+            tabObstacle.push_back(obstacle);
+            break;
+        default:
+            return; // Ne rien faire si id est invalide
+    }
 
 }
 
-void Partie::generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR) {
+void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR-1
-    int y = dist(gen); // Position y de l'Obstacle.
-    unsigned int id= 1 ; // Identifiant du type de l'Obstacle.
-    int x = LARGEUR; // Position x de l'Obstacle.
-    unsigned int largeur = 1; // Largeur de l'objet.
-    unsigned int longueur = 1; // Longeur de l'objet.
-    Objet objet(id,x,y,largeur,longueur);
-    tabObjets.push_back(objet);
+    uniform_int_distribution<int> dist(0, HAUTEUR - 1);
+    int y = dist(gen); // Position y de l'objet.
+    int x = LARGEUR; // Position x de l'objet (bord droit de l'écran).
+    
+    switch (id) {
+        case 1: // Création d'une pièce
+            unsigned int largeur = 1; 
+            unsigned int longueur = 1;
+            Objet objet(id, x, y, largeur, longueur);
+            tabObjets.push_back(objet);
+            break;
+        case 2: // Création d'un carburant
+            unsigned int largeur = 1; // Largeur de l'objet.
+            unsigned int longueur = 1; // Longeur de l'objet.
+            Objet objet(id, x, y, largeur, longueur);
+            tabObjets.push_back(objet);
+            break;
+        default:
+            return; // Ne rien faire si id est invalide
+    }
 }
 
 unsigned int Partie::getHauteurPerso() const {
@@ -103,10 +132,18 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
     bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
-            generationObstacle(HAUTEUR, LARGEUR);
+            generationObstacle(1,HAUTEUR, LARGEUR);
         }
+
+        if (distance % 20 == 0) { // Tous les 20 mètres, on génère quelque chose
+            generationObstacle(2,HAUTEUR, LARGEUR);
+        }
+
         if (distance % 50 == 0) { // Tous les 50 mètres, on génère quelque chose
-            generationObjet(HAUTEUR, LARGEUR);
+            generationObjet(1,HAUTEUR, LARGEUR);
+        }
+        if (distance % 30 == 0) { // Tous les 50 mètres, on génère quelque chose
+            generationObjet(2,HAUTEUR, LARGEUR);
         }
         // Vérification des collisions avec obstacles
         for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
