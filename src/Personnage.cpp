@@ -51,7 +51,7 @@ void Personnage::monter(unsigned int HAUTEUR) {
         // Appliquer la poussée mais ne pas dépasser HAUTEUR
         if (hauteur + velociteY >= HAUTEUR) {
             hauteur = HAUTEUR;
-            //velociteY = 0;
+            velociteY = 1;
         } else {
             hauteur += velociteY;
         }
@@ -62,8 +62,8 @@ void Personnage::monter(unsigned int HAUTEUR) {
 
 void Personnage::appliquerGravite(unsigned int HAUTEUR) {
     if (hauteur > 0) {
-        velociteY -= 0.5;  // Gravité légèrement plus forte pour équilibrer
-        if (hauteur + velociteY < HAUTEUR) {hauteur += velociteY;}  // Appliquer la vitesse verticale
+        velociteY -= 0.5;  // Gravité
+        /*if (hauteur + velociteY < HAUTEUR)*/ {hauteur += velociteY;}  // Appliquer la vitesse verticale
 
         // Ne pas tomber sous le sol
         if (hauteur < 0) {
