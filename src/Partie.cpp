@@ -59,18 +59,21 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
     std::uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
     int y = dist(gen); // Position y de l'Obstacle.
     int x = LARGEUR;// Position x de l'Obstacle.
+    unsigned int largeur; 
+    unsigned int longueur;
+
     switch (id) {
-        case 1: // Création d'un obstacle
-            unsigned int largeur = 3; 
-            unsigned int longueur = 1;
-            Obstacle obstacle(id, x, y, largeur, longueur);
-            tabObstacle.push_back(obstacle);
+        case '1': // Création d'un obstacle
+            largeur = 3; 
+            longueur = 1;
+            Obstacle obstacle1(id, x, y, largeur, longueur);
+            tabObstacle.push_back(obstacle1);
             break;
-        case 2: // Création d'un carburant
-            unsigned int largeur = 1; // Largeur de l'objet.
-            unsigned int longueur = 3; // Longeur de l'objet.
-            Obstacle obstacle(id, x, y, largeur, longueur);
-            tabObstacle.push_back(obstacle);
+        case '2': // Création d'un carburant
+            largeur = 1; // Largeur de l'objet.
+            longueur = 3; // Longeur de l'objet.
+            Obstacle obstacle2(id, x, y, largeur, longueur);
+            tabObstacle.push_back(obstacle2);
             break;
         default:
             return; // Ne rien faire si id est invalide
@@ -84,19 +87,20 @@ void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR)
     uniform_int_distribution<int> dist(0, HAUTEUR - 1);
     int y = dist(gen); // Position y de l'objet.
     int x = LARGEUR; // Position x de l'objet (bord droit de l'écran).
-    
+    unsigned int largeur; 
+    unsigned int longueur;
     switch (id) {
-        case 1: // Création d'une pièce
-            unsigned int largeur = 1; 
-            unsigned int longueur = 1;
-            Objet objet(id, x, y, largeur, longueur);
-            tabObjets.push_back(objet);
+        case '1': // Création d'une pièce
+            largeur = 1; 
+            longueur = 1;
+            Objet objet1(id, x, y, largeur, longueur);
+            tabObjets.push_back(objet1);
             break;
-        case 2: // Création d'un carburant
-            unsigned int largeur = 1; // Largeur de l'objet.
-            unsigned int longueur = 1; // Longeur de l'objet.
-            Objet objet(id, x, y, largeur, longueur);
-            tabObjets.push_back(objet);
+        case '2': // Création d'un carburant
+            largeur = 1; // Largeur de l'objet.
+            longueur = 1; // Longeur de l'objet.
+            Objet objet2(id, x, y, largeur, longueur);
+            tabObjets.push_back(objet2);
             break;
         default:
             return; // Ne rien faire si id est invalide
@@ -181,4 +185,8 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
 
         perso.appliquerGravite(HAUTEUR);
     return enMarche ;
+}
+
+float Partie::getCarburant() const {
+    return perso.carburant;
 }
