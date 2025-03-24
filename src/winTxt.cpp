@@ -169,7 +169,15 @@ char WinTXT::getCh()
 #else
     if (kbhit())
         touche = fgetc(stdin);
+        viderBufferClavier();
 #endif
     return touche;
 }
 
+void viderBufferClavier() {
+    #ifdef _WIN32
+        while (_kbhit()) _getch(); // On supprime les touches en attente sous Windows
+    #else
+        tcflush(STDIN_FILENO, TCIFLUSH); // Vide le buffer sans supprimer la touche actuelle sous Linux/macOS
+    #endif
+    }

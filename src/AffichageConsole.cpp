@@ -1,6 +1,7 @@
 #include "AffichageConsole.h"
 #include <iostream>
 #include <unistd.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -10,17 +11,16 @@ const int LARGEUR = 100;
 AffichageConsole::AffichageConsole() {}
 
 void AffichageConsole::afficher(WinTXT &win) {
-
     win.clear();
 
     // Remplissage de la gille avec des caractères vides
-    for (int i = 0; i < LARGEUR; i++) {
-        for (int j = 0; j < HAUTEUR; j++) {
+    for (unsigned int i = 0; i < LARGEUR; i++) {
+        for (unsigned int j = 0; j < HAUTEUR; j++) {
             win.print(i, j+1, ' ');
         }
     }
 
-    // Affichage du toit
+    // Affichage de la bordure supérieure
     for(unsigned int i = 0; i<LARGEUR; i++) {
         win.print(i,0,'_');
     }
@@ -29,8 +29,8 @@ void AffichageConsole::afficher(WinTXT &win) {
     int hauteurPerso = partie.getHauteurPerso();
     win.print(5, HAUTEUR - hauteurPerso, '@');
 
-    //Placement des obstacles
-    for (Obstacle& obs : partie.getObstacles()) {
+     //Placement des obstacles
+     for (const Obstacle& obs : partie.getObstacles()) {
         int obsX = obs.getX();
         int obsY = obs.getY();
         int obsLargeur = obs.getLargeur();
@@ -46,34 +46,56 @@ void AffichageConsole::afficher(WinTXT &win) {
     }
 
     //Placement des objets
-    for (Objet& obj : partie.getObjets()) {
-        win.print(obj.getX(), HAUTEUR - obj.getY(), 'o');
+    for (const Objet& obj : partie.getObjets()) {
+        switch (obj.getID()){
+        case 1:
+            win.print(obj.getX(), HAUTEUR - obj.getY(), 'O');       
+        break;
+        case 2:
+            win.print(obj.getX(), HAUTEUR - obj.getY(), 'C');
+        break;
+        case 3:
+            win.print(obj.getX(), HAUTEUR - obj.getY(), 'V');
+        default:
+        break;
+        } 
+
     }
 
-    // Affichage du sol
+    // Affichage de la bordure inférieure
     for(unsigned int i = 0; i<LARGEUR; i++) {
         win.print(i,6,'-');
     }
 
     win.draw();
-    cout << "Vies : ";
-    cout << partie.nbVies << endl;
+
+    cout << "Vies : " << partie.nbVies << endl;
+    cout << "Carburant : [";
+    unsigned int longueurRemplie = ( partie.getCarburant() * 16) / 5;
+    for (unsigned int i = 0; i < 16; i++) {
+        if (i < longueurRemplie) {
+            cout << "="; // Partie remplie
+        } else {
+            cout << " "; // Partie vide
+        }
+    }
+    cout << "] " << std::fixed << std::setprecision(2) << partie.getCarburant() << "L" << "/" << 5 << "L" << endl;
     cout << "Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
 }
 
-
 void AffichageConsole::run() {
     termClear();
-    WinTXT win(LARGEUR, HAUTEUR+3);
+    WinTXT window(LARGEUR, HAUTEUR+3);
     int c;
     bool ok;
-    win.clear();
+    window.clear();
     do 
     {       
         ok = partie.actionsAutomatiques(HAUTEUR, LARGEUR);
 
-        c = win.getCh();
+        c = window.getCh();
+
         switch (c)
         {
         case 'q':
@@ -88,12 +110,14 @@ void AffichageConsole::run() {
             break;
         }
 
-        afficher(win);
+        afficher(window);
 
         usleep(100000); // Pause (100ms)
     } while (ok);
+    window.clear();
     
 
     cout << "Game Over ! Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Score : " << partie.score << endl;
 }
+
