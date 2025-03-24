@@ -10,67 +10,6 @@ const int LARGEUR = 100;
 AffichageConsole::AffichageConsole() {}
 
 void AffichageConsole::afficher(WinTXT &win) {
-    /*
-    system("clear");
-
-    // Initialisation de la grille (origine en haut à gauche)
-    char grille[HAUTEUR][LARGEUR] = {};
-
-    // Remplissage de la gille avec des caractères vides
-    for (int i = 0; i < HAUTEUR; i++)
-        for (int j = 0; j < LARGEUR; j++)
-            grille[i][j] = ' ';
-
-    // Placement le personnage
-    int hauteurPerso = partie.getHauteurPerso();
-    if (hauteurPerso >= 0 && hauteurPerso < HAUTEUR) {
-        grille[HAUTEUR - 1 - hauteurPerso][5] = '@';
-    }
-
-    //Placement des obstacles
-    for (Obstacle& obs : partie.getObstacles()) {
-        if (obs.getX() >= 0 && obs.getX() < LARGEUR && obs.getY() >= 0 && obs.getY() < HAUTEUR) {
-            grille[HAUTEUR - 1 - obs.getY()][obs.getX()] = 'X';
-        }
-    }
-
-    
-    for (Obstacle& obs : partie.getObstacles()) {
-        int obsX = obs.getX();
-        int obsY = obs.getY();
-        int obsLargeur = obs.getLargeur();  // Largeur de l'obstacle
-        int obsLongueur = obs.getLongueur(); // Longueur de l'obstacle
-
-        // Vérification que l'obstacle ne sort pas de la grille
-        for (int i = 0; i < obsLargeur; i++) {
-            for (int j = 0; j < obsLongueur; j++) {
-                // Vérification si la position (obsX + i, obsY + j) est dans les limites de la grille
-                if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
-                    grille[HAUTEUR - 1 - (obsY + j)][obsX + i] = 'X';  // Placer l'obstacle sur la grille
-                }
-            }
-        }
-    }
-
-    //Placement des objets
-    for (Objet& obj : partie.getObjets()) {
-        if (obj.getX() >= 0 && obj.getX() < LARGEUR && obj.getY() >= 0 && obj.getY() < HAUTEUR) {
-            grille[HAUTEUR - 1 - obj.getY()][obj.getX()] = 'o';
-        }
-    }
-
-    cout << "Vies : " << partie.nbVies << endl;
-    cout << "Distance : " << partie.distance << "m" << endl;
-    cout << "Score : " << partie.score  << endl;
-
-    // Affichage de la grille
-    for (int i = 0; i < HAUTEUR; i++) {
-        for (int j = 0; j < LARGEUR; j++)
-            cout << grille[i][j];
-        cout << endl;
-    }
-
-    */
 
     win.clear();
 
@@ -81,6 +20,7 @@ void AffichageConsole::afficher(WinTXT &win) {
         }
     }
 
+    // Affichage du toit
     for(unsigned int i = 0; i<LARGEUR; i++) {
         win.print(i,0,'_');
     }
@@ -89,8 +29,8 @@ void AffichageConsole::afficher(WinTXT &win) {
     int hauteurPerso = partie.getHauteurPerso();
     win.print(5, HAUTEUR - hauteurPerso, '@');
 
-     //Placement des obstacles
-     for (Obstacle& obs : partie.getObstacles()) {
+    //Placement des obstacles
+    for (Obstacle& obs : partie.getObstacles()) {
         int obsX = obs.getX();
         int obsY = obs.getY();
         int obsLargeur = obs.getLargeur();
@@ -110,6 +50,7 @@ void AffichageConsole::afficher(WinTXT &win) {
         win.print(obj.getX(), HAUTEUR - obj.getY(), 'o');
     }
 
+    // Affichage du sol
     for(unsigned int i = 0; i<LARGEUR; i++) {
         win.print(i,6,'-');
     }
@@ -151,7 +92,6 @@ void AffichageConsole::run() {
 
         usleep(100000); // Pause (100ms)
     } while (ok);
-    win.clear();
     
 
     cout << "Game Over ! Distance parcourue : " << partie.distance << "m" << endl;

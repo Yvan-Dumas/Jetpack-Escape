@@ -18,7 +18,6 @@ int main() {
     cout << "2 - Mode 2 joueur" << endl;
     cout << "0 - quitter" << endl;
     cin >> choix;
-
     switch(choix) {
         case '1':
             aff.run();

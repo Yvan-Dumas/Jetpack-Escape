@@ -34,6 +34,7 @@ class Partie {
         int score; ///<Le score de la partie en cours
         int distance; ///<La distance parcourue depuis le début de la partie
         int nbVies; ///<Le nombre de vies restantes du joueur
+        bool monte; ///<Indique si le personnage est en train de monter
 
         Partie(); ///<Le constructeur de la classe
         void sauvegarder(); ///<Sauvegarde le score dans un fichier
