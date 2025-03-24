@@ -46,7 +46,17 @@ void AffichageConsole::afficher(WinTXT &win) {
 
     //Placement des objets
     for (const Objet& obj : partie.getObjets()) {
-        win.print(obj.getX(), HAUTEUR - obj.getY(), 'O');
+        switch (obj.getID()){
+        case 1:
+            win.print(obj.getX(), HAUTEUR - obj.getY(), 'O');       
+        break;
+        case 2:
+            win.print(obj.getX(), HAUTEUR - obj.getY(), 'C');
+        break;
+        default:
+        break;
+        } 
+
     }
 
     // Affichage de la bordure inférieure
@@ -56,12 +66,20 @@ void AffichageConsole::afficher(WinTXT &win) {
 
     win.draw();
 
-    cout << "Vies : ";
-    cout << partie.nbVies << endl;
+    cout << "Vies : " << partie.nbVies << endl;
+    cout << "Carburant : [";
+    unsigned int longueurRemplie = ( partie.getCarburant() * 16) / 5;
+    for (unsigned int i = 0; i < 16; i++) {
+        if (i < longueurRemplie) {
+            cout << "="; // Partie remplie
+        } else {
+            cout << " "; // Partie vide
+        }
+    }
+    cout << "] " << partie.getCarburant() << "L" << "/" << 5 << "L" << endl;
     cout << "Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
 }
-
 
 void AffichageConsole::run() {
     termClear();
@@ -74,6 +92,7 @@ void AffichageConsole::run() {
         ok = partie.actionsAutomatiques(HAUTEUR, LARGEUR);
 
         c = window.getCh();
+
         switch (c)
         {
         case 'q':

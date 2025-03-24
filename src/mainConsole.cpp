@@ -4,6 +4,7 @@
 using namespace std;
 
 int main() {
+
     AffichageConsole aff;
 
     cout << "======================================" << endl;

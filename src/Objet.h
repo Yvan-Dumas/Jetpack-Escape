@@ -45,6 +45,11 @@ class Objet {
      * @brief renvoie la position y de l'objet
      */
     int getY() const;
+
+    /**
+     * @brief renvoie l'ID de l'objet
+     */
+    int getID() const;
   };
 
 #endif
