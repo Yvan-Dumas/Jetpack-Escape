@@ -46,6 +46,12 @@ class Personnage {
          * @brief Fonction appliquant la gravité au personnage.
          */
         void appliquerGravite(unsigned int HAUTEUR);
+
+        /**
+        * @brief Effectue une série de tests sur les méthodes de la classe Personnage.
+        * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
+        */
+        static void testPersonnage();
     };
 
 #endif

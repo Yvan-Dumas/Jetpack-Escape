@@ -23,11 +23,12 @@ class Partie {
         vector<Objet> tabObjets; ///< Tableau des objets récupérables
         int vitesseDefilement; ///< Vitesse du jeu
 
-        void generationObstacle(unsigned int HAUTEUR, unsigned int LARGEUR);///< Génère un obstacle et l'ajoute au tableau
-        void generationObjet(unsigned int HAUTEUR, unsigned int LARGEUR);///< Génère un objet et l'ajoute au tableau
+        void generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGEUR);///< Génère un obstacle et l'ajoute au tableau
+        void generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR);///< Génère un objet et l'ajoute au tableau
         void ajouterPiece(); ///< Incrémente le score des pièces
         void ajouterDistance(); ///< Incrémente le score de distance parcourue
         void utiliserObjet(unsigned int id); ///< Utilise l'objet ramassé
+        bool bien_place(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur); ///< Regarde si l'objet / obstacle n'empiete pas sur un autre
 
     public:
         int score; ///< Le score de la partie en cours
@@ -35,6 +36,7 @@ class Partie {
         int nbVies; ///< Le nombre de vies restantes du joueur
 
         Partie(); ///< Le constructeur de la classe
+        void ajouterCarburant(); ///< Augmente le carburant
         void sauvegarder(); ///< Sauvegarde dans un fichier
         void charger(); ///< Charger depuis un fichier
         void setNbVies(unsigned int nb); ///< Défini le nombre de vies
@@ -43,8 +45,12 @@ class Partie {
         unsigned int getHauteurPerso() const; ///< Retourne la hauteur du personnage
         const vector<Obstacle>& getObstacles() const; ///< Retourne le tableau d'obstacles
         const vector<Objet>& getObjets() const; ///< Retourne le tableau d'objets
-
         float getCarburant() const;
+        /**
+        * @brief Effectue une série de tests sur les méthodes de la classe Partie.
+        * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
+        */
+       static void testPartie();
  };
  
  #endif

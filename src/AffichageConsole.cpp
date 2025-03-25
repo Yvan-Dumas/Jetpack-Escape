@@ -1,6 +1,7 @@
 #include "AffichageConsole.h"
 #include <iostream>
 #include <unistd.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -53,6 +54,8 @@ void AffichageConsole::afficher(WinTXT &win) {
         case 2:
             win.print(obj.getX(), HAUTEUR - obj.getY(), 'C');
         break;
+        case 3:
+            win.print(obj.getX(), HAUTEUR - obj.getY(), 'V');
         default:
         break;
         } 
@@ -76,7 +79,7 @@ void AffichageConsole::afficher(WinTXT &win) {
             cout << " "; // Partie vide
         }
     }
-    cout << "] " << partie.getCarburant() << "L" << "/" << 5 << "L" << endl;
+    cout << "] " << std::fixed << std::setprecision(2) << partie.getCarburant() << "L" << "/" << 5 << "L" << endl;
     cout << "Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
 }
@@ -117,3 +120,4 @@ void AffichageConsole::run() {
     cout << "Game Over ! Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Score : " << partie.score << endl;
 }
+
