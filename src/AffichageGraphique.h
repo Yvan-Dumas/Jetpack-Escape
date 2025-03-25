@@ -2,12 +2,12 @@
  *@file AffichageGraphique.h
  *@brief Définition de la classe AffichageGraphique
  */
-
- #ifndef AFFICHAGEGRAPHIQUE_H
- #define AFFICHAGEGRAPHIQUE_H
+#ifndef AFFICHAGEGRAPHIQUE_H
+#define AFFICHAGEGRAPHIQUE_H
  
- #include "ArrierePlan.h"
- #include "Partie.h"
+#include "ArrierePlan.h"
+#include "Partie.h"
+#include <SDL2/SDL.h>
 
  /**
   * @class AffichageGraphique

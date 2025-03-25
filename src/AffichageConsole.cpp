@@ -122,16 +122,21 @@ void AffichageConsole::run() {
     window.clear();
     
     termClear();
-    if (partie.distance > stoi(getRecord())) {
-        partie.sauvegarderFichier(to_string(partie.distance));
-    }
+    
 
     cout << "=====================================" << endl;
     cout << "              GAME OVER              " << endl;
     cout << "=====================================" << endl;
     cout << " Distance parcourue : " << partie.distance << "m"  << endl;
     cout << " Score final        : " << partie.score << endl;
+    if(partie.distance > stoi(getRecord())){
+    cout << " VOUS AVEZ REALISE LE RECORD !" << endl;
+    }
     cout << "====================================="  << endl;
     cout << "     Merci d'avoir joué !     "  << endl << endl;
+
+    if (partie.distance > stoi(getRecord())) {
+        partie.sauvegarderFichier(to_string(partie.distance));
+    }
 }
 
