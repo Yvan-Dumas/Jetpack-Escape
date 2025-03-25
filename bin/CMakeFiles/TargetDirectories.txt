@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles/JetpackEscapeConsole.dir
 /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles/JetpackEscapeGraphique.dir
 /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles/edit_cache.dir
 /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles/rebuild_cache.dir
+=======
+/home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles/JetpackEscape.dir
+/home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles/edit_cache.dir
+/home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles/rebuild_cache.dir
+>>>>>>> d2c115d545dbb56e8d7575f6ecdd4e015c7372f2

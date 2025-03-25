@@ -1,4 +1,4 @@
-# Install script for directory: /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape
+# Install script for directory: /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -6,8 +6,9 @@
 #include <iostream>
 #include "Partie.h"
 #include <random>
-#include <termios.h>
 #include <cassert>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -52,8 +53,8 @@ void Partie::ajouterDistance() {
 }
 
 void Partie::ajouterCarburant(){
-    if (perso.carburant < 4) {
-    perso.carburant = perso.carburant + 1 ; }
+    if (perso.carburant < 3) {
+    perso.carburant = perso.carburant + 2 ; }
     else {perso.carburant = 5;}
 }
 
@@ -73,28 +74,30 @@ void Partie::utiliserObjet(unsigned int id) {
 }
 
 bool Partie::bien_place(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
-    if (tabObjets.empty() || tabObstacle.empty()) {
-        return true; // Rien à tester, l'objet est bien placé
-    }
-    else {
-    Objet obj = tabObjets.back();
-    Obstacle obs = tabObstacle.back();
 
-    // Fonction pour vérifier s'il y a une intersection entre deux rectangles
-    auto superpose = [](unsigned int x1, unsigned int y1, unsigned int w1, unsigned int h1,
-                         unsigned int x2, unsigned int y2, unsigned int w2, unsigned int h2) {
-        return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2 || y2 + h2 <= y1);
+    auto superpose = [](int x1, int y1, int w1, int h1,
+        int x2, int y2, int w2, int h2) {
+    return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2 || y2 + h2 <= y1);
     };
+    
 
-    // Vérifie si l'objet à placer chevauche l'objet existant ou l'obstacle
-    if (superpose(x, y, largeur, longueur, obj.getX(), obj.getY(), 1, 1) ||
-        superpose(x, y, largeur, longueur, obs.getX(), obs.getY(), obs.getLargeur(), obs.getLongueur())) {
-        return false; // Il y a une superposition
-    }
 
-    return true; // Aucun chevauchement, l'objet est bien placé
-    }
+    for (const auto& obj : tabObjets) {
+        if (superpose(x, y, largeur, longueur, obj.getX(), obj.getY(), 1, 1)) {
+        return false;
+    }}
+
+    for (const auto& obs : tabObstacle) {
+        if (superpose(x-1, y-1, largeur+2, longueur+2, 
+                  obs.getX() - 1, obs.getY() - 1, 
+                  obs.getLargeur() + 2, obs.getLongueur() + 2)) {
+        return false;
+    }}
+
+    return true;
 }
+
+
 
 
 void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
@@ -110,24 +113,30 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
         case 1: {// Création d'un obstacle
             largeur = 3; 
             longueur = 1;
-            Obstacle obstacle1(id, x, y, largeur, longueur);
-            tabObstacle.push_back(obstacle1);
             break; }
         case 2: {// Création d'un obstacle vertical (échaffaudage)
             largeur = 1; // Largeur de l'objet.
             longueur = 3; // Longeur de l'objet.
-            Obstacle obstacle2(id, x, y, largeur, longueur);
-            tabObstacle.push_back(obstacle2);
             break; }
         case 3: {// Création d'un obstacle (métro)
-            largeur = 6; // Largeur de l'objet.
+            largeur = 20; // Largeur de l'objet.
             longueur = 3; // Longeur de l'objet.
-            Obstacle obstacle2(id, x, 0, largeur, longueur);
-            tabObstacle.push_back(obstacle2);
-             break; }
+            y = 0;
+            break; }
         default:
-            return; // Ne rien faire si id est invalide
+            largeur = 1; 
+            longueur = 1;
+            break;
+
     }
+    if (y >= 0 && y + longueur <= HAUTEUR) { // L'obstacle est bien dans la grille        
+    while (!bien_place(x, y, largeur, longueur))
+    {
+        x = x + 10;
+    }
+    
+    Obstacle obstacle1(id, x, y, largeur, longueur);
+            tabObstacle.push_back(obstacle1);}
 
 }
 
@@ -142,19 +151,23 @@ void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR)
     switch (id) {
         case 1: {// Création d'une pièce
             largeur = 1; 
-            longueur = 1; }
+            longueur = 1; 
+            break;}
 
         case 2: { // Création d'un carburant
             largeur = 1; // Largeur de l'objet.
             longueur = 1; // Longeur de l'objet.
+            break;
             }
         case 3: { // Création d'une vie
             largeur = 1; // Largeur de l'objet.
             longueur = 1; // Longeur de l'objet.
+            break;
                 }
         default:
             largeur = 1; 
-            longueur = 1; // Ne rien faire si id est invalide
+            longueur = 1;
+            break;
     }
     while (!bien_place(x, y, largeur, longueur))
     {
@@ -190,34 +203,66 @@ void Partie::actionsClavier(const char touche, unsigned int HAUTEUR) {
 }
 
 bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
-    // Réinitialisation des paramètres de la partie
-    bool enMarche = true;
+        // Réinitialisation des paramètres de la partie
+        bool enMarche = true;
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
-        if (distance % 20 == 1) {
-            generationObstacle(1,HAUTEUR, LARGEUR);
-        }
+        if ((rand())%20==0){
+        int id = 1;
+        int poids[] = {10, 10, 2, 20, 10, 5}; // Poids associés
+        int taille = sizeof(poids) / sizeof(poids[0]);
 
-        if (distance % 40 == 24) { 
-            generationObstacle(2,HAUTEUR, LARGEUR);
+        // Calcul de la somme des poids
+        int sommePoids = 0;
+        for (int i = 0; i < taille; i++) {
+            sommePoids += poids[i];
         }
-        if (distance % 40 == 24) { 
-            generationObstacle(3,HAUTEUR, LARGEUR);
-        }
-        if (distance % 15 == 5) {
-            generationObjet(1,HAUTEUR, LARGEUR);
-        }
+        
+        // Tirage aléatoire d'un nombre entre 1 et sommePoids
+        int tirage = (rand() % sommePoids) + 1;
 
-        if (distance % 30 == 16) { 
-            generationObjet(2,HAUTEUR, LARGEUR);
+        int i = 0;
+        int cumul = 0;
+        do  {
+            i++ ;
+            cumul = cumul + poids [i-1] ;
         }
+        while(tirage > cumul);
+        
+        switch (i) {
+            case 1: {// Création d'une obstacle de base
+                generationObstacle(1,HAUTEUR, LARGEUR);
+                break;}
+    
+            case 2: { // Création d'un échaffaudage
+                generationObstacle(2,HAUTEUR, LARGEUR);
+                break;
+                }
+            case 3: { // Création d'un métro
+                generationObstacle(3,HAUTEUR, LARGEUR);
+                break;
+                    }
+            case 4: {// Création d'une pièce
+                generationObjet(1,HAUTEUR, LARGEUR);
+                break;}
+    
+            case 5: { // Création d'un carburant
+                generationObjet(2,HAUTEUR, LARGEUR);
+                break;
+                }
+            case 6: { // Création d'une vie
+                generationObjet(3,HAUTEUR, LARGEUR);
+                break;
+                    }
+            default:
+                break;
+        }
+    }
 
-        if (distance % 100 == 50) { 
-            generationObjet(3,HAUTEUR, LARGEUR);
-        }
+
         // Vérification des collisions avec obstacles
         for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
             obstacle->mettreAJourPosition(vitesseDefilement);
-            if (obstacle->getX() <= 0) {
+            if (obstacle->getX()+obstacle->getLargeur() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
             } else if (obstacle->collisionObstacle(perso.getHauteur())) {
                 nbVies--;
@@ -275,7 +320,7 @@ void Partie::testPartie() {
     unsigned int initialObstacleSize = partie.getObstacles().size();
     unsigned int initialObjetSize = partie.getObjets().size();
 
-    // Test de l'action automatique
+    // Test de la fonction actionsAutomatiques
     bool enMarche = partie.actionsAutomatiques(100, 50);
     assert(enMarche && "Test échoué : La partie ne devrait pas être terminée après une action automatique");
     assert(partie.getObstacles().size() == initialObstacleSize && "Test échoué : Le nombre d'obstacles n'a pas été mis à jour correctement");

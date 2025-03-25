@@ -1,6 +1,10 @@
 # LIFAPCD - jetpack escape
 
---> mode deux joueurs ?
---> readline turnof....erreur
--->supprimer les fichiers générés automatiquement ?
---> dossiers dans le src ?
+--> readline turnof....erreur               ok
+-->documentation                            ok
+-->meilleur score                           ok
+--> implémentation graphique
+--> augmenter distance obstacle             ok
+--> obstacle métro                          ok
+--> bien placé obstacles                    ok
+--> vrai tirage aléatoire des obstacles

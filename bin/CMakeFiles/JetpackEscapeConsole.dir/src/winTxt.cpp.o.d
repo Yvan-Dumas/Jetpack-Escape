@@ -1,7 +1,12 @@
+<<<<<<< HEAD:bin/CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o.d
 CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o: \
  /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/winTxt.cpp \
+=======
+CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.o: \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/winTxt.cpp \
+>>>>>>> d2c115d545dbb56e8d7575f6ecdd4e015c7372f2:bin/CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.o.d
  /usr/include/stdc-predef.h \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/winTxt.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/winTxt.h \
  /usr/include/c++/14/cassert \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
