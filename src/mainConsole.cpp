@@ -4,8 +4,8 @@
 using namespace std;
 
 int main() {
-
     AffichageConsole aff;
+    string record = aff.getRecord();
 
     cout << "                   =========================================================" << endl;
     cout << "                   |                                                       |" << endl;
@@ -14,6 +14,7 @@ int main() {
     cout << "                   =========================================================" << endl << endl;
 
     char choix;
+    cout << "                   Record: " << record << "m" << endl;
     cout << "                   Choisissez votre mode jeu : " << endl;
     cout << "                   1 - Mode 1 joueur" << endl;
     cout << "                   2 - Mode 2 joueur" << endl;

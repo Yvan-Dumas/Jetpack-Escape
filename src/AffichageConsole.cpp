@@ -10,6 +10,10 @@ const int LARGEUR = 100;
 
 AffichageConsole::AffichageConsole() {}
 
+string AffichageConsole::getRecord(){
+    return partie.record;
+}
+
 void AffichageConsole::afficher(WinTXT &win) {
     win.clear();
 
@@ -82,6 +86,7 @@ void AffichageConsole::afficher(WinTXT &win) {
     cout << "] " << std::fixed << std::setprecision(2) << partie.getCarburant() << "L" << "/" << 5 << "L" << endl;
     cout << "Distance parcourue : " << partie.distance << "m" << endl;
     cout << "Vous avez récolté " << partie.score << " pièces" <<endl;
+    cout << "Record: " << partie.record << "m" << endl;
 }
 
 void AffichageConsole::run() {
@@ -116,8 +121,17 @@ void AffichageConsole::run() {
     } while (ok);
     window.clear();
     
+    termClear();
+    if (partie.distance > stoi(getRecord())) {
+        partie.sauvegarderFichier(to_string(partie.distance));
+    }
 
-    cout << "Game Over ! Distance parcourue : " << partie.distance << "m" << endl;
-    cout << "Score : " << partie.score << endl;
+    cout << "=====================================" << endl;
+    cout << "              GAME OVER              " << endl;
+    cout << "=====================================" << endl;
+    cout << " Distance parcourue : " << partie.distance << "m"  << endl;
+    cout << " Score final        : " << partie.score << endl;
+    cout << "====================================="  << endl;
+    cout << "     Merci d'avoir joué !     "  << endl << endl;
 }
 
