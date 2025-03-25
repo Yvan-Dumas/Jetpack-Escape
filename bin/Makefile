@@ -117,24 +117,37 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named JetpackEscape
+# Target rules for targets named JetpackEscapeConsole
 
 # Build rule for target.
-JetpackEscape: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 JetpackEscape
-.PHONY : JetpackEscape
+JetpackEscapeConsole: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 JetpackEscapeConsole
+.PHONY : JetpackEscapeConsole
 
 # fast build rule for target.
-JetpackEscape/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/build
-.PHONY : JetpackEscape/fast
+JetpackEscapeConsole/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/build
+.PHONY : JetpackEscapeConsole/fast
+
+#=============================================================================
+# Target rules for targets named JetpackEscapeGraphique
+
+# Build rule for target.
+JetpackEscapeGraphique: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 JetpackEscapeGraphique
+.PHONY : JetpackEscapeGraphique
+
+# fast build rule for target.
+JetpackEscapeGraphique/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/build
+.PHONY : JetpackEscapeGraphique/fast
 
 src/AffichageConsole.o: src/AffichageConsole.cpp.o
 .PHONY : src/AffichageConsole.o
 
 # target to build an object file
 src/AffichageConsole.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/AffichageConsole.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o
 .PHONY : src/AffichageConsole.cpp.o
 
 src/AffichageConsole.i: src/AffichageConsole.cpp.i
@@ -142,7 +155,7 @@ src/AffichageConsole.i: src/AffichageConsole.cpp.i
 
 # target to preprocess a source file
 src/AffichageConsole.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/AffichageConsole.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.i
 .PHONY : src/AffichageConsole.cpp.i
 
 src/AffichageConsole.s: src/AffichageConsole.cpp.s
@@ -150,15 +163,64 @@ src/AffichageConsole.s: src/AffichageConsole.cpp.s
 
 # target to generate assembly for a file
 src/AffichageConsole.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/AffichageConsole.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.s
 .PHONY : src/AffichageConsole.cpp.s
+
+src/AffichageGraphique.o: src/AffichageGraphique.cpp.o
+.PHONY : src/AffichageGraphique.o
+
+# target to build an object file
+src/AffichageGraphique.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/AffichageGraphique.cpp.o
+.PHONY : src/AffichageGraphique.cpp.o
+
+src/AffichageGraphique.i: src/AffichageGraphique.cpp.i
+.PHONY : src/AffichageGraphique.i
+
+# target to preprocess a source file
+src/AffichageGraphique.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/AffichageGraphique.cpp.i
+.PHONY : src/AffichageGraphique.cpp.i
+
+src/AffichageGraphique.s: src/AffichageGraphique.cpp.s
+.PHONY : src/AffichageGraphique.s
+
+# target to generate assembly for a file
+src/AffichageGraphique.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/AffichageGraphique.cpp.s
+.PHONY : src/AffichageGraphique.cpp.s
+
+src/ArrierePlan.o: src/ArrierePlan.cpp.o
+.PHONY : src/ArrierePlan.o
+
+# target to build an object file
+src/ArrierePlan.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.o
+.PHONY : src/ArrierePlan.cpp.o
+
+src/ArrierePlan.i: src/ArrierePlan.cpp.i
+.PHONY : src/ArrierePlan.i
+
+# target to preprocess a source file
+src/ArrierePlan.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.i
+.PHONY : src/ArrierePlan.cpp.i
+
+src/ArrierePlan.s: src/ArrierePlan.cpp.s
+.PHONY : src/ArrierePlan.s
+
+# target to generate assembly for a file
+src/ArrierePlan.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.s
+.PHONY : src/ArrierePlan.cpp.s
 
 src/Objet.o: src/Objet.cpp.o
 .PHONY : src/Objet.o
 
 # target to build an object file
 src/Objet.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Objet.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Objet.cpp.o
 .PHONY : src/Objet.cpp.o
 
 src/Objet.i: src/Objet.cpp.i
@@ -166,7 +228,8 @@ src/Objet.i: src/Objet.cpp.i
 
 # target to preprocess a source file
 src/Objet.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Objet.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Objet.cpp.i
 .PHONY : src/Objet.cpp.i
 
 src/Objet.s: src/Objet.cpp.s
@@ -174,7 +237,8 @@ src/Objet.s: src/Objet.cpp.s
 
 # target to generate assembly for a file
 src/Objet.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Objet.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Objet.cpp.s
 .PHONY : src/Objet.cpp.s
 
 src/Obstacle.o: src/Obstacle.cpp.o
@@ -182,7 +246,8 @@ src/Obstacle.o: src/Obstacle.cpp.o
 
 # target to build an object file
 src/Obstacle.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Obstacle.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Obstacle.cpp.o
 .PHONY : src/Obstacle.cpp.o
 
 src/Obstacle.i: src/Obstacle.cpp.i
@@ -190,7 +255,8 @@ src/Obstacle.i: src/Obstacle.cpp.i
 
 # target to preprocess a source file
 src/Obstacle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Obstacle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Obstacle.cpp.i
 .PHONY : src/Obstacle.cpp.i
 
 src/Obstacle.s: src/Obstacle.cpp.s
@@ -198,7 +264,8 @@ src/Obstacle.s: src/Obstacle.cpp.s
 
 # target to generate assembly for a file
 src/Obstacle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Obstacle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Obstacle.cpp.s
 .PHONY : src/Obstacle.cpp.s
 
 src/Partie.o: src/Partie.cpp.o
@@ -206,7 +273,8 @@ src/Partie.o: src/Partie.cpp.o
 
 # target to build an object file
 src/Partie.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Partie.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Partie.cpp.o
 .PHONY : src/Partie.cpp.o
 
 src/Partie.i: src/Partie.cpp.i
@@ -214,7 +282,8 @@ src/Partie.i: src/Partie.cpp.i
 
 # target to preprocess a source file
 src/Partie.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Partie.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Partie.cpp.i
 .PHONY : src/Partie.cpp.i
 
 src/Partie.s: src/Partie.cpp.s
@@ -222,7 +291,8 @@ src/Partie.s: src/Partie.cpp.s
 
 # target to generate assembly for a file
 src/Partie.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Partie.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Partie.cpp.s
 .PHONY : src/Partie.cpp.s
 
 src/Personnage.o: src/Personnage.cpp.o
@@ -230,7 +300,8 @@ src/Personnage.o: src/Personnage.cpp.o
 
 # target to build an object file
 src/Personnage.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Personnage.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Personnage.cpp.o
 .PHONY : src/Personnage.cpp.o
 
 src/Personnage.i: src/Personnage.cpp.i
@@ -238,7 +309,8 @@ src/Personnage.i: src/Personnage.cpp.i
 
 # target to preprocess a source file
 src/Personnage.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Personnage.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Personnage.cpp.i
 .PHONY : src/Personnage.cpp.i
 
 src/Personnage.s: src/Personnage.cpp.s
@@ -246,7 +318,8 @@ src/Personnage.s: src/Personnage.cpp.s
 
 # target to generate assembly for a file
 src/Personnage.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/Personnage.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/Personnage.cpp.s
 .PHONY : src/Personnage.cpp.s
 
 src/mainConsole.o: src/mainConsole.cpp.o
@@ -254,7 +327,7 @@ src/mainConsole.o: src/mainConsole.cpp.o
 
 # target to build an object file
 src/mainConsole.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/mainConsole.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o
 .PHONY : src/mainConsole.cpp.o
 
 src/mainConsole.i: src/mainConsole.cpp.i
@@ -262,7 +335,7 @@ src/mainConsole.i: src/mainConsole.cpp.i
 
 # target to preprocess a source file
 src/mainConsole.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/mainConsole.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.i
 .PHONY : src/mainConsole.cpp.i
 
 src/mainConsole.s: src/mainConsole.cpp.s
@@ -270,15 +343,39 @@ src/mainConsole.s: src/mainConsole.cpp.s
 
 # target to generate assembly for a file
 src/mainConsole.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/mainConsole.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.s
 .PHONY : src/mainConsole.cpp.s
+
+src/mainGraphique.o: src/mainGraphique.cpp.o
+.PHONY : src/mainGraphique.o
+
+# target to build an object file
+src/mainGraphique.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/mainGraphique.cpp.o
+.PHONY : src/mainGraphique.cpp.o
+
+src/mainGraphique.i: src/mainGraphique.cpp.i
+.PHONY : src/mainGraphique.i
+
+# target to preprocess a source file
+src/mainGraphique.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/mainGraphique.cpp.i
+.PHONY : src/mainGraphique.cpp.i
+
+src/mainGraphique.s: src/mainGraphique.cpp.s
+.PHONY : src/mainGraphique.s
+
+# target to generate assembly for a file
+src/mainGraphique.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/mainGraphique.cpp.s
+.PHONY : src/mainGraphique.cpp.s
 
 src/winTxt.o: src/winTxt.cpp.o
 .PHONY : src/winTxt.o
 
 # target to build an object file
 src/winTxt.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o
 .PHONY : src/winTxt.cpp.o
 
 src/winTxt.i: src/winTxt.cpp.i
@@ -286,7 +383,7 @@ src/winTxt.i: src/winTxt.cpp.i
 
 # target to preprocess a source file
 src/winTxt.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.i
 .PHONY : src/winTxt.cpp.i
 
 src/winTxt.s: src/winTxt.cpp.s
@@ -294,7 +391,7 @@ src/winTxt.s: src/winTxt.cpp.s
 
 # target to generate assembly for a file
 src/winTxt.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/src/winTxt.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.s
 .PHONY : src/winTxt.cpp.s
 
 # Help Target
@@ -305,10 +402,17 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... JetpackEscape"
+	@echo "... JetpackEscapeConsole"
+	@echo "... JetpackEscapeGraphique"
 	@echo "... src/AffichageConsole.o"
 	@echo "... src/AffichageConsole.i"
 	@echo "... src/AffichageConsole.s"
+	@echo "... src/AffichageGraphique.o"
+	@echo "... src/AffichageGraphique.i"
+	@echo "... src/AffichageGraphique.s"
+	@echo "... src/ArrierePlan.o"
+	@echo "... src/ArrierePlan.i"
+	@echo "... src/ArrierePlan.s"
 	@echo "... src/Objet.o"
 	@echo "... src/Objet.i"
 	@echo "... src/Objet.s"
@@ -324,6 +428,9 @@ help:
 	@echo "... src/mainConsole.o"
 	@echo "... src/mainConsole.i"
 	@echo "... src/mainConsole.s"
+	@echo "... src/mainGraphique.o"
+	@echo "... src/mainGraphique.i"
+	@echo "... src/mainGraphique.s"
 	@echo "... src/winTxt.o"
 	@echo "... src/winTxt.i"
 	@echo "... src/winTxt.s"

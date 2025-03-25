@@ -224,6 +224,9 @@ JetpackEscape_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 JetpackEscape_SOURCE_DIR:STATIC=/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape
 
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=/usr/lib64/cmake/SDL2
+
 
 ########################
 # INTERNAL cache entries

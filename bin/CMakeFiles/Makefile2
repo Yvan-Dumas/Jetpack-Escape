@@ -63,7 +63,8 @@ CMAKE_BINARY_DIR = /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-esca
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/JetpackEscape.dir/all
+all: CMakeFiles/JetpackEscapeConsole.dir/all
+all: CMakeFiles/JetpackEscapeGraphique.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +72,61 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/JetpackEscape.dir/clean
+clean: CMakeFiles/JetpackEscapeConsole.dir/clean
+clean: CMakeFiles/JetpackEscapeGraphique.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/JetpackEscape.dir
+# Target rules for target CMakeFiles/JetpackEscapeConsole.dir
 
 # All Build rule for target.
-CMakeFiles/JetpackEscape.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target JetpackEscape"
-.PHONY : CMakeFiles/JetpackEscape.dir/all
+CMakeFiles/JetpackEscapeConsole.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target JetpackEscapeConsole"
+.PHONY : CMakeFiles/JetpackEscapeConsole.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/JetpackEscape.dir/rule: cmake_check_build_system
+CMakeFiles/JetpackEscapeConsole.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/JetpackEscape.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/JetpackEscapeConsole.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles 0
-.PHONY : CMakeFiles/JetpackEscape.dir/rule
+.PHONY : CMakeFiles/JetpackEscapeConsole.dir/rule
 
 # Convenience name for target.
-JetpackEscape: CMakeFiles/JetpackEscape.dir/rule
-.PHONY : JetpackEscape
+JetpackEscapeConsole: CMakeFiles/JetpackEscapeConsole.dir/rule
+.PHONY : JetpackEscapeConsole
 
 # clean rule for target.
-CMakeFiles/JetpackEscape.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscape.dir/build.make CMakeFiles/JetpackEscape.dir/clean
-.PHONY : CMakeFiles/JetpackEscape.dir/clean
+CMakeFiles/JetpackEscapeConsole.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/clean
+.PHONY : CMakeFiles/JetpackEscapeConsole.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/JetpackEscapeGraphique.dir
+
+# All Build rule for target.
+CMakeFiles/JetpackEscapeGraphique.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=9,10,11,12,13,14,15,16 "Built target JetpackEscapeGraphique"
+.PHONY : CMakeFiles/JetpackEscapeGraphique.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/JetpackEscapeGraphique.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/JetpackEscapeGraphique.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles 0
+.PHONY : CMakeFiles/JetpackEscapeGraphique.dir/rule
+
+# Convenience name for target.
+JetpackEscapeGraphique: CMakeFiles/JetpackEscapeGraphique.dir/rule
+.PHONY : JetpackEscapeGraphique
+
+# clean rule for target.
+CMakeFiles/JetpackEscapeGraphique.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/clean
+.PHONY : CMakeFiles/JetpackEscapeGraphique.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
