@@ -1,10 +1,10 @@
 # LIFAPCD - jetpack escape
 
---> readline turnof....erreur
+--> readline turnof....erreur               ok
 -->documentation                            ok
--->meilleur score
+-->meilleur score                           ok
 --> implémentation graphique
---> augmenter distance obstacle
---> obstacle métro
---> bien placé obstacles
+--> augmenter distance obstacle             ok
+--> obstacle métro                          ok
+--> bien placé obstacles                    ok
 --> vrai tirage aléatoire des obstacles
