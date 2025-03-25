@@ -4,11 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-<<<<<<< HEAD:bin/CMakeFiles/JetpackEscapeConsole.dir/flags.make
 CXX_INCLUDES = -I/home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src -I/usr/include/SDL2
-=======
-CXX_INCLUDES = -I/home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src
->>>>>>> d2c115d545dbb56e8d7575f6ecdd4e015c7372f2:bin/CMakeFiles/JetpackEscape.dir/flags.make
 
 CXX_FLAGS = -std=gnu++17
 

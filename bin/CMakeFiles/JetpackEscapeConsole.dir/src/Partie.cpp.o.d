@@ -168,11 +168,5 @@ CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o: \
  /usr/include/c++/14/bits/random.tcc /usr/include/c++/14/numeric \
  /usr/include/c++/14/bits/stl_numeric.h \
  /usr/include/c++/14/pstl/glue_numeric_defs.h \
- /usr/include/c++/14/pstl/execution_defs.h /usr/include/termios.h \
- /usr/include/bits/termios.h /usr/include/bits/termios-struct.h \
- /usr/include/bits/termios-c_cc.h /usr/include/bits/termios-c_iflag.h \
- /usr/include/bits/termios-c_oflag.h /usr/include/bits/termios-baud.h \
- /usr/include/bits/termios-c_cflag.h /usr/include/bits/termios-c_lflag.h \
- /usr/include/bits/termios-tcflow.h /usr/include/bits/termios-misc.h \
- /usr/include/sys/ttydefaults.h /usr/include/c++/14/cassert \
- /usr/include/assert.h
+ /usr/include/c++/14/pstl/execution_defs.h /usr/include/c++/14/cassert \
+ /usr/include/assert.h /usr/include/c++/14/stdlib.h
