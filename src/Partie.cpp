@@ -59,7 +59,7 @@ void Partie::utiliserObjet(unsigned int id) {
     }
 }
 
-bool Partie::bien_placé(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
+bool Partie::bien_place(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
     if (tabObjets.empty() || tabObstacle.empty()) {
         return true; // Rien à tester, l'objet est bien placé
     }
@@ -100,12 +100,18 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
             Obstacle obstacle1(id, x, y, largeur, longueur);
             tabObstacle.push_back(obstacle1);
             break; }
-        case 2: {// Création d'un carburant
+        case 2: {// Création d'un obstacle vertical (échaffaudage)
             largeur = 1; // Largeur de l'objet.
             longueur = 3; // Longeur de l'objet.
             Obstacle obstacle2(id, x, y, largeur, longueur);
             tabObstacle.push_back(obstacle2);
             break; }
+        case 3: {// Création d'un obstacle (métro)
+            largeur = 6; // Largeur de l'objet.
+            longueur = 3; // Longeur de l'objet.
+            Obstacle obstacle2(id, x, 0, largeur, longueur);
+            tabObstacle.push_back(obstacle2);
+             break; }
         default:
             return; // Ne rien faire si id est invalide
     }
@@ -137,7 +143,7 @@ void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR)
             largeur = 1; 
             longueur = 1; // Ne rien faire si id est invalide
     }
-    while (!bien_placé(x, y, largeur, longueur))
+    while (!bien_place(x, y, largeur, longueur))
     {
         x = x + 1;
     }
@@ -181,7 +187,9 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         if (distance % 40 == 24) { 
             generationObstacle(2,HAUTEUR, LARGEUR);
         }
-
+        if (distance % 40 == 24) { 
+            generationObstacle(3,HAUTEUR, LARGEUR);
+        }
         if (distance % 15 == 5) {
             generationObjet(1,HAUTEUR, LARGEUR);
         }

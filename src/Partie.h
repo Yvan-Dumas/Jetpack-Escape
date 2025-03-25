@@ -28,7 +28,7 @@ class Partie {
         void ajouterPiece(); ///< Incrémente le score des pièces
         void ajouterDistance(); ///< Incrémente le score de distance parcourue
         void utiliserObjet(unsigned int id); ///< Utilise l'objet ramassé
-        bool bien_placé(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur); ///< Regarde si l'objet / obstacle n'empiete pas sur un autre
+        bool bien_place(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur); ///< Regarde si l'objet / obstacle n'empiete pas sur un autre
 
     public:
         int score; ///< Le score de la partie en cours
