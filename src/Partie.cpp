@@ -208,7 +208,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if ((rand())%20==0){
         int id = 1;
-        int poids[] = {10, 10, 2, 20, 10, 5}; // Poids associés
+        int poids[] = {20, 20, 2, 20, 10, 5}; // Poids associés
         int taille = sizeof(poids) / sizeof(poids[0]);
 
         // Calcul de la somme des poids
