@@ -16,14 +16,27 @@ Partie::Partie() {
     score = 0;
     distance = 0;
     nbVies = 3;
+    record = chargerFichier();
 }
 
-void Partie::sauvegarder() {
-
+void Partie::sauvegarderFichier(string contenu) {
+    ofstream fichier("../data/sauvegarde.txt", ios::out | ios::trunc);
+    if(fichier){
+        fichier << contenu;
+        fichier.close();
+    }
+    else cout << "impossible d'ouvrir le fichier !";
 }
 
-void Partie::charger() {
-
+string Partie::chargerFichier() {
+    fstream fichier("../data/sauvegarde.txt", ios::in);
+    if(fichier){
+        string contenu;
+        getline(fichier, contenu);
+        fichier.close();
+        return contenu;
+    }
+    else return "impossible d'ouvrir le fichier !";
 }
 
 void Partie::setNbVies(unsigned int nb) {

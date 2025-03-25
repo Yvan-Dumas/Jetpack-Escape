@@ -26,6 +26,7 @@
      * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
      */
      static void testRegression();
+     string getRecord();
  };
  
  #endif

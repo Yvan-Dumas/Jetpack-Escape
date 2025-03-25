@@ -9,6 +9,7 @@
 #include "Obstacle.h"
 #include "Objet.h"
 #include <vector>
+#include <fstream>
 
 using namespace std;
  
@@ -22,6 +23,7 @@ class Partie {
         vector<Obstacle> tabObstacle; ///< Tableau des obstacles présents
         vector<Objet> tabObjets; ///< Tableau des objets récupérables
         int vitesseDefilement; ///< Vitesse du jeu
+        
 
         void generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGEUR);///< Génère un obstacle et l'ajoute au tableau
         void generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR);///< Génère un objet et l'ajoute au tableau
@@ -34,11 +36,12 @@ class Partie {
         int score; ///< Le score de la partie en cours
         int distance; ///< La distance parcourue depuis le début de la partie
         int nbVies; ///< Le nombre de vies restantes du joueur
+        string record;
 
         Partie(); ///< Le constructeur de la classe
         void ajouterCarburant(); ///< Augmente le carburant
-        void sauvegarder(); ///< Sauvegarde dans un fichier
-        void charger(); ///< Charger depuis un fichier
+        void sauvegarderFichier(string contenu); ///< Sauvegarde dans un fichier
+        string chargerFichier(); ///< Charger depuis un fichier
         void setNbVies(unsigned int nb); ///< Défini le nombre de vies
         void actionsClavier(const char touche, unsigned int HAUTEUR); ///< Effectue des actions en fonction des entrées claviers
         bool actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR); ///< Appele les différentes fonctions nécéssaire à la partie
