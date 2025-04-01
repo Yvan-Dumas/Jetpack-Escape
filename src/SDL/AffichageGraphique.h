@@ -8,6 +8,9 @@
 #include "ArrierePlan.h"
 #include "Partie.h"
 #include <SDL2/SDL.h>
+#include <cassert>
+#include <time.h>
+#include <stdlib.h>
 
  /**
   * @class AffichageGraphique
@@ -19,7 +22,8 @@
  
  public:
      AffichageGraphique(); ///< Le constructeur de AffichageGraphique
-     void run(); ///< La procédure qui gère tout l'affichage
+     void run(); ///< La procédure qui gère tout le jeu
+     void affichage(); ///< La procédure qui gère tout l'affichage
  };
  
  #endif
