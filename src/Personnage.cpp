@@ -54,6 +54,30 @@ void Personnage::appliquerGravite(unsigned int HAUTEUR) {
     }
 }
 
+unsigned int Personnage::getNbPieces() const {
+    return nbPièces;
+}
+
+void Personnage::setNbPieces(unsigned int nb) {
+    nbPièces = nb;
+}
+
+unsigned int Personnage::getDistance() const {
+    return distance;
+}
+
+void Personnage::setDistance(unsigned int nb) {
+    distance = nb;
+}
+
+unsigned int Personnage::getNbVies() const {
+    return nbVies;
+}
+
+void Personnage::setNbVies(unsigned int nb) {
+    nbVies = nb;
+}
+
 
 void Personnage::testPersonnage() {
     cout << "Début des test pour Personnage"<<endl ;

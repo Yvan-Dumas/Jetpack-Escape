@@ -32,8 +32,7 @@ int main() {
             aff.run();
             break;
         case '2':
-            // ajouter bool 2 players.
-            aff.run();
+            aff.run2Joueurs();
             break;
         default:
             break;
