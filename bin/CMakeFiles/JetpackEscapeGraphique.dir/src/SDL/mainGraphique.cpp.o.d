@@ -1,5 +1,5 @@
 CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/SDL/mainGraphique.cpp \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/SDL/mainGraphique.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/14/iostream \
  /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
@@ -280,12 +280,12 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_ttf.h \
  /usr/include/SDL2/SDL.h \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/ArrierePlan.h \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Partie.h \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Personnage.h \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Obstacle.h \
- /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Objet.h \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/ArrierePlan.h \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Partie.h \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Personnage.h \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Obstacle.h \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Objet.h \
  /usr/include/c++/14/vector /usr/include/c++/14/bits/stl_uninitialized.h \
  /usr/include/c++/14/bits/stl_vector.h \
  /usr/include/c++/14/bits/stl_bvector.h \
@@ -293,7 +293,6 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
  /usr/include/c++/14/bits/codecvt.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/basic_file.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++io.h \
-<<<<<<< HEAD
  /usr/include/c++/14/bits/fstream.tcc /usr/include/c++/14/random \
  /usr/include/c++/14/cstdint /usr/include/c++/14/bits/random.h \
  /usr/include/c++/14/bits/uniform_int_dist.h \
@@ -302,7 +301,4 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
  /usr/include/c++/14/bits/stl_numeric.h \
  /usr/include/c++/14/pstl/glue_numeric_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h /usr/include/c++/14/cassert \
-=======
- /usr/include/c++/14/bits/fstream.tcc /usr/include/c++/14/cassert \
->>>>>>> d061d24ff5d56d0c1151af9ea867a608c6d1e756
  /usr/include/assert.h
