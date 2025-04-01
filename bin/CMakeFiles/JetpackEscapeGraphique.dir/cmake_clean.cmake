@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/JetpackEscapeGraphique.dir/src/AffichageGraphique.cpp.o"
-  "CMakeFiles/JetpackEscapeGraphique.dir/src/AffichageGraphique.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.o"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Objet.cpp.o"
@@ -11,8 +9,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Partie.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Personnage.cpp.o"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Personnage.cpp.o.d"
-  "CMakeFiles/JetpackEscapeGraphique.dir/src/mainGraphique.cpp.o"
-  "CMakeFiles/JetpackEscapeGraphique.dir/src/mainGraphique.cpp.o.d"
+  "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o"
+  "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o.d"
+  "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o"
+  "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o.d"
   "JetpackEscapeGraphique"
   "JetpackEscapeGraphique.pdb"
 )

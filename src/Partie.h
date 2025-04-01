@@ -36,7 +36,7 @@ class Partie {
         int score; ///< Le score de la partie en cours
         int distance; ///< La distance parcourue depuis le début de la partie
         int nbVies; ///< Le nombre de vies restantes du joueur
-        string record;
+        string record; ///< Le record de distance parcourue du joueur
 
         Partie(); ///< Le constructeur de la classe
         void ajouterCarburant(); ///< Augmente le carburant
@@ -48,7 +48,7 @@ class Partie {
         unsigned int getHauteurPerso() const; ///< Retourne la hauteur du personnage
         const vector<Obstacle>& getObstacles() const; ///< Retourne le tableau d'obstacles
         const vector<Objet>& getObjets() const; ///< Retourne le tableau d'objets
-        float getCarburant() const;
+        float getCarburant() const; ///< Retourne la quantité de carburant du personnage
         /**
         * @brief Effectue une série de tests sur les méthodes de la classe Partie.
         * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.

@@ -30,14 +30,24 @@ set(SOURCESGRAPHIQUE
     src/Obstacle.cpp
     src/Objet.cpp
     src/Partie.cpp
-    src/AffichageGraphique.cpp
-    src/mainGraphique.cpp
+    src/SDL/AffichageGraphique.cpp
+    src/SDL/mainGraphique.cpp
     src/ArrierePlan.cpp
 )
+
+set(SOURCESREGRESSION
+    src/Personnage.cpp
+    src/Obstacle.cpp
+    src/Objet.cpp
+    src/Partie.cpp
+    src/mainRegression.cpp
+)
+
 
 # Création de l'exécutable
 add_executable(JetpackEscapeConsole ${SOURCESCONSOLE})
 add_executable(JetpackEscapeGraphique ${SOURCESGRAPHIQUE})
+add_executable(JetpackEscapeReg ${SOURCESREGRESSION})
 
 # Inclusion des fichiers d'en-tête
 include_directories(src)

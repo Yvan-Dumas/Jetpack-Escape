@@ -18,7 +18,6 @@ int main() {
     cout << "                   Choisissez votre mode jeu : " << endl;
     cout << "                   1 - Mode 1 joueur" << endl;
     cout << "                   2 - Mode 2 joueur" << endl;
-    cout << "                   3 - Fonctions de test" << endl;
     cout << "                   0 - quitter" << endl << endl ;
     cout << "                   =========================================================" << endl;
     cout << "                   |    @ : Le joueur, c'est vous                          |" << endl;
@@ -35,12 +34,6 @@ int main() {
         case '2':
             // ajouter bool 2 players.
             aff.run();
-            break;
-        case '3':
-            Objet::testObjet();
-            Obstacle::testObstacle();
-            Partie::testPartie();
-            Personnage::testPersonnage();
             break;
         default:
             break;

@@ -1,5 +1,5 @@
-CMakeFiles/JetpackEscapeGraphique.dir/src/mainGraphique.cpp.o: \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/mainGraphique.cpp \
+CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
+ /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/SDL/mainGraphique.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/14/iostream \
  /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
