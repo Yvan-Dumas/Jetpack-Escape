@@ -1,10 +1,20 @@
 CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o: \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.cpp \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.cpp \
  /usr/include/stdc-predef.h \
+<<<<<<< HEAD
  /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
  /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/ArrierePlan.h \
  /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Partie.h \
  /usr/include/c++/14/iostream /usr/include/c++/14/bits/requires_hosted.h \
+=======
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/ArrierePlan.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Partie.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Personnage.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Obstacle.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Objet.h \
+ /usr/include/c++/14/vector /usr/include/c++/14/bits/requires_hosted.h \
+>>>>>>> d061d24ff5d56d0c1151af9ea867a608c6d1e756
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/os_defines.h \
@@ -300,4 +310,9 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
+<<<<<<< HEAD
  /usr/include/SDL2/SDL_misc.h
+=======
+ /usr/include/SDL2/SDL_misc.h /usr/include/c++/14/cassert \
+ /usr/include/assert.h /usr/include/c++/14/iostream
+>>>>>>> d061d24ff5d56d0c1151af9ea867a608c6d1e756

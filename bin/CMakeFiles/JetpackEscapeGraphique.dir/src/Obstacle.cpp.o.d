@@ -1,10 +1,5 @@
-<<<<<<< HEAD:bin/CMakeFiles/JetpackEscapeGraphique.dir/src/Obstacle.cpp.o.d
 CMakeFiles/JetpackEscapeGraphique.dir/src/Obstacle.cpp.o: \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Obstacle.cpp \
-=======
-CMakeFiles/JetpackEscape.dir/src/Obstacle.cpp.o: \
  /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Obstacle.cpp \
->>>>>>> d2c115d545dbb56e8d7575f6ecdd4e015c7372f2:bin/CMakeFiles/JetpackEscape.dir/src/Obstacle.cpp.o.d
  /usr/include/stdc-predef.h \
  /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Obstacle.h \
  /usr/include/c++/14/iostream /usr/include/c++/14/bits/requires_hosted.h \

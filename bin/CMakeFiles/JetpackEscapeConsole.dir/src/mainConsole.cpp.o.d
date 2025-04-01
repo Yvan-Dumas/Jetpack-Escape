@@ -1,5 +1,5 @@
 CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/mainConsole.cpp \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/mainConsole.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/14/iostream \
  /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
@@ -129,11 +129,11 @@ CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: \
  /usr/include/c++/14/bits/basic_ios.tcc \
  /usr/include/c++/14/bits/ostream.tcc /usr/include/c++/14/istream \
  /usr/include/c++/14/bits/istream.tcc \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/AffichageConsole.h \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Partie.h \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Personnage.h \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Obstacle.h \
- /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/src/Objet.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/AffichageConsole.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Partie.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Personnage.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Obstacle.h \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/Objet.h \
  /usr/include/c++/14/vector /usr/include/c++/14/bits/stl_uninitialized.h \
  /usr/include/c++/14/bits/stl_vector.h \
  /usr/include/c++/14/bits/stl_bvector.h \
@@ -141,6 +141,7 @@ CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: \
  /usr/include/c++/14/bits/codecvt.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/basic_file.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++io.h \
+<<<<<<< HEAD
  /usr/include/c++/14/bits/fstream.tcc /usr/include/c++/14/random \
  /usr/include/c++/14/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
@@ -184,3 +185,7 @@ CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: \
  /usr/include/c++/14/bits/locale_conv.h \
  /usr/include/c++/14/bits/quoted_string.h /usr/include/c++/14/sstream \
  /usr/include/c++/14/bits/sstream.tcc
+=======
+ /usr/include/c++/14/bits/fstream.tcc \
+ /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/src/winTxt.h
+>>>>>>> d061d24ff5d56d0c1151af9ea867a608c6d1e756
