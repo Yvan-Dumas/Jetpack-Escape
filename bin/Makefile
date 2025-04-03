@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape
+CMAKE_SOURCE_DIR = /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin
+CMAKE_BINARY_DIR = /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2302033/LIFAPCD/JetpackEscape/lifapcd-jetpack-escape/bin/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2308033/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -347,6 +347,30 @@ src/SDL/AffichageGraphique.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.s
 .PHONY : src/SDL/AffichageGraphique.cpp.s
 
+src/SDL/SDLSprite.o: src/SDL/SDLSprite.cpp.o
+.PHONY : src/SDL/SDLSprite.o
+
+# target to build an object file
+src/SDL/SDLSprite.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.cpp.o
+.PHONY : src/SDL/SDLSprite.cpp.o
+
+src/SDL/SDLSprite.i: src/SDL/SDLSprite.cpp.i
+.PHONY : src/SDL/SDLSprite.i
+
+# target to preprocess a source file
+src/SDL/SDLSprite.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.cpp.i
+.PHONY : src/SDL/SDLSprite.cpp.i
+
+src/SDL/SDLSprite.s: src/SDL/SDLSprite.cpp.s
+.PHONY : src/SDL/SDLSprite.s
+
+# target to generate assembly for a file
+src/SDL/SDLSprite.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.cpp.s
+.PHONY : src/SDL/SDLSprite.cpp.s
+
 src/SDL/mainGraphique.o: src/SDL/mainGraphique.cpp.o
 .PHONY : src/SDL/mainGraphique.o
 
@@ -475,6 +499,9 @@ help:
 	@echo "... src/SDL/AffichageGraphique.o"
 	@echo "... src/SDL/AffichageGraphique.i"
 	@echo "... src/SDL/AffichageGraphique.s"
+	@echo "... src/SDL/SDLSprite.o"
+	@echo "... src/SDL/SDLSprite.i"
+	@echo "... src/SDL/SDLSprite.s"
 	@echo "... src/SDL/mainGraphique.o"
 	@echo "... src/SDL/mainGraphique.i"
 	@echo "... src/SDL/mainGraphique.s"

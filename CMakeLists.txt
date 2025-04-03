@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Rechercher SDL2
 find_package(SDL2 REQUIRED)
 find_package(SDL2_ttf REQUIRED)  # Recherche de SDL2_ttf
+find_package(SDL2_image REQUIRED) # Recherche de l'image 
 
 # Inclusion des fichiers d'en-tête
 include_directories(src ${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})  # Ajout de SDL2_ttf
@@ -34,6 +35,7 @@ set(SOURCESGRAPHIQUE
     src/SDL/mainGraphique.cpp
     src/SDL/AffichageGraphique.cpp
     src/ArrierePlan.cpp
+    src/SDL/SDLSprite.cpp
 )
 
 set(SOURCESREGRESSION
@@ -53,4 +55,4 @@ add_executable(JetpackEscapeReg ${SOURCESREGRESSION})
 include_directories(src)
 
 # Lien avec SDL2 et SDL2_ttf uniquement pour la version graphique
-target_link_libraries(JetpackEscapeGraphique SDL2::SDL2 SDL2_ttf::SDL2_ttf)
+target_link_libraries(JetpackEscapeGraphique SDL2::SDL2 SDL2_ttf::SDL2_ttf SDL2_image::SDL2_image)

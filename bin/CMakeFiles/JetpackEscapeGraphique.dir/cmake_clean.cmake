@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Personnage.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o.d"
+  "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.cpp.o"
+  "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o.d"
   "JetpackEscapeGraphique"
