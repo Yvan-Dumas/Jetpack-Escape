@@ -1,7 +1,6 @@
 #include "SDLSprite.h"
 #include <iostream>
 #include <cstring>
-#include <cassert>
 
 using namespace std;
 
@@ -64,11 +63,19 @@ void SDLSprite::draw(SDL_Renderer *renderer, int x, int y, int w, int h)
 
     if (m_hasChanged)
     {
-        ok = SDL_UpdateTexture(m_texture, nullptr, m_surface->pixels, m_surface->pitch);
-        assert(ok == 0);
+        if (SDL_UpdateTexture(m_texture, nullptr, m_surface->pixels, m_surface->pitch) != 0)
+        {
+            std::cerr << "Erreur SDL_UpdateTexture: " << SDL_GetError() << std::endl;
+            return;
+        }
         m_hasChanged = false;
     }
 
-    ok = SDL_RenderCopy(renderer, m_texture, nullptr, &r);
-    assert(ok == 0);
+    if (SDL_RenderCopy(renderer, m_texture, nullptr, &r) != 0)
+    {
+        std::cerr << "Erreur SDL_RenderCopy: " << SDL_GetError() << std::endl;
+        return;
+    }
+
 }
+

@@ -8,6 +8,8 @@
 using namespace std;
 
 const int TAILLE_SPRITE = 32;
+const int HAUTEUR = 10;
+const int LARGEUR = 100;
 
 float temps()
 {
@@ -34,14 +36,13 @@ void AffichageGraphique::init() {
         exit(1);
     }
 
-    int dimx, dimy;
     /*dimx = partie.getConstTerrain().getDimX();
     dimy = partie.getConstTerrain().getDimY();
     dimx = dimx * TAILLE_SPRITE;
     dimy = dimy * TAILLE_SPRITE;*/
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr)
     {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl;
@@ -82,8 +83,7 @@ void AffichageGraphique::affichage()
                 im_pastille.draw(renderer, x * TAILLE_SPRITE, y * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);*/
 
     // Afficher le sprite de Pacman
-    im_perso.draw(renderer,  5 * TAILLE_SPRITE, perso.getHauteur() * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-
+    im_perso.draw(renderer,   5*TAILLE_SPRITE, (HAUTEUR-perso.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
     /*
     // Afficher le sprite du Fantome
     //im_fantome.draw(renderer, fan.getX() * TAILLE_SPRITE, fan.getY() * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
@@ -101,48 +101,48 @@ void AffichageGraphique::run()
 {
     init();
     SDL_Event events;
-    bool quit = false;
+    bool ok = true;
 
     Uint32 t = SDL_GetTicks(), nt;
 
     // tant que ce n'est pas la fin ...
-    while (!quit)
+    while (ok)
     {
-
+        
         nt = SDL_GetTicks();
         if (nt - t > 500)
         {
-            partie.actionsAutomatiques(5,100);
-            t = nt;
+            ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
+           //t = nt;
         }
-
         // tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
         while (SDL_PollEvent(&events))
-        {
+        { 
             if (events.type == SDL_QUIT)
-                quit = true; // Si l'utilisateur a clique sur la croix de fermeture
+                ok = false; // Si l'utilisateur a clique sur la croix de fermeture
             else if (events.type == SDL_KEYDOWN)
             { // Si une touche est enfoncee
-                bool mangePastille = false;
                 switch (events.key.keysym.scancode)
                 {
-                case SDL_SCANCODE_Z:
-                    partie.actionsClavier('z',5);
+                case SDL_SCANCODE_W:
+                    partie.actionsClavier('z',HAUTEUR-1);
                     break;
                 case SDL_SCANCODE_ESCAPE:
-                case SDL_SCANCODE_Q:
-                    quit = true;
+                case SDLK_q:
+                    ok = false;
                     break;
                 default:
                     break;
                 }
             }
         }
+        
 
         // on affiche le partie sur le buffer caché
         affichage();
 
         // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
+        SDL_Delay(100);
     }
 }
