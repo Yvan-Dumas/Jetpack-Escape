@@ -15,6 +15,9 @@
 class Personnage {
     private:
         unsigned int hauteur; ///< Position y du personnnage (valeur entière).
+        unsigned int nbPièces; ///< Le nombre de pièces ramassées par le personnage
+        unsigned int distance; ///< La distance parcourue depuis le début de la partie par le personnage
+        unsigned int nbVies; ///< Le nombre de vies restantes du personnage
 
     public:
         float carburant; ///< Quantité de carburant du joueur.
@@ -31,7 +34,7 @@ class Personnage {
          */
         void setHauteur(unsigned int y);
 
-         /**
+        /**
          * @brief Accesseur pour la position y du personnage
          * @return Retourne un entier non-signé
          */
@@ -46,6 +49,44 @@ class Personnage {
          * @brief Fonction appliquant la gravité au personnage.
          */
         void appliquerGravite(unsigned int HAUTEUR);
+
+        /**
+        * @brief Effectue une série de tests sur les méthodes de la classe Personnage.
+        * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
+        */
+        static void testPersonnage();
+
+        /**
+        * @brief Accesseur pour le nombre de pièces du personnage
+        */
+        unsigned int getNbPieces() const;
+
+        /**
+         * @brief Mutateur pour le nombre de pièces du personnage
+         */
+         void setNbPieces(unsigned int nb);
+
+       /**
+        * @brief Accesseur pour la distance parcourue par le personnage
+        */
+       unsigned int getDistance() const;
+
+       /**
+        * @brief Mutateur pour la distance parcourue par le personnage
+        */
+       void setDistance(unsigned int nb);
+
+       /**
+        * @brief Accesseur pour le nombre de vies du personnage
+        */
+       unsigned int getNbVies() const;
+
+       /**
+        * @brief Mutateur pour le nombre de vie du personnage
+        */
+       void setNbVies(unsigned int nb);
+
+
     };
 
 #endif

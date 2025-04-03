@@ -60,6 +60,7 @@ void termInit() // configure la saisie : ne pas afficher les caracteres tapes
         ttystate.c_lflag &= ~ICANON;
         // minimum of number input read.
         ttystate.c_cc[VMIN] = 1;
+        ttystate.c_cc[VTIME] = 0; // No timeout
     }
     else
     {

@@ -56,6 +56,11 @@ class Obstacle {
      */
     int getLongueur() const;
 
+    /**
+     * @brief Effectue une série de tests sur les méthodes de la classe Obstacle.
+     * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
+    */
+    static void testObstacle();
   };
 
 #endif

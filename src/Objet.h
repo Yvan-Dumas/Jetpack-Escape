@@ -50,6 +50,14 @@ class Objet {
      * @brief renvoie l'ID de l'objet
      */
     int getID() const;
+    
+    /**
+     * @brief Effectue une série de tests sur les méthodes de la classe Objet.
+     * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
+    */
+    static void testObjet();
+
+
   };
 
 #endif
