@@ -2,8 +2,10 @@
 #define _SDLSPRITE_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
-//! \brief Pour gérer une image avec SDL2
+
+//!\ brief Pour gérer une image avec SDL2
 class SDLSprite
 {
 
@@ -15,8 +17,6 @@ private:
 public:
     SDLSprite();
     ~SDLSprite();
-    SDLSprite(const SDLSprite &im);
-    SDLSprite &operator=(const SDLSprite &im);
 
     void loadFromFile(const char *filename, SDL_Renderer *renderer);
     void loadFromCurrentSurface(SDL_Renderer *renderer);
