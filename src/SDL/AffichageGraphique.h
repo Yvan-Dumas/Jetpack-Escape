@@ -13,28 +13,33 @@
 #include <stdlib.h>
 #include <SDL2/SDL_image.h>
 
- /**
+/**
   * @class AffichageGraphique
   * @brief Affiche l'ensemble du jeu à l'aide d'une bibliothèque graphique
   */
- class AffichageGraphique {
- private:
-     Partie partie; ///<  La partie en cours
+class AffichageGraphique {
+    private:
+        Partie partie; ///<  La partie en cours
 
-     SDL_Window *window;
-     SDL_Renderer *renderer;
+        SDL_Window *window;
+        SDL_Renderer *renderer;
 
-     SDLSprite im_perso;
+        SDLSprite im_perso;
+        SDLSprite im_toit;
+        SDLSprite im_obstacle;
+        SDLSprite im_piece;
+        SDLSprite im_vie;
+        SDLSprite im_carburant;
 
-    bool souris;
-    bool touche;
+        bool souris;
+        bool touche;
 
  
- public:
-     void init(); ///< Initialise l'affichageGraphique
-     ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
-     void run(); ///< La procédure qui gère tout le jeu
-     void affichage(); ///< La procédure qui gère tout l'affichage
+    public:
+        void init(); ///< Initialise l'affichageGraphique
+        ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
+         void run(); ///< La procédure qui gère tout le jeu
+        void affichage(); ///< La procédure qui gère tout l'affichage
  };
  
  #endif

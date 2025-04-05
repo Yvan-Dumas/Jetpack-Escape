@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int HAUTEUR = 5;
+const int HAUTEUR = 10;
 const int LARGEUR = 100;
 
 AffichageConsole::AffichageConsole() {}
@@ -31,8 +31,8 @@ void AffichageConsole::afficher(WinTXT &win) {
     int hauteurPerso = perso1.getHauteur();
     win.print(5, HAUTEUR - hauteurPerso, '@');
 
-     //Placement des obstacles
-     for (const Obstacle& obs : partie.getObstacles()) {
+    //Placement des obstacles
+    for (const Obstacle& obs : partie.getObstacles()) {
         int obsX = obs.getX();
         int obsY = obs.getY();
         int obsLargeur = obs.getLargeur();
@@ -61,12 +61,11 @@ void AffichageConsole::afficher(WinTXT &win) {
         default:
         break;
         } 
-
     }
 
     // Affichage de la bordure inférieure
     for(unsigned int i = 0; i<LARGEUR; i++) {
-        win.print(i,6,'-');
+        win.print(i,11,'-');
     }
 
     win.draw();

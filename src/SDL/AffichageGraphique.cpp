@@ -54,7 +54,11 @@ void AffichageGraphique::init() {
 
     // IMAGES
     im_perso.loadFromFile("../data/perso32.png", renderer);
-
+    im_toit.loadFromFile("../data/toit32.png", renderer);
+    im_obstacle.loadFromFile("../data/obstacle32.png", renderer);
+    im_piece.loadFromFile("../data/piece32.png", renderer);
+    im_vie.loadFromFile("../data/coeur32.png", renderer);
+    im_carburant.loadFromFile("../data/carburant32.png", renderer);
 
 }
 
@@ -71,23 +75,53 @@ void AffichageGraphique::affichage()
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
 
-    int x, y;
+    // Affichage de la bordure supérieure
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        im_toit.draw(renderer, i*TAILLE_SPRITE , 0, TAILLE_SPRITE, TAILLE_SPRITE);
+    }
 
+    // Affichage de la bordure inférieure
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        im_toit.draw(renderer, i*TAILLE_SPRITE , 11*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    }
+
+    // Affichage du personnage
     const Personnage& perso = partie.getPerso1();
-    // Afficher les sprites des murs et des pastilles
-    /*for (x = 0; x < ter.getDimX(); ++x)
-        for (y = 0; y < ter.getDimY(); ++y)
-            if (ter.getXY(x, y) == '#')
-                im_mur.draw(renderer, x * TAILLE_SPRITE, y * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-            else if (ter.getXY(x, y) == '.')
-                im_pastille.draw(renderer, x * TAILLE_SPRITE, y * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);*/
-
-    // Afficher le sprite de Pacman
     im_perso.draw(renderer,   5*TAILLE_SPRITE, (HAUTEUR-perso.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-    /*
-    // Afficher le sprite du Fantome
-    //im_fantome.draw(renderer, fan.getX() * TAILLE_SPRITE, fan.getY() * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    
+    //Placement des obstacles
+    for (const Obstacle& obs : partie.getObstacles()) {
+        int obsX = obs.getX();
+        int obsY = obs.getY();
+        int obsLargeur = obs.getLargeur();
+        int obsLongueur = obs.getLongueur();
 
+        for (int i = 0; i < obsLargeur; i++) {
+            for (int j = 0; j < obsLongueur; j++) {
+                if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
+                    im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                }
+            }
+        }
+    }
+
+    //Placement des objets
+    for (const Objet& obj : partie.getObjets()) {
+        switch (obj.getID()){
+            case 1:
+                im_piece.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+            break;
+            case 2:
+                im_carburant.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+            break;
+            case 3:
+                im_vie.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+            default:
+            break;
+            } 
+        }
+
+    /*
     // Ecrire un titre par dessus
     SDL_Rect positionTitre;
     positionTitre.x = 270;
