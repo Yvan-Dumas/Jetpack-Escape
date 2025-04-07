@@ -40,9 +40,9 @@ int initSDL() {
         return 0;
     }
 
-    font = TTF_OpenFont("data/gooddog.ttf", 50);
+    font = TTF_OpenFont("data/polices/gooddog.ttf", 50);
     if (font == nullptr)
-        font = TTF_OpenFont("../data/gooddog.ttf", 50);
+        font = TTF_OpenFont("../data/polices/gooddog.ttf", 50);
     if (font == nullptr)
     {
         cout << "Failed to load gooddog.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
@@ -50,9 +50,9 @@ int initSDL() {
         exit(1);
     }
 
-    policetitre = TTF_OpenFont("data/policetitre.ttf", 70);
+    policetitre = TTF_OpenFont("data/polices/policetitre.ttf", 70);
     if (policetitre == nullptr)
-        policetitre = TTF_OpenFont("../data/policetitre.ttf", 70);
+        policetitre = TTF_OpenFont("../data/polices/policetitre.ttf", 70);
     if (policetitre == nullptr)
     {
         cout << "Failed to load policetitre.ttf! SDL_TTF Error: " << TTF_GetError() << endl;

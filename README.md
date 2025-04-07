@@ -31,3 +31,28 @@ char WinTXT::getCh()
 #endif
     return touche;
 }
+
+
+DA:
+1. Style graphique
+Pixel art low-res 32x32
+Palette : gris foncé, rouille, rouge métro, lumière fluorescente verte pâle
+Typographie : Pixelated, façon LED d’affichage de stations
+
+2. Menu principal
+Fond : léger effet de flou de tunnel, ombrage de néons
+Hover/selection : texte clignote comme un panneau LED défectueux
+
+3. Transitions
+Fondu “vers la gauche” comme un train qui passe
+Sons : bruit de métro, bip d’ouverture de porte
+
+4. Éléments bonus
+Des graffitis pixelisés animés (tag style "PRESS START")
+Petits rats courant dans le bas du menu en boucle
+Affichage d'une station de métro fictive avec nom aléatoire
+
+fonts : 
+https://fonts.google.com/specimen/Press+Start+2P
+https://fonts.google.com/specimen/VT323
+https://fr.fonts2u.com/pixel-lcd-7.police?ptext=JETPACK+ESCAPE

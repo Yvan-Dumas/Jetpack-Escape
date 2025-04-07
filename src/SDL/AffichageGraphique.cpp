@@ -60,18 +60,18 @@ void AffichageGraphique::init() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     // IMAGES
-    im_perso.loadFromFile("../data/perso32.png", renderer);
-    im_toit.loadFromFile("../data/toit32.png", renderer);
-    im_obstacle.loadFromFile("../data/obstacle32.png", renderer);
-    im_piece.loadFromFile("../data/piece32.png", renderer);
-    im_vie.loadFromFile("../data/coeur32.png", renderer);
-    im_carburant.loadFromFile("../data/carburant32.png", renderer);
+    im_perso.loadFromFile("../data/images/perso32.png", renderer);
+    im_toit.loadFromFile("../data/images/toit32.png", renderer);
+    im_obstacle.loadFromFile("../data/images/obstacle32.png", renderer);
+    im_piece.loadFromFile("../data/images/piece32.png", renderer);
+    im_vie.loadFromFile("../data/images/coeur32.png", renderer);
+    im_carburant.loadFromFile("../data/images/carburant32.png", renderer);
+    im_fond.loadFromFile("../data/images/background.png", renderer);
 
     // POLICE: 17
-
-    police1 = TTF_OpenFont("data/policebase1.ttf", 50);
+    police1 = TTF_OpenFont("data/polices/policebase1.ttf", 50);
     if (police1 == nullptr)
-        police1 = TTF_OpenFont("../data/policebase1.ttf", 50);
+        police1 = TTF_OpenFont("../data/polices/policebase1.ttf", 50);
     if (police1 == nullptr)
     {
         cout << "Failed to load policebase1.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
@@ -79,9 +79,9 @@ void AffichageGraphique::init() {
         exit(1);
     }
 
-    police2 = TTF_OpenFont("data/policebase2.ttf", 50);
+    police2 = TTF_OpenFont("data/polices/policebase2.ttf", 50);
     if (police2 == nullptr)
-        police2 = TTF_OpenFont("../data/policebase2.ttf", 50);
+        police2 = TTF_OpenFont("../data/polices/policebase2.ttf", 50);
     if (police2 == nullptr)
     {
         cout << "Failed to load policebase2.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
@@ -115,6 +115,16 @@ void AffichageGraphique::affichage()
     // Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
+
+    // Scroll du fond
+    int fondLargeur, fondHauteur;
+    SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
+
+    for (int x = -fondLargeur + offset_x; x < 1920; x += fondLargeur) {
+        for (int y = 0; y < 1080; y += fondHauteur) {
+            im_fond.draw(renderer, x, y, fondLargeur, fondHauteur);
+        }
+    }
 
     // Affichage de la bordure supérieure
     for(unsigned int i = 0; i<LARGEUR; i++) {
@@ -179,7 +189,6 @@ void AffichageGraphique::affichage()
     
 
     //Textes de débugages
-    
     const vector<Obstacle> tabobstacles = partie.getObstacles();
     if (!tabobstacles.empty()){
         const Obstacle& obs = tabobstacles.front();
@@ -222,20 +231,21 @@ void AffichageGraphique::run()
             ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
            //t = nt;
         }
-        // tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
+
         while (SDL_PollEvent(&events))
         { 
             if (events.type == SDL_QUIT)
-                ok = false; // Si l'utilisateur a clique sur la croix de fermeture
-            else if (events.type == SDL_KEYDOWN)
-            { // Si une touche est enfoncee
+                ok = false; // Si l'utilisateur a cliqué sur la croix de fermeture
+            else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncee
                 switch (events.key.keysym.scancode)
                 {
                 case SDL_SCANCODE_W:
                     partie.actionsClavier('z',HAUTEUR-1);
                     break;
                 case SDL_SCANCODE_ESCAPE:
-                case SDLK_q:
+                    ok = false;
+                    break;
+                case SDL_SCANCODE_A:
                     ok = false;
                     break;
                 default:
@@ -243,12 +253,13 @@ void AffichageGraphique::run()
                 }
             }
         }
-        
 
-        // on affiche le partie sur le buffer caché
         affichage();
 
-        // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
+
+        int fondLargeur, fondHauteur;
+        SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
+        offset_x = (offset_x - 6 + fondLargeur) % fondLargeur;
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
     }

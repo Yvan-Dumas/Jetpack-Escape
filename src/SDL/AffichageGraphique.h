@@ -35,6 +35,8 @@ class AffichageGraphique {
         SDLSprite im_piece;
         SDLSprite im_vie;
         SDLSprite im_carburant;
+        SDLSprite im_fond;
+        int offset_x = 0;
 
         bool souris;
         bool touche;
