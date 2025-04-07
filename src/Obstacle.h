@@ -15,8 +15,8 @@ class Obstacle {
     unsigned int idTypeObstacle; ///< Identifiant du type de l'Obstacle.
     int x; ///< Position x de l'Obstacle.
     int y; ///< Position y de l'Obstacle.
-    unsigned int largeur; ///< Largeur de l'Obstacle.
-    unsigned int longueur; ///< Longueur y de l'Obstacle.
+    unsigned int largeur; ///< Largeur de l'Obstacle selon l'axe x.
+    unsigned int longueur; ///< Longueur y de l'Obstacle selon l'axe y.
 
   public:
     /**

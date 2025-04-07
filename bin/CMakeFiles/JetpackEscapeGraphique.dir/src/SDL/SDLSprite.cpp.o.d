@@ -1,7 +1,7 @@
 CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.cpp.o: \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/SDLSprite.cpp \
+ /home/hugom/lifapcd-jetpack-escape/src/SDL/SDLSprite.cpp \
  /usr/include/stdc-predef.h \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/SDLSprite.h \
+ /home/hugom/lifapcd-jetpack-escape/src/SDL/SDLSprite.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \

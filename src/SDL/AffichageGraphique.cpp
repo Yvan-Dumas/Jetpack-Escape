@@ -28,6 +28,13 @@ void AffichageGraphique::init() {
         exit(1);
     }
 
+    if (TTF_Init() != 0)
+    {
+        cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
     int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {
@@ -60,7 +67,41 @@ void AffichageGraphique::init() {
     im_vie.loadFromFile("../data/coeur32.png", renderer);
     im_carburant.loadFromFile("../data/carburant32.png", renderer);
 
+    // POLICE: 17
+
+    police1 = TTF_OpenFont("data/policebase1.ttf", 50);
+    if (police1 == nullptr)
+        police1 = TTF_OpenFont("../data/policebase1.ttf", 50);
+    if (police1 == nullptr)
+    {
+        cout << "Failed to load policebase1.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    police2 = TTF_OpenFont("data/policebase2.ttf", 50);
+    if (police2 == nullptr)
+        police2 = TTF_OpenFont("../data/policebase2.ttf", 50);
+    if (police2 == nullptr)
+    {
+        cout << "Failed to load policebase2.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+
 }
+void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
+    SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+    SDL_Rect dstRect = {x, y, surface->w, surface->h};
+    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
 
 AffichageGraphique::~AffichageGraphique()
 {
@@ -120,6 +161,39 @@ void AffichageGraphique::affichage()
             break;
             } 
         }
+    // Couleur de survol de la souris
+    SDL_Color color = {0, 0, 0, 0};
+
+    // Afficher les textes
+    const Personnage& perso1 = partie.getPerso1();
+    string texte = "Vies : " + to_string(perso1.getNbVies());
+    renderText(texte.c_str(), 120, 12*TAILLE_SPRITE, color, police2);
+    texte = "Carburant : " + to_string(static_cast<int>(round(perso1.carburant * 1000))/ 1000.0) + "L";
+    renderText(texte.c_str(), 120, 14*TAILLE_SPRITE, color, police2);
+    texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
+    renderText(texte.c_str(), 120, 16*TAILLE_SPRITE, color, police2);
+    texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
+    renderText(texte.c_str(), 120, 18*TAILLE_SPRITE, color, police2);
+    texte = "Record: " + partie.record + "m";
+    renderText(texte.c_str(), 120, 20*TAILLE_SPRITE, color, police2);
+    
+
+    //Textes de débugages
+    
+    const vector<Obstacle> tabobstacles = partie.getObstacles();
+    if (!tabobstacles.empty()){
+        const Obstacle& obs = tabobstacles.front();
+        renderText((to_string(obs.getX())+","+to_string(obs.getY())).c_str(),0,14*TAILLE_SPRITE,color,police1);
+    }
+
+    const vector<Objet> tabobjet = partie.getObjets();
+    if(!tabobjet.empty()){
+        const Objet& obj = tabobjet.back();
+        renderText((to_string(obj.getX())+","+to_string(obj.getY())).c_str(),0,16*TAILLE_SPRITE,color,police1);
+    }
+    
+    renderText((to_string(perso1.getHauteur())).c_str(),0,12*TAILLE_SPRITE,color,police1);
+
 
     /*
     // Ecrire un titre par dessus
@@ -137,14 +211,13 @@ void AffichageGraphique::run()
     SDL_Event events;
     bool ok = true;
 
-    Uint32 t = SDL_GetTicks(), nt;
+    Uint32 startime = SDL_GetTicks(), nt;
 
-    // tant que ce n'est pas la fin ...
     while (ok)
     {
         
         nt = SDL_GetTicks();
-        if (nt - t > 500)
+        if (nt - startime > 0)
         {
             ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
            //t = nt;

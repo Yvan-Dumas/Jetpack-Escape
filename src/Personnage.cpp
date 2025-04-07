@@ -12,7 +12,7 @@ using namespace std;
 Personnage::Personnage() {
     hauteur = 0;
     velociteY = 0;
-    carburant = 5;
+    carburant = 500;
 }
 
 void Personnage::setHauteur(unsigned int y){

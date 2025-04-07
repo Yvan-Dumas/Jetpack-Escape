@@ -7,11 +7,14 @@
  
 #include "SDLSprite.h"
 #include "Partie.h"
+
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <cassert>
 #include <time.h>
 #include <stdlib.h>
-#include <SDL2/SDL_image.h>
+
 
 /**
   * @class AffichageGraphique
@@ -23,6 +26,8 @@ class AffichageGraphique {
 
         SDL_Window *window;
         SDL_Renderer *renderer;
+        TTF_Font *police1;
+        TTF_Font *police2;
 
         SDLSprite im_perso;
         SDLSprite im_toit;
@@ -38,7 +43,8 @@ class AffichageGraphique {
     public:
         void init(); ///< Initialise l'affichageGraphique
         ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
-         void run(); ///< La procédure qui gère tout le jeu
+        void run(); ///< La procédure qui gère tout le jeu
+        void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font); ///<Pour afficher du texte
         void affichage(); ///< La procédure qui gère tout l'affichage
  };
  

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yvan/polytech/S4/lifapcd-jetpack-escape
+CMAKE_SOURCE_DIR = /home/hugom/lifapcd-jetpack-escape
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin
+CMAKE_BINARY_DIR = /home/hugom/lifapcd-jetpack-escape/bin
 
 # Include any dependencies generated for this target.
 include CMakeFiles/JetpackEscapeConsole.dir/depend.make
@@ -70,102 +70,102 @@ include CMakeFiles/JetpackEscapeConsole.dir/progress.make
 include CMakeFiles/JetpackEscapeConsole.dir/flags.make
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Personnage.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/Personnage.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Personnage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/Personnage.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Personnage.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/Personnage.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Personnage.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/Personnage.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Personnage.cpp.s
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Obstacle.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/Obstacle.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Obstacle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/Obstacle.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Obstacle.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/Obstacle.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Obstacle.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/Obstacle.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Obstacle.cpp.s
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Objet.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/Objet.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Objet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/Objet.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Objet.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/Objet.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Objet.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/Objet.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Objet.cpp.s
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Partie.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/Partie.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Partie.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/Partie.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Partie.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/Partie.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Partie.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/Partie.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/Partie.cpp.s
 
 CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/AffichageConsole.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/AffichageConsole.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/AffichageConsole.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/AffichageConsole.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/AffichageConsole.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/AffichageConsole.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/AffichageConsole.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/AffichageConsole.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.s
 
 CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/mainConsole.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/mainConsole.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/mainConsole.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/mainConsole.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/mainConsole.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/mainConsole.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/mainConsole.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/mainConsole.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.s
 
 CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/flags.make
-CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o: /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/winTxt.cpp
+CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o: /home/hugom/lifapcd-jetpack-escape/src/winTxt.cpp
 CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o: CMakeFiles/JetpackEscapeConsole.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o -c /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/winTxt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o -MF CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o.d -o CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o -c /home/hugom/lifapcd-jetpack-escape/src/winTxt.cpp
 
 CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/winTxt.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hugom/lifapcd-jetpack-escape/src/winTxt.cpp > CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.i
 
 CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/winTxt.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hugom/lifapcd-jetpack-escape/src/winTxt.cpp -o CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.s
 
 # Object files for target JetpackEscapeConsole
 JetpackEscapeConsole_OBJECTS = \
@@ -189,7 +189,7 @@ JetpackEscapeConsole: CMakeFiles/JetpackEscapeConsole.dir/src/mainConsole.cpp.o
 JetpackEscapeConsole: CMakeFiles/JetpackEscapeConsole.dir/src/winTxt.cpp.o
 JetpackEscapeConsole: CMakeFiles/JetpackEscapeConsole.dir/build.make
 JetpackEscapeConsole: CMakeFiles/JetpackEscapeConsole.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable JetpackEscapeConsole"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable JetpackEscapeConsole"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/JetpackEscapeConsole.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -201,6 +201,6 @@ CMakeFiles/JetpackEscapeConsole.dir/clean:
 .PHONY : CMakeFiles/JetpackEscapeConsole.dir/clean
 
 CMakeFiles/JetpackEscapeConsole.dir/depend:
-	cd /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/yvan/polytech/S4/lifapcd-jetpack-escape /home/yvan/polytech/S4/lifapcd-jetpack-escape /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles/JetpackEscapeConsole.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/hugom/lifapcd-jetpack-escape/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hugom/lifapcd-jetpack-escape /home/hugom/lifapcd-jetpack-escape /home/hugom/lifapcd-jetpack-escape/bin /home/hugom/lifapcd-jetpack-escape/bin /home/hugom/lifapcd-jetpack-escape/bin/CMakeFiles/JetpackEscapeConsole.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/JetpackEscapeConsole.dir/depend
 

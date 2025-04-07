@@ -77,7 +77,7 @@ void renderMenu() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    // Couleur de survol de la souris
+    // Couleur
     SDL_Color color = {255, 255, 255, 255};
 
     // Afficher le titre
@@ -134,7 +134,7 @@ int main() {
                 SDL_GetMouseState(&mouseX, &mouseY);
 
                 for (int i = 0; i < totalOptions; i++) {
-                    SDL_Rect optionRect = { 300, 200 + i * 50, 200, 40 };
+                    SDL_Rect optionRect = { 220, 200 + i * 50, 400, 40 };
                     if (mouseX >= optionRect.x && mouseX <= optionRect.x + optionRect.w &&
                         mouseY >= optionRect.y && mouseY <= optionRect.y + optionRect.h) {
                         selectedOption = i;
