@@ -190,6 +190,7 @@ JetpackEscapeGraphique: CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/SDLSprite.
 JetpackEscapeGraphique: CMakeFiles/JetpackEscapeGraphique.dir/build.make
 JetpackEscapeGraphique: /usr/lib64/libSDL2_ttf-2.0.so.0.2200.0
 JetpackEscapeGraphique: /usr/lib64/libSDL2_image.so
+JetpackEscapeGraphique: /usr/lib64/libSDL2_mixer.so
 JetpackEscapeGraphique: /usr/lib64/libSDL2-2.0.so.0.3000.3
 JetpackEscapeGraphique: CMakeFiles/JetpackEscapeGraphique.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/etu/p2308033/S4/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable JetpackEscapeGraphique"

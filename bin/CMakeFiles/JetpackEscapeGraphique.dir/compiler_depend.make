@@ -859,6 +859,7 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o: /home/et
   /usr/include/SDL2/SDL_messagebox.h \
   /usr/include/SDL2/SDL_metal.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_mouse.h \
   /usr/include/SDL2/SDL_mutex.h \
   /usr/include/SDL2/SDL_pixels.h \
@@ -1642,6 +1643,7 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: /home/etu/p23
   /usr/include/SDL2/SDL_messagebox.h \
   /usr/include/SDL2/SDL_metal.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_mouse.h \
   /usr/include/SDL2/SDL_mutex.h \
   /usr/include/SDL2/SDL_pixels.h \
@@ -2164,6 +2166,8 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: /home/etu/p23
 /usr/include/SDL2/SDL_platform.h:
 
 /usr/include/SDL2/SDL_mouse.h:
+
+/usr/include/SDL2/SDL_mixer.h:
 
 /usr/include/SDL2/SDL_misc.h:
 

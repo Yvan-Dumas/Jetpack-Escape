@@ -11,6 +11,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <cassert>
 #include <time.h>
 #include <stdlib.h>
@@ -29,6 +30,9 @@ class AffichageGraphique {
         TTF_Font *police1;
         TTF_Font *police2;
 
+        Mix_Chunk *son;
+        bool avecson;   
+
         SDLSprite im_perso;
         SDLSprite im_toit;
         SDLSprite im_obstacle;
@@ -37,9 +41,6 @@ class AffichageGraphique {
         SDLSprite im_carburant;
         SDLSprite im_fond;
         int offset_x = 0;
-
-        bool souris;
-        bool touche;
 
  
     public:

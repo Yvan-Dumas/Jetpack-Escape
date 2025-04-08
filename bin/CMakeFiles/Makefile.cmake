@@ -22,6 +22,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib64/cmake/SDL2/sdlfind.cmake"
   "/usr/lib64/cmake/SDL2_image/sdl2_image-config-version.cmake"
   "/usr/lib64/cmake/SDL2_image/sdl2_image-config.cmake"
+  "/usr/lib64/cmake/SDL2_mixer/sdl2_mixer-config-version.cmake"
+  "/usr/lib64/cmake/SDL2_mixer/sdl2_mixer-config.cmake"
   "/usr/lib64/cmake/SDL2_ttf/SDL2_ttf-shared-targets-noconfig.cmake"
   "/usr/lib64/cmake/SDL2_ttf/SDL2_ttf-shared-targets.cmake"
   "/usr/lib64/cmake/SDL2_ttf/SDL2_ttfConfig.cmake"

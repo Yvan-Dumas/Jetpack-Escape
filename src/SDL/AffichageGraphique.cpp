@@ -48,6 +48,15 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
+        cout << "No sound !!!" << endl;
+        avecson = false;
+    }
+    else
+        avecson = true;
+
 
     /*dimx = partie.getConstTerrain().getDimX();
     dimy = partie.getConstTerrain().getDimY();
@@ -95,8 +104,22 @@ void AffichageGraphique::init() {
         exit(1);
     }
 
+    // SONS
 
-}
+        if (avecson)
+        {
+            son = Mix_LoadWAV("data/son.wav");
+            if (son == nullptr)
+                son = Mix_LoadWAV("../data/son.wav");
+            if (son == nullptr)
+            {
+                cout << "Failed to load son.wav! SDL_mixer Error: " << Mix_GetError() << endl;
+                avecson = false;
+            }
+        }
+    }
+
+
 void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -113,6 +136,8 @@ AffichageGraphique::~AffichageGraphique()
 {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    if (avecson)
+        Mix_Quit();
     SDL_Quit();
 }
 
@@ -295,6 +320,7 @@ void AffichageGraphique::run()
                 {
                 case SDL_SCANCODE_W:
                     partie.actionsClavier('z',HAUTEUR-1);
+                    if (avecson) {Mix_PlayChannel(-1, son, 0);}
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
@@ -306,6 +332,7 @@ void AffichageGraphique::run()
                     break;
                 }
             }
+            
         }
 
         affichage();

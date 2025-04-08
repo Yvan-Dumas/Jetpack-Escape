@@ -302,4 +302,4 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
  /usr/include/c++/14/bits/stl_numeric.h \
  /usr/include/c++/14/pstl/glue_numeric_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h /usr/include/c++/14/cassert \
- /usr/include/assert.h
+ /usr/include/assert.h /usr/include/SDL2/SDL_mixer.h
