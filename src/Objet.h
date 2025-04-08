@@ -32,9 +32,8 @@ class Objet {
 
     /**
      * @brief Procédure pour actualiser la position de l'objet.
-     * @param vitesse int Vitesse de défilement du jeu
      */
-    void mettreAJourPosition(int vitesse);
+    void mettreAJourPosition();
 
     /**
      * @brief renvoie la position x de l'objet

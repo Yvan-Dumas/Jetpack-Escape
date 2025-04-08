@@ -18,6 +18,12 @@ float temps()
 
 // ============= CLASS AffichageGraphique =============== //
 
+
+string AffichageGraphique::getRecord(){
+    return partie.record;
+}
+
+
 void AffichageGraphique::init() {
     Partie partie;
     // Initialisation de la SDL
@@ -202,6 +208,7 @@ void AffichageGraphique::affichage()
     }
     
     renderText((to_string(perso1.getHauteur())).c_str(),0,12*TAILLE_SPRITE,color,police1);
+    renderText((to_string(perso1.velociteY)).c_str(),0,24*TAILLE_SPRITE,color,police1);
 
 
     /*
@@ -238,7 +245,11 @@ void AffichageGraphique::afficherGameOver() {
     renderText(texte.c_str(), 700, 420, blanc, police2);
 
     renderText("Appuyez sur ECHAP pour quitter", 700, 500, blanc, police2);
-    renderText("Appuyez sur 1 pour lancer une nouv", 700, 500, blanc, police2);
+
+    if (perso1.getDistance() > stoi(getRecord())) {
+        partie.sauvegarderFichier(to_string(perso1.getDistance()));
+        renderText("Vous avez realisee le record", 700, 600, blanc, police1);
+    }
 
     SDL_RenderPresent(renderer);
 
@@ -257,7 +268,6 @@ void AffichageGraphique::afficherGameOver() {
 }
 
 
-
 void AffichageGraphique::run()
 {
     init();
@@ -265,7 +275,7 @@ void AffichageGraphique::run()
     bool ok = true;
 
     Uint32 startime = SDL_GetTicks(), nt;
-
+    
     while (ok)
     {
         

@@ -10,20 +10,20 @@
     : idTypeObjet(id), x(x), y(y), largeur(largeur), longueur(longueur) {}
  
  unsigned int Objet::collecterObjet(int hauteur) const {
-    bool abscisse = (x == 5 || x==6 || x == 4); // 5 correspond à la position x du personnage
+    bool abscisse = (x == 5 || x==4); // 5 correspond à la position x du personnage
     bool ordonnee;
     if (hauteur == 1 || hauteur == 9) { 
       ordonnee =  y == hauteur; }
       else {  
-         ordonnee = (y == hauteur || y == hauteur +1 || y == hauteur -1) ; }
+         ordonnee = y == hauteur ; }
     if (abscisse && ordonnee){
        return idTypeObjet;
     }
     return 100; // 100 indique que le perosnnage n'est pas en contact avec un objet
  }
 
-void Objet::mettreAJourPosition(int vitesse) {
-    x -= 0.5*vitesse;
+void Objet::mettreAJourPosition() {
+    x -= 0.5;
  }
 
 int Objet::getX() const {
@@ -55,11 +55,11 @@ assert(obj.collecterObjet(10) == 1 && "Test échoué : L'objet n'a pas été col
 assert(obj.collecterObjet(20) == 100 && "Test échoué : L'objet a été collecté alors qu'il ne l'aurait pas dû");
 
 // Test de la méthode mettreAJourPosition
-obj.mettreAJourPosition(10);
+obj.mettreAJourPosition();
 assert(obj.getX() == 0 && "Test échoué : La position X après mise à jour n'est pas correcte");
 
 // Test avec une position hors de l'intervalle attendu pour collecter l'objet
-obj.mettreAJourPosition(20); // L'objet devrait se déplacer encore
+obj.mettreAJourPosition(); // L'objet devrait se déplacer encore
 assert(obj.getX() == -10 && "Test échoué : La position X après seconde mise à jour n'est pas correcte");
 
 // Si tout passe, on affiche un message de succès

@@ -32,9 +32,8 @@ class Obstacle {
 
     /**
      * @brief Procédure pour actualiser la position de l'obstacle.
-     * @param vitesse int vitesse du jeu
      */
-    void mettreAJourPosition(int vitesse);
+    void mettreAJourPosition();
 
     /**
      * @brief renvoie la position x de l'obstacle

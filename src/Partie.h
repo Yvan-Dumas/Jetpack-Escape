@@ -24,7 +24,6 @@ using namespace std;
 */
 class Partie {
     private:
-        int vitesseDefilement; ///< Vitesse du jeu
         Personnage perso1; ///< Le personnage contrôlé par le joueur
         Personnage perso2; ///< Le personnage contrôlé par le 2ème joueur si le jeu est en mode 2 joueurs
 

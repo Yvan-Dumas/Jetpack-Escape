@@ -8,7 +8,6 @@
 using namespace std;
 
 Partie::Partie() {
-    vitesseDefilement = 1;
     perso1.setDistance(0);
     perso1.setNbPieces(0);
     perso1.setNbPieces(0);
@@ -65,7 +64,8 @@ void Partie::utiliserObjet(Personnage & perso,unsigned int id) {
             ajouterCarburant(perso);
             break;
         case 3: // Pour une vie, incrémente de 1
-            perso.setNbVies(perso.getNbVies()+1);
+            if (perso.getNbVies()<4){
+                perso.setNbVies(perso.getNbVies()+1); }
         default:
             break;
     }
@@ -263,7 +263,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
 
         // Vérification des collisions avec obstacles
         for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
-            obstacle->mettreAJourPosition(vitesseDefilement);
+            obstacle->mettreAJourPosition();
             if (obstacle->getX()+obstacle->getLargeur() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
             } else if (obstacle->collisionObstacle(perso1.getHauteur())) {
@@ -280,7 +280,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
 
         // Vérification des objets ramassés
         for (auto it = tabObjets.begin(); it != tabObjets.end();) {
-            it->mettreAJourPosition(vitesseDefilement);
+            it->mettreAJourPosition();
             unsigned int identifiant = it->collecterObjet(perso1.getHauteur());
             if (it->getX() <= 0) {
                 it = tabObjets.erase(it); // Supprime l'objet s'il sort de l'écran
@@ -358,7 +358,7 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
 
     // Vérification des collisions avec obstacles
     for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
-        obstacle->mettreAJourPosition(vitesseDefilement);
+        obstacle->mettreAJourPosition();
         if (obstacle->getX()+obstacle->getLargeur() <= 0) {
             obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
         }
@@ -401,7 +401,7 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
 
     // Vérification des objets ramassés
     for (auto it = tabObjets.begin(); it != tabObjets.end();) {
-        it->mettreAJourPosition(vitesseDefilement);
+        it->mettreAJourPosition();
         unsigned int identifiant1 = it->collecterObjet(perso1.getHauteur());
         unsigned int identifiant2 = it->collecterObjet(perso2.getHauteur());
         if (it->getX() <= 0) {

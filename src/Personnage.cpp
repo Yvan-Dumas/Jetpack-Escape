@@ -26,10 +26,9 @@ unsigned int Personnage::getHauteur() const {
 void Personnage::monter(unsigned int HAUTEUR) {
     if (carburant > 0) {  // Vérifier si on a du carburant
         if (velociteY < 0) {
-            velociteY = 0;  // On empêche une descente immédiate
+            velociteY = 0.5; 
         }
-        if (velociteY <= 0.5) {velociteY+= 0.5;}  // Augmentation plus progressive de la poussée
-        // Appliquer la poussée mais ne pas dépasser HAUTEUR
+        if (velociteY <= 0.5) {velociteY+= 0.5;} 
         if (hauteur + velociteY >= HAUTEUR) {
             hauteur = HAUTEUR;
             velociteY = 1;
@@ -39,20 +38,25 @@ void Personnage::monter(unsigned int HAUTEUR) {
 
         carburant -= 0.05;  // Consommer du carburant
     }
+    else {
+        carburant = 0;
+    }
 }
 
 void Personnage::appliquerGravite(unsigned int HAUTEUR) {
     if (hauteur > 0) {
-        velociteY -= 0.5;  // Gravité
-        {hauteur += velociteY;}  // Appliquer la vitesse verticale
+        if (velociteY >= -0.5){
+        velociteY -= 0.5; }     // Gravité
+        hauteur += velociteY;}  // Appliquer la vitesse verticale
 
         // Ne pas tomber sous le sol
-        if (hauteur < 0) {
+        if (hauteur <= 0) {
             hauteur = 0;
             velociteY = 0;
         }
     }
-}
+
+
 
 unsigned int Personnage::getNbPieces() const {
     return nbPièces;

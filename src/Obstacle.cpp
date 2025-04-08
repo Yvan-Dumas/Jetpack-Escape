@@ -7,15 +7,15 @@ using namespace std;
 Obstacle::Obstacle(unsigned int id, int x, int  y, unsigned int  largeur, unsigned int longueur ) 
     : idTypeObstacle(id), x(x), y(y), largeur(largeur), longueur(longueur) {}
  
-    bool Obstacle::collisionObstacle(int hauteur) const {
-        bool abscisse = (x < 6) && (x + largeur > 5); 
+bool Obstacle::collisionObstacle(int hauteur) const {
+        bool abscisse = (x <= 5) && (x + largeur >= 5); 
         bool ordonnee = (y <= hauteur) && (y + longueur > hauteur);
         return abscisse && ordonnee;
     }
     
 
-void Obstacle::mettreAJourPosition(int vitesse) {
-    x -= 1*vitesse; ///< Déplacement de l'obstacle vers la gauche (ajusté selon la vitesse du jeu)
+void Obstacle::mettreAJourPosition() {
+    x -= 1; ///< Déplacement de l'obstacle vers la gauche
 }
 
 int Obstacle::getX() const {
@@ -57,11 +57,11 @@ void Obstacle::testObstacle() {
  assert(obs2.collisionObstacle(10) == false && "Test échoué : Aucune collision ne devrait être détectée à cette position");
 
  // Test de la méthode mettreAJourPosition
- obs.mettreAJourPosition(10);
+ obs.mettreAJourPosition();
  assert(obs.getX() == -5 && "Test échoué : La position X après mise à jour n'est pas correcte");
 
  // Test avec une position hors de l'intervalle attendu pour collision
- obs.mettreAJourPosition(20); // L'obstacle devrait se déplacer encore
+ obs.mettreAJourPosition(); // L'obstacle devrait se déplacer encore
  assert(obs.getX() == -25 && "Test échoué : La position X après seconde mise à jour n'est pas correcte");
  
  // Si tout passe, on affiche un message de succès

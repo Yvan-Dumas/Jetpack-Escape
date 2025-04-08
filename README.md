@@ -1,15 +1,8 @@
 # LIFAPCD - jetpack escape
 
--modifier cmakelist pour installer les bibliothèques toutes seules 
--pb menu --> fait
--affichager mode 2 joueurs
+-afficher mode 2 joueurs
 -son
--pb colissions -- > fait
-si les trucs se superposent en réalité ils ne sont pas superposé c'est juste l'affichage qui a du retard
--textes --> fait version pas beau
--titre pendant 5 secondes au début? --> il faudrait passer le tempsinit dans affichage
---> affichage game over
---> montée /descente
+-affichage beau
 modifier: 
 
 char WinTXT::getCh()
