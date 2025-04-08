@@ -10,8 +10,12 @@
     : idTypeObjet(id), x(x), y(y), largeur(largeur), longueur(longueur) {}
  
  unsigned int Objet::collecterObjet(int hauteur) const {
-    bool abscisse = x == 5; // 5 correspond à la position x du personnage
-    bool ordonnee = y == hauteur;
+    bool abscisse = (x == 5 || x==6 || x == 4); // 5 correspond à la position x du personnage
+    bool ordonnee;
+    if (hauteur == 1 || hauteur == 9) { 
+      ordonnee =  y == hauteur; }
+      else {  
+         ordonnee = (y == hauteur || y == hauteur +1 || y == hauteur -1) ; }
     if (abscisse && ordonnee){
        return idTypeObjet;
     }

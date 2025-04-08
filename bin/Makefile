@@ -57,18 +57,18 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yvan/polytech/S4/lifapcd-jetpack-escape
+CMAKE_SOURCE_DIR = /home/etu/p2308033/S4/LIFAPCD/lifapcd-jetpack-escape
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin
+CMAKE_BINARY_DIR = /home/etu/p2308033/S4/LIFAPCD/lifapcd-jetpack-escape/bin
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2308033/S4/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles /home/etu/p2308033/S4/LIFAPCD/lifapcd-jetpack-escape/bin//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/etu/p2308033/S4/LIFAPCD/lifapcd-jetpack-escape/bin/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -178,30 +178,6 @@ src/AffichageConsole.s: src/AffichageConsole.cpp.s
 src/AffichageConsole.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeConsole.dir/build.make CMakeFiles/JetpackEscapeConsole.dir/src/AffichageConsole.cpp.s
 .PHONY : src/AffichageConsole.cpp.s
-
-src/ArrierePlan.o: src/ArrierePlan.cpp.o
-.PHONY : src/ArrierePlan.o
-
-# target to build an object file
-src/ArrierePlan.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.o
-.PHONY : src/ArrierePlan.cpp.o
-
-src/ArrierePlan.i: src/ArrierePlan.cpp.i
-.PHONY : src/ArrierePlan.i
-
-# target to preprocess a source file
-src/ArrierePlan.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.i
-.PHONY : src/ArrierePlan.cpp.i
-
-src/ArrierePlan.s: src/ArrierePlan.cpp.s
-.PHONY : src/ArrierePlan.s
-
-# target to generate assembly for a file
-src/ArrierePlan.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JetpackEscapeGraphique.dir/build.make CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.s
-.PHONY : src/ArrierePlan.cpp.s
 
 src/Objet.o: src/Objet.cpp.o
 .PHONY : src/Objet.o
@@ -481,9 +457,6 @@ help:
 	@echo "... src/AffichageConsole.o"
 	@echo "... src/AffichageConsole.i"
 	@echo "... src/AffichageConsole.s"
-	@echo "... src/ArrierePlan.o"
-	@echo "... src/ArrierePlan.i"
-	@echo "... src/ArrierePlan.s"
 	@echo "... src/Objet.o"
 	@echo "... src/Objet.i"
 	@echo "... src/Objet.s"

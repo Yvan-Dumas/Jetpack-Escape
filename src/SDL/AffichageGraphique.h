@@ -46,6 +46,7 @@ class AffichageGraphique {
         void init(); ///< Initialise l'affichageGraphique
         ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
         void run(); ///< La procédure qui gère tout le jeu
+        void afficherGameOver(); ///<La procédure qui gère la fin de partie
         void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font); ///<Pour afficher du texte
         void affichage(); ///< La procédure qui gère tout l'affichage
  };

@@ -214,6 +214,50 @@ void AffichageGraphique::affichage()
     SDL_RenderCopy(renderer, font_im.getTexture(), nullptr, &positionTitre);*/
 }
 
+void AffichageGraphique::afficherGameOver() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // fond noir
+    SDL_RenderClear(renderer);
+
+    SDL_Color rouge = {255, 0, 0, 255};
+    SDL_Color blanc = {255, 255, 255, 255};
+
+    // Titre
+    renderText("GAME OVER", 700, 200, rouge, police1);
+
+    // Infos de fin de partie
+    const Personnage& perso1 = partie.getPerso1();
+    string texte;
+
+    texte = "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
+    renderText(texte.c_str(), 700, 300, blanc, police2);
+
+    texte = "Pieces recoltees : " + to_string(perso1.getNbPieces());
+    renderText(texte.c_str(), 700, 360, blanc, police2);
+
+    texte = "Record actuel : " + partie.record + "m";
+    renderText(texte.c_str(), 700, 420, blanc, police2);
+
+    renderText("Appuyez sur ECHAP pour quitter", 700, 500, blanc, police2);
+    renderText("Appuyez sur 1 pour lancer une nouv", 700, 500, blanc, police2);
+
+    SDL_RenderPresent(renderer);
+
+    // Attente d'une touche pour quitter
+    SDL_Event event;
+    bool quitter = false;
+    while (!quitter) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT)
+                quitter = true;
+            else if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+                quitter = true;
+        }
+        SDL_Delay(100);
+    }
+}
+
+
+
 void AffichageGraphique::run()
 {
     init();
@@ -229,7 +273,7 @@ void AffichageGraphique::run()
         if (nt - startime > 0)
         {
             ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
-           //t = nt;
+            startime = nt;
         }
 
         while (SDL_PollEvent(&events))
@@ -263,4 +307,5 @@ void AffichageGraphique::run()
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
     }
+    afficherGameOver();
 }

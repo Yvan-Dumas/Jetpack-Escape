@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.o"
-  "CMakeFiles/JetpackEscapeGraphique.dir/src/ArrierePlan.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Objet.cpp.o"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Objet.cpp.o.d"
   "CMakeFiles/JetpackEscapeGraphique.dir/src/Obstacle.cpp.o"

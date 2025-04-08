@@ -34,7 +34,6 @@ set(SOURCESGRAPHIQUE
     src/Partie.cpp
     src/SDL/mainGraphique.cpp
     src/SDL/AffichageGraphique.cpp
-    src/ArrierePlan.cpp
     src/SDL/SDLSprite.cpp
 )
 
