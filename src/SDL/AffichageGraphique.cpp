@@ -71,16 +71,25 @@ void AffichageGraphique::init() {
     // IMAGES
     im_perso.loadFromFile("../data/images/perso32.png", renderer);
     im_perso2.loadFromFile("../data/images/perso32.png", renderer);
+
     im_toit.loadFromFile("../data/images/toit32.png", renderer);
     im_sol.loadFromFile("../data/images/sol32.png", renderer);
     im_bloc_sol.loadFromFile("../data/images/bloc_sol32.png", renderer);
+
     im_obstacle.loadFromFile("../data/images/obstacle32.png", renderer);
+
     im_piece.loadFromFile("../data/images/piece32.png", renderer);
     im_vie.loadFromFile("../data/images/coeur32.png", renderer);
+    im_vies0.loadFromFile("../data/images/vies/vies032.png", renderer);
+    im_vies1.loadFromFile("../data/images/vies/vies132.png", renderer);
+    im_vies2.loadFromFile("../data/images/vies/vies232.png", renderer);
+    im_vies3.loadFromFile("../data/images/vies/vies332.png", renderer);
+    im_vies4.loadFromFile("../data/images/vies/vies432.png", renderer);
+
     im_carburant.loadFromFile("../data/images/carburant32.png", renderer);
     im_fond.loadFromFile("../data/images/background.png", renderer);
 
-    // POLICE: 17
+    // POLICE
     police1 = TTF_OpenFont("data/polices/policebase1.ttf", 50);
     if (police1 == nullptr)
         police1 = TTF_OpenFont("../data/polices/policebase1.ttf", 50);
@@ -100,6 +109,16 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
+
+    VT323 = TTF_OpenFont("data/polices/VT323.ttf", 50);
+    if (VT323 == nullptr)
+        VT323 = TTF_OpenFont("../data/polices/VT323.ttf", 50);
+    if (VT323 == nullptr)
+
+    PS2P = TTF_OpenFont("data/polices/PS2P.ttf", 50);
+    if (PS2P == nullptr)
+        PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
+    if (PS2P == nullptr)
 
     // SONS
         if (avecson)
@@ -167,8 +186,8 @@ void AffichageGraphique::affichage() {
     }
 
     // Affichage du personnage
-    const Personnage& perso = partie.getPerso1();
-    im_perso.draw(renderer,   5*TAILLE_SPRITE, (HAUTEUR-perso.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    const Personnage& perso1 = partie.getPerso1();
+    im_perso.draw(renderer,   5*TAILLE_SPRITE, (HAUTEUR-perso1.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
     
     //Placement des obstacles
     for (const Obstacle& obs : partie.getObstacles()) {
@@ -205,44 +224,35 @@ void AffichageGraphique::affichage() {
     SDL_Color color = {0, 0, 0, 0};
 
     // Afficher les textes
-    const Personnage& perso1 = partie.getPerso1();
-    string texte = "Vies : " + to_string(perso1.getNbVies());
-    renderText(texte.c_str(), 120, 12*TAILLE_SPRITE, color, police2);
+    string texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, color, VT323);
+
+    texte = "Record: " + partie.record + "m";
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 12.2*TAILLE_SPRITE, color, VT323);
+    
+    switch (perso1.getNbVies()) {
+    case 1:
+        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        break;
+    case 2:
+        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        break;
+    case 3:
+        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        break;
+    case 4:
+        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        break;
+    default:
+        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        break;
+    }
+    
     texte = "Carburant : " + to_string(static_cast<int>(round(perso1.carburant * 1000))/ 1000.0) + "L";
     renderText(texte.c_str(), 120, 14*TAILLE_SPRITE, color, police2);
-    texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
-    renderText(texte.c_str(), 120, 16*TAILLE_SPRITE, color, police2);
+   
     texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
     renderText(texte.c_str(), 120, 18*TAILLE_SPRITE, color, police2);
-    texte = "Record: " + partie.record + "m";
-    renderText(texte.c_str(), 120, 20*TAILLE_SPRITE, color, police2);
-    
-
-    //Textes de débugages
-    const vector<Obstacle> tabobstacles = partie.getObstacles();
-    if (!tabobstacles.empty()){
-        const Obstacle& obs = tabobstacles.front();
-        renderText((to_string(obs.getX())+","+to_string(obs.getY())).c_str(),0,14*TAILLE_SPRITE,color,police1);
-    }
-
-    const vector<Objet> tabobjet = partie.getObjets();
-    if(!tabobjet.empty()){
-        const Objet& obj = tabobjet.back();
-        renderText((to_string(obj.getX())+","+to_string(obj.getY())).c_str(),0,16*TAILLE_SPRITE,color,police1);
-    }
-    
-    renderText((to_string(perso1.getHauteur())).c_str(),0,12*TAILLE_SPRITE,color,police1);
-    renderText((to_string(perso1.velociteY)).c_str(),0,24*TAILLE_SPRITE,color,police1);
-
-
-    /*
-    // Ecrire un titre par dessus
-    SDL_Rect positionTitre;
-    positionTitre.x = 270;
-    positionTitre.y = 49;
-    positionTitre.w = 100;
-    positionTitre.h = 30;
-    SDL_RenderCopy(renderer, font_im.getTexture(), nullptr, &positionTitre);*/
 }
 
 void AffichageGraphique::afficherGameOver() {
@@ -317,7 +327,7 @@ void AffichageGraphique::run() {
                 {
                 case SDL_SCANCODE_W:
                     partie.actionsClavier('z',HAUTEUR-1);
-                    if (avecson) {Mix_PlayChannel(-1, son, 0);}
+                    //if (avecson) {Mix_PlayChannel(-1, son, 0);}
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;

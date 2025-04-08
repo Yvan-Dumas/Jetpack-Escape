@@ -23,27 +23,37 @@
   */
 class AffichageGraphique {
     private:
-        Partie partie; ///<  La partie en cours
+      Partie partie; ///<  La partie en cours
 
-        SDL_Window *window;
-        SDL_Renderer *renderer;
-        TTF_Font *police1;
-        TTF_Font *police2;
+      SDL_Window *window;
+      SDL_Renderer *renderer;
+      TTF_Font *police1;
+      TTF_Font *police2;
+      TTF_Font *VT323;
+      TTF_Font *PS2P;
 
-        Mix_Chunk *son;
-        bool avecson;   
+      Mix_Chunk *son;
+      bool avecson;   
 
-        SDLSprite im_perso;
-        SDLSprite im_perso2;
-        SDLSprite im_toit;
-        SDLSprite im_sol;
-        SDLSprite im_bloc_sol;
-        SDLSprite im_obstacle;
-        SDLSprite im_piece;
-        SDLSprite im_vie;
-        SDLSprite im_carburant;
-        SDLSprite im_fond;
-        int offset_x = 0;
+      SDLSprite im_perso;
+      SDLSprite im_perso2;
+
+      SDLSprite im_toit;
+      SDLSprite im_sol;
+      SDLSprite im_bloc_sol;
+
+      SDLSprite im_obstacle;
+
+      SDLSprite im_piece;
+      SDLSprite im_vie;
+      SDLSprite im_vies0;
+      SDLSprite im_vies1;
+      SDLSprite im_vies2;
+      SDLSprite im_vies3;
+      SDLSprite im_vies4;
+      SDLSprite im_carburant;
+      SDLSprite im_fond;
+      int offset_x = 0;
 
  
     public:
