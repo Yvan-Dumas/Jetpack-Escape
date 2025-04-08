@@ -36,6 +36,8 @@ class AffichageGraphique {
         SDLSprite im_perso;
         SDLSprite im_perso2;
         SDLSprite im_toit;
+        SDLSprite im_sol;
+        SDLSprite im_bloc_sol;
         SDLSprite im_obstacle;
         SDLSprite im_piece;
         SDLSprite im_vie;
@@ -56,5 +58,4 @@ class AffichageGraphique {
         void affichage2Joueurs(); ///< La procédure qui gère tout l'affichage en mode 2 joueurs
         void run2Joueurs(); ///< La procédure qui gère tout le jeu en mode 2 joueurs
  };
- 
- #endif
+#endif

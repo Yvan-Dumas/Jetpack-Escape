@@ -72,6 +72,8 @@ void AffichageGraphique::init() {
     im_perso.loadFromFile("../data/images/perso32.png", renderer);
     im_perso2.loadFromFile("../data/images/perso32.png", renderer);
     im_toit.loadFromFile("../data/images/toit32.png", renderer);
+    im_sol.loadFromFile("../data/images/sol32.png", renderer);
+    im_bloc_sol.loadFromFile("../data/images/bloc_sol32.png", renderer);
     im_obstacle.loadFromFile("../data/images/obstacle32.png", renderer);
     im_piece.loadFromFile("../data/images/piece32.png", renderer);
     im_vie.loadFromFile("../data/images/coeur32.png", renderer);
@@ -100,7 +102,6 @@ void AffichageGraphique::init() {
     }
 
     // SONS
-
         if (avecson)
         {
             son = Mix_LoadWAV("data/son.wav");
@@ -150,14 +151,19 @@ void AffichageGraphique::affichage() {
         }
     }
 
-    // Affichage de la bordure supérieure
+    // Affichage de la bordure supérieure (toit)
     for(unsigned int i = 0; i<LARGEUR; i++) {
         im_toit.draw(renderer, i*TAILLE_SPRITE , 0, TAILLE_SPRITE, TAILLE_SPRITE);
     }
 
-    // Affichage de la bordure inférieure
+    // Affichage de la bordure inférieure (sol)
     for(unsigned int i = 0; i<LARGEUR; i++) {
-        im_toit.draw(renderer, i*TAILLE_SPRITE , 11*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+        im_sol.draw(renderer, i*TAILLE_SPRITE , 11*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    }
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        for (unsigned int j=12; j<17; j++) {
+            im_bloc_sol.draw(renderer, i*TAILLE_SPRITE , j*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+        }
     }
 
     // Affichage du personnage
