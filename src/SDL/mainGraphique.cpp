@@ -88,7 +88,7 @@ void renderMenu() {
         SDL_Rect rect = { 220, 200 + i * 50, 400, 40 };
         SDL_SetRenderDrawColor(renderer, (i == selectedOption) ? 0 : 100, (i == selectedOption) ? 255 : 100, 255, 255);
         SDL_RenderFillRect(renderer, &rect);
-        // Afficher le texte des options
+        // Affiche le texte des options
         renderText(menuOptions[i], 250, 210 + i * 50, color, font);
     }
 
@@ -96,17 +96,15 @@ void renderMenu() {
 }
 
 void cleanUp() {
-    TTF_CloseFont(font);
-    TTF_CloseFont(policetitre);  // Nettoyer la police du titre
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    if (font) TTF_CloseFont(font);
+    if (policetitre) TTF_CloseFont(policetitre);
+    if (renderer) SDL_DestroyRenderer(renderer);
+    if (window) SDL_DestroyWindow(window);
     TTF_Quit();
     SDL_Quit();
 }
 
 int main() {
-    AffichageGraphique aff; // Initialise l'affichage graphique
-
     if (!initSDL()) {
         return -1;
     }
@@ -116,6 +114,7 @@ int main() {
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
+                cout << "1";
                 running = false;
             } else if (event.type == SDL_KEYDOWN) {
                 switch (event.key.keysym.sym) {
@@ -149,19 +148,17 @@ int main() {
         SDL_Delay(100);
     }
 
-    cleanUp();
-
     if (selectedOption == 0) {
+        AffichageGraphique aff; // Initialise l'affichage graphique
         aff.run();
-        running = false;  // Quitter
     }
     if (selectedOption == 1) {
-        aff.run();
-        running = false;  // Quitter
+        AffichageGraphique aff; // Initialise l'affichage graphique
+        aff.run2Joueurs();
     }
     if (selectedOption == 2) {
-        running = false;  // Quitter
     }
 
+    cleanUp();
     return 0;
 }

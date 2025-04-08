@@ -7,9 +7,9 @@
 
 using namespace std;
 
-const int TAILLE_SPRITE = 32;
+const int TAILLE_SPRITE = 64;
 const int HAUTEUR = 10;
-const int LARGEUR = 100;
+const int LARGEUR = 30;
 
 float temps()
 {
@@ -25,7 +25,6 @@ string AffichageGraphique::getRecord(){
 
 
 void AffichageGraphique::init() {
-    Partie partie;
     // Initialisation de la SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -58,11 +57,6 @@ void AffichageGraphique::init() {
         avecson = true;
 
 
-    /*dimx = partie.getConstTerrain().getDimX();
-    dimy = partie.getConstTerrain().getDimY();
-    dimx = dimx * TAILLE_SPRITE;
-    dimy = dimy * TAILLE_SPRITE;*/
-
     // Creation de la fenetre
     window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr)
@@ -76,6 +70,7 @@ void AffichageGraphique::init() {
 
     // IMAGES
     im_perso.loadFromFile("../data/images/perso32.png", renderer);
+    im_perso2.loadFromFile("../data/images/perso32.png", renderer);
     im_toit.loadFromFile("../data/images/toit32.png", renderer);
     im_obstacle.loadFromFile("../data/images/obstacle32.png", renderer);
     im_piece.loadFromFile("../data/images/piece32.png", renderer);
@@ -131,7 +126,6 @@ void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color co
     SDL_DestroyTexture(texture);
 }
 
-
 AffichageGraphique::~AffichageGraphique()
 {
     SDL_DestroyRenderer(renderer);
@@ -141,8 +135,7 @@ AffichageGraphique::~AffichageGraphique()
     SDL_Quit();
 }
 
-void AffichageGraphique::affichage()
-{
+void AffichageGraphique::affichage() {
     // Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
@@ -292,9 +285,7 @@ void AffichageGraphique::afficherGameOver() {
     }
 }
 
-
-void AffichageGraphique::run()
-{
+void AffichageGraphique::run() {
     init();
     SDL_Event events;
     bool ok = true;
@@ -334,9 +325,154 @@ void AffichageGraphique::run()
             }
             
         }
-
         affichage();
 
+        int fondLargeur, fondHauteur;
+        SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
+        offset_x = (offset_x - 6 + fondLargeur) % fondLargeur;
+        SDL_RenderPresent(renderer);
+        SDL_Delay(100);
+    }
+    afficherGameOver();
+}
+
+void AffichageGraphique::affichage2Joueurs() {
+    // Remplir l'écran de blanc
+    SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
+    SDL_RenderClear(renderer);
+
+    // Scroll du fond
+    int fondLargeur, fondHauteur;
+    SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
+    for (int x = -fondLargeur + offset_x; x < 1920; x += fondLargeur) {
+        for (int y = 0; y < 1080; y += fondHauteur) {
+            im_fond.draw(renderer, x, y, fondLargeur, fondHauteur);
+        }
+    }
+
+    // Affichage de la bordure supérieure
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        im_toit.draw(renderer, i*TAILLE_SPRITE , 0, TAILLE_SPRITE, TAILLE_SPRITE);
+    }
+
+    // Affichage de la bordure inférieure
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+        im_toit.draw(renderer, i*TAILLE_SPRITE , 11*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    }
+
+    // Affichage des personnages
+    const Personnage& perso1 = partie.getPerso1();
+    const Personnage& perso2 = partie.getPerso2();
+    im_perso.draw(renderer, 5*TAILLE_SPRITE, (HAUTEUR-perso1.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    im_perso2.draw(renderer, 5*TAILLE_SPRITE, (HAUTEUR-perso2.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+
+    //Placement des obstacles
+    for (const Obstacle& obs : partie.getObstacles()) {
+        int obsX = obs.getX();
+        int obsY = obs.getY();
+        int obsLargeur = obs.getLargeur();
+        int obsLongueur = obs.getLongueur();
+
+        for (int i = 0; i < obsLargeur; i++) {
+            for (int j = 0; j < obsLongueur; j++) {
+                if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
+                    im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                }
+            }
+        }
+    }
+
+    //Placement des objets
+    for (const Objet& obj : partie.getObjets()) {
+        switch (obj.getID()){
+            case 1:
+                im_piece.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+            break;
+            case 2:
+                im_carburant.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+            break;
+            case 3:
+                im_vie.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+            default:
+            break;
+            } 
+        }
+    // Couleur de survol de la souris
+    SDL_Color color = {0, 0, 0, 0};
+
+    // Afficher les textes
+    string texte = "Vies : " + to_string(perso1.getNbVies());
+    renderText(texte.c_str(), 120, 12*TAILLE_SPRITE, color, police2);
+    texte = "Carburant : " + to_string(static_cast<int>(round(perso1.carburant * 1000))/ 1000.0) + "L";
+    renderText(texte.c_str(), 120, 14*TAILLE_SPRITE, color, police2);
+    texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
+    renderText(texte.c_str(), 120, 16*TAILLE_SPRITE, color, police2);
+    texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
+    renderText(texte.c_str(), 120, 18*TAILLE_SPRITE, color, police2);
+    texte = "Record: " + partie.record + "m";
+    renderText(texte.c_str(), 120, 20*TAILLE_SPRITE, color, police2);
+    
+
+    //Textes de débugages
+    const vector<Obstacle> tabobstacles = partie.getObstacles();
+    if (!tabobstacles.empty()){
+        const Obstacle& obs = tabobstacles.front();
+        renderText((to_string(obs.getX())+","+to_string(obs.getY())).c_str(),0,14*TAILLE_SPRITE,color,police1);
+    }
+
+    const vector<Objet> tabobjet = partie.getObjets();
+    if(!tabobjet.empty()){
+        const Objet& obj = tabobjet.back();
+        renderText((to_string(obj.getX())+","+to_string(obj.getY())).c_str(),0,16*TAILLE_SPRITE,color,police1);
+    }
+    
+    renderText((to_string(perso1.getHauteur())).c_str(),0,12*TAILLE_SPRITE,color,police1);
+}
+
+void AffichageGraphique::run2Joueurs() {
+    init();
+    SDL_Event events;
+    bool ok = true;
+    Uint32 startime = SDL_GetTicks(), nt;
+    while (ok){
+        nt = SDL_GetTicks();
+        if (nt - startime > 0)
+        {
+            ok = partie.actionsAutomatiques2Joueurs(HAUTEUR,LARGEUR);
+            startime = nt;
+        }
+
+        while (SDL_PollEvent(&events)) { 
+            if (events.type == SDL_QUIT)
+                ok = false; // Si l'utilisateur a cliqué sur la croix de fermeture          else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncee
+                switch (events.key.keysym.scancode) {
+                /* case SDL_SCANCODE_W:
+                    partie.actionsClavier2Joueurs('z', HAUTEUR-1);
+                    break;
+                case SDL_SCANCODE_L:
+                    partie.actionsClavier2Joueurs('l', HAUTEUR-1);
+                    break;
+                */
+                case SDL_SCANCODE_ESCAPE:
+                    ok = false;
+                    break;
+                case SDL_SCANCODE_A:
+                    ok = false;
+                    break;
+                default:
+                    break;
+                }
+            
+            const Uint8* keystates = SDL_GetKeyboardState(NULL);
+            if (keystates[SDL_SCANCODE_W]) {
+                partie.actionsClavier2Joueurs('z', HAUTEUR - 1); // Joueur 1
+            }
+            if (keystates[SDL_SCANCODE_L]) {
+                partie.actionsClavier2Joueurs('l', HAUTEUR - 1); // Joueur 2
+            }
+        
+        }
+        affichage2Joueurs();
 
         int fondLargeur, fondHauteur;
         SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);

@@ -34,6 +34,7 @@ class AffichageGraphique {
         bool avecson;   
 
         SDLSprite im_perso;
+        SDLSprite im_perso2;
         SDLSprite im_toit;
         SDLSprite im_obstacle;
         SDLSprite im_piece;
@@ -51,6 +52,9 @@ class AffichageGraphique {
         void afficherGameOver(); ///<La procédure qui gère la fin de partie
         void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font); ///<Pour afficher du texte
         void affichage(); ///< La procédure qui gère tout l'affichage
+
+        void affichage2Joueurs(); ///< La procédure qui gère tout l'affichage en mode 2 joueurs
+        void run2Joueurs(); ///< La procédure qui gère tout le jeu en mode 2 joueurs
  };
  
  #endif

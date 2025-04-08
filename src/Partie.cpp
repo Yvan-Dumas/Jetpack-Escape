@@ -227,8 +227,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         do  {
             i++ ;
             cumul = cumul + poids [i-1] ;
-        }
-        while(tirage > cumul);
+        } while(tirage > cumul);
         
         switch (i) {
             case 1: {// Création d'une obstacle de base
@@ -260,6 +259,9 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         }
     }
 
+    // Mise à jour de la distance
+    perso1.setDistance(perso1.getDistance()+1);
+    perso1.appliquerGravite(HAUTEUR);
 
         // Vérification des collisions avec obstacles
         for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
@@ -267,7 +269,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
             if (obstacle->getX()+obstacle->getLargeur() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
             } else if (obstacle->collisionObstacle(perso1.getHauteur())) {
-                perso1.setNbVies(perso1.getNbVies()-1);;
+                perso1.setNbVies(perso1.getNbVies()-1);
                 if (perso1.getNbVies() <= 0) {
                     enMarche = false;
                     break;
@@ -291,11 +293,6 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
                 ++it;
             }
         }
-
-        // Mise à jour de la distance
-        perso1.setDistance(perso1.getDistance()+1);
-
-        perso1.appliquerGravite(HAUTEUR);
     return enMarche ;
 }
 
