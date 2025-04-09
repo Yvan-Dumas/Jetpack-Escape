@@ -1,4 +1,4 @@
-# Install script for directory: /home/yvan/polytech/S4/lifapcd-jetpack-escape
+# Install script for directory: /home/hugom/lifapcd-jetpack-escape
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/hugom/lifapcd-jetpack-escape/bin/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

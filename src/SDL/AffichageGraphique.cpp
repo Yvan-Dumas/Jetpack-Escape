@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int TAILLE_SPRITE = 32*2;
+const int TAILLE_SPRITE = 32;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
 
@@ -92,7 +92,7 @@ void AffichageGraphique::init() {
     im_carburant3.loadFromFile("../data/images/carburant/carburant332.png", renderer);
     im_fond.loadFromFile("../data/images/background.png", renderer);
 
-    // POLICE
+    // POLICES
     police1 = TTF_OpenFont("data/polices/policebase1.ttf", 50);
     if (police1 == nullptr)
         police1 = TTF_OpenFont("../data/polices/policebase1.ttf", 50);
@@ -233,6 +233,10 @@ void AffichageGraphique::affichage() {
     texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
     renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, color, VT323);
 
+    //Affichage du nombre de pièces récoltées
+    texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 13.5*TAILLE_SPRITE, color, VT323);
+
     // Affichage du nb de vies
     switch (perso1.getNbVies()) {
     case 1:
@@ -253,12 +257,16 @@ void AffichageGraphique::affichage() {
     }
 
     // Affichage du carburant
+    std::stringstream stringstream;
+    stringstream << std::fixed << std::setprecision(2) << perso1.carburant;
+    texte = stringstream.str() + "L/3L";
+    renderText(texte.c_str(), 120, 12.8*TAILLE_SPRITE, {10, 10, 10, 255}, VT323);
+
     int niveau = (int)ceil(perso1.carburant);
+    
     switch (niveau) {
     case 3:
         im_carburant3.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
-        texte = to_string(perso1.carburant) + "L/3L";
-        renderText(texte.c_str(), 120, 12.8*TAILLE_SPRITE, {10, 10, 10, 255}, VT323);
         break;
     case 2:
         im_carburant2.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
@@ -266,13 +274,18 @@ void AffichageGraphique::affichage() {
     case 1:
         im_carburant1.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
         break;
-    default:
+    case 0:
         im_carburant0.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+    default:
         break;
     }
 
-    texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
-    renderText(texte.c_str(), 120, 18*TAILLE_SPRITE, color, police2);
+    //Affichage d'un message en cas de conversion pièces en vie.
+    if(piecenvie) {
+        texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
+        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 18*TAILLE_SPRITE, color, VT323);
+    }
+
 }
 
 void AffichageGraphique::afficherGameOver() {
@@ -331,12 +344,12 @@ void AffichageGraphique::run() {
     while (ok)
     {
         
-        nt = SDL_GetTicks();
+        /*nt = SDL_GetTicks();
         if (nt - startime > 0)
-        {
+        {*/
             ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
-            startime = nt;
-        }
+            //startime = nt;
+        //}
 
         while (SDL_PollEvent(&events))
         { 
@@ -347,7 +360,7 @@ void AffichageGraphique::run() {
                 {
                 case SDL_SCANCODE_W:
                     partie.actionsClavier('z',HAUTEUR-1);
-                    //if (avecson) {Mix_PlayChannel(-1, son, 0);}
+                    if (avecson) {Mix_PlayChannel(-1, son, 0);}
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
@@ -365,9 +378,18 @@ void AffichageGraphique::run() {
 
         int fondLargeur, fondHauteur;
         SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
-        offset_x = (offset_x - 6 + fondLargeur) % fondLargeur;
+        offset_x = (offset_x - 15 + fondLargeur) % fondLargeur;
+        
+        
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
+
+
+        if (partie.acheterVieSiPossible()){
+            piecenvie = true;
+            debutmessage = SDL_GetTicks();
+        }
+        if (piecenvie && SDL_GetTicks()-debutmessage>5000) piecenvie = false ; 
     }
     afficherGameOver();
 }

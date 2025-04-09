@@ -44,7 +44,7 @@ string Partie::chargerFichier() {
 void Partie::ajouterCarburant(Personnage & perso){
     if (perso.carburant < 3) {
     perso.carburant = perso.carburant + 2 ; }
-    else {perso.carburant = 5;}
+    else {perso.carburant = 3;}
 }
 
 void Partie::ajouterPiece(Personnage & perso) {
@@ -114,6 +114,11 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
         case 3: {// Création d'un obstacle (métro)
             largeur = 20; // Largeur de l'objet.
             longueur = 3; // Longeur de l'objet.
+            y = 0;
+            break; }
+        case 4: {// Création d'un rat
+            largeur = 1;
+            longueur = 1;
             y = 0;
             break; }
         default:
@@ -210,7 +215,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if ((rand())%20==0){
         int id = 1;
-        int poids[] = {20, 20, 2, 20, 10, 5}; // Poids associés
+        int poids[] = {20, 20, 2, 20, 10, 5, 7}; // Poids associés
         int taille = sizeof(poids) / sizeof(poids[0]);
 
         // Calcul de la somme des poids
@@ -254,6 +259,9 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
                 generationObjet(3,HAUTEUR, LARGEUR);
                 break;
                     }
+            case 7: { // Création d'un rat 
+                generationObstacle(4, HAUTEUR, LARGEUR);
+            }
             default:
                 break;
         }
@@ -440,6 +448,21 @@ const Personnage& Partie::getPerso1() const {
 const Personnage& Partie::getPerso2() const {
     return perso2;
 }
+
+bool Partie::acheterVieSiPossible() {
+    if (perso1.getNbPieces() >= 1 && perso1.getNbVies() < 4) {
+        perso1.setNbPieces(perso1.getNbPieces() - 1);
+        perso1.setNbVies(perso1.getNbVies() + 1);
+        return true;
+    }
+    if (perso2.getNbPieces() >= 10 && perso2.getNbVies() < 4) {
+        perso2.setNbPieces(perso2.getNbPieces() - 10);
+        perso2.setNbVies(perso2.getNbVies() + 1);
+        return true;
+    }
+    return false;
+}
+
 
 void Partie::testPartie() {
     /*

@@ -59,6 +59,8 @@ class Partie {
         const Personnage& getPerso1() const; ///< Accesseur pour le personnage 1
         const Personnage& getPerso2() const; ///< Accesseur pour le personnage 2
 
+        bool acheterVieSiPossible(); ///<Ajoute une vie si le personnage a plus de 10 pièces
+
         /**
         * @brief Effectue une série de tests sur les méthodes de la classe Partie.
         * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.

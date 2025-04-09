@@ -16,6 +16,8 @@
 #include <cmath>
 #include <time.h>
 #include <stdlib.h>
+#include <iomanip>
+#include <sstream>
 
 
 /**
@@ -60,6 +62,8 @@ class AffichageGraphique {
       SDLSprite im_carburant3;
       SDLSprite im_fond;
       int offset_x = 0;
+      bool piecenvie = false;
+      int debutmessage;
 
  
     public:
