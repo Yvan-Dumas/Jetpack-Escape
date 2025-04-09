@@ -378,7 +378,7 @@ void AffichageGraphique::run() {
 
         int fondLargeur, fondHauteur;
         SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
-        offset_x = (offset_x - 15 + fondLargeur) % fondLargeur;
+        offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
         
         
         SDL_RenderPresent(renderer);
