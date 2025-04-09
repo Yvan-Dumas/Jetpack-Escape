@@ -261,7 +261,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
 
     // Mise à jour de la distance
     perso1.setDistance(perso1.getDistance()+1);
-    perso1.appliquerGravite(HAUTEUR);
+    perso1.appliquerGravite();
 
         // Vérification des collisions avec obstacles
         for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
@@ -428,8 +428,8 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
     // Mise à jour de la distance
     perso1.setDistance(perso1.getDistance()+1);
     perso2.setDistance(perso2.getDistance()+1);
-    perso1.appliquerGravite(HAUTEUR);
-    perso2.appliquerGravite(HAUTEUR);
+    perso1.appliquerGravite();
+    perso2.appliquerGravite();
 return enMarche ;
 }
 

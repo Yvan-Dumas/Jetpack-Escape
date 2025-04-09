@@ -3,16 +3,13 @@
  *@brief Implémentation de la classe personnage
  */
 
-#include <iostream>
 #include "Personnage.h"
-#include <cassert>
-
 using namespace std;
 
 Personnage::Personnage() {
     hauteur = 0;
     velociteY = 0;
-    carburant = 500;
+    carburant = 3;
 }
 
 void Personnage::setHauteur(unsigned int y){
@@ -36,14 +33,14 @@ void Personnage::monter(unsigned int HAUTEUR) {
             hauteur += velociteY;
         }
 
-        carburant -= 0.05;  // Consommer du carburant
+        carburant -= 0.005;  // Consommer du carburant
     }
     else {
         carburant = 0;
     }
 }
 
-void Personnage::appliquerGravite(unsigned int HAUTEUR) {
+void Personnage::appliquerGravite() {
     if (hauteur > 0) {
         if (velociteY >= -0.5){
         velociteY -= 0.5; }     // Gravité
@@ -55,8 +52,6 @@ void Personnage::appliquerGravite(unsigned int HAUTEUR) {
             velociteY = 0;
         }
     }
-
-
 
 unsigned int Personnage::getNbPieces() const {
     return nbPièces;
@@ -103,7 +98,7 @@ void Personnage::testPersonnage() {
     // Test de la méthode appliquerGravite
     // On applique la gravité et on vérifie la diminution de la hauteur
     p.setHauteur(10);
-    p.appliquerGravite(15); p.appliquerGravite(15); p.appliquerGravite(15);
+    p.appliquerGravite(); p.appliquerGravite(); p.appliquerGravite();
     assert(p.getHauteur() < 10.0 && "Test échoué : La gravité n'a pas fonctionné correctement");
     
     // Test de la montée avec un manque de carburant

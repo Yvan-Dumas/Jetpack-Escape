@@ -4,10 +4,10 @@
 using namespace std;
 
 int main() {
+    Personnage::testPersonnage();
     Objet::testObjet();
     Obstacle::testObstacle();
     Partie::testPartie();
-    Personnage::testPersonnage();
 
     return 0;
 }

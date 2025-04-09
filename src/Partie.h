@@ -19,8 +19,8 @@
 using namespace std;
  
 /**
-    *@class Partie
-    *@brief Gère le fonctionnement du jeu
+*@class Partie
+*@brief Gère le fonctionnement du jeu
 */
 class Partie {
     private:

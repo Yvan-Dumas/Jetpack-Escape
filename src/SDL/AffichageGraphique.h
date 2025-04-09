@@ -13,6 +13,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <cassert>
+#include <cmath>
 #include <time.h>
 #include <stdlib.h>
 
@@ -51,7 +52,12 @@ class AffichageGraphique {
       SDLSprite im_vies2;
       SDLSprite im_vies3;
       SDLSprite im_vies4;
+
       SDLSprite im_carburant;
+      SDLSprite im_carburant0;
+      SDLSprite im_carburant1;
+      SDLSprite im_carburant2;
+      SDLSprite im_carburant3;
       SDLSprite im_fond;
       int offset_x = 0;
 

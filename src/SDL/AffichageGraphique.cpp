@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int TAILLE_SPRITE = 64;
+const int TAILLE_SPRITE = 32*2;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
 
@@ -18,11 +18,9 @@ float temps()
 
 // ============= CLASS AffichageGraphique =============== //
 
-
 string AffichageGraphique::getRecord(){
     return partie.record;
 }
-
 
 void AffichageGraphique::init() {
     // Initialisation de la SDL
@@ -87,6 +85,11 @@ void AffichageGraphique::init() {
     im_vies4.loadFromFile("../data/images/vies/vies432.png", renderer);
 
     im_carburant.loadFromFile("../data/images/carburant32.png", renderer);
+
+    im_carburant0.loadFromFile("../data/images/carburant/carburant032.png", renderer);
+    im_carburant1.loadFromFile("../data/images/carburant/carburant132.png", renderer);
+    im_carburant2.loadFromFile("../data/images/carburant/carburant232.png", renderer);
+    im_carburant3.loadFromFile("../data/images/carburant/carburant332.png", renderer);
     im_fond.loadFromFile("../data/images/background.png", renderer);
 
     // POLICE
@@ -133,7 +136,6 @@ void AffichageGraphique::init() {
             }
         }
     }
-
 
 void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
@@ -223,34 +225,52 @@ void AffichageGraphique::affichage() {
     // Couleur de survol de la souris
     SDL_Color color = {0, 0, 0, 0};
 
-    // Afficher les textes
-    string texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
+    // Affichage du record de distance
+    string texte = "Record: " + partie.record + "m";
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 0*TAILLE_SPRITE, color, VT323);
+    
+    // Affichage de la distance parcourue
+    texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
     renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, color, VT323);
 
-    texte = "Record: " + partie.record + "m";
-    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 12.2*TAILLE_SPRITE, color, VT323);
-    
+    // Affichage du nb de vies
     switch (perso1.getNbVies()) {
     case 1:
-        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
         break;
     case 2:
-        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
         break;
     case 3:
-        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
         break;
     case 4:
-        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
         break;
     default:
-        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
         break;
     }
-    
-    texte = "Carburant : " + to_string(static_cast<int>(round(perso1.carburant * 1000))/ 1000.0) + "L";
-    renderText(texte.c_str(), 120, 14*TAILLE_SPRITE, color, police2);
-   
+
+    // Affichage du carburant
+    int niveau = (int)ceil(perso1.carburant);
+    switch (niveau) {
+    case 3:
+        im_carburant3.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        texte = to_string(perso1.carburant) + "L/3L";
+        renderText(texte.c_str(), 120, 12.8*TAILLE_SPRITE, {10, 10, 10, 255}, VT323);
+        break;
+    case 2:
+        im_carburant2.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        break;
+    case 1:
+        im_carburant1.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        break;
+    default:
+        im_carburant0.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        break;
+    }
+
     texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
     renderText(texte.c_str(), 120, 18*TAILLE_SPRITE, color, police2);
 }
