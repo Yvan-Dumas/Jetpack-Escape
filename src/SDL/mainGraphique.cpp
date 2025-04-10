@@ -14,8 +14,8 @@ TTF_Font* font = NULL;
 TTF_Font* policetitre = NULL; 
 int selectedOption = 0;
 
-const char* menuOptions[] = {"Jouer au mode 1 joueur", "Jouer au mode 2 joueur", "Quitter"};
-const int totalOptions = 3;
+const char* menuOptions[] = {"Jouer au mode 1 joueur", "Jouer au mode 2 joueur","Comment jouer ?", "Quitter"};
+const int totalOptions = 4;
 
 int initSDL() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -114,7 +114,6 @@ int main() {
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
-                cout << "1";
                 running = false;
             } else if (event.type == SDL_KEYDOWN) {
                 switch (event.key.keysym.sym) {
@@ -157,8 +156,14 @@ int main() {
         aff.run2Joueurs();
     }
     if (selectedOption == 2) {
+        affichageAide(); 
     }
 
     cleanUp();
     return 0;
+}
+
+void affichageAide(){
+    
+
 }

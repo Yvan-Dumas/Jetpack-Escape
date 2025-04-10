@@ -11,10 +11,6 @@ const int TAILLE_SPRITE = 32*2;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
 
-float temps()
-{
-    return float(SDL_GetTicks()) / CLOCKS_PER_SEC; // conversion des ms en secondes en divisant par 1000
-}
 
 // ============= CLASS AffichageGraphique =============== //
 
@@ -30,7 +26,7 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-
+    //Initialisation de TTF (utilisé pour le texte)
     if (TTF_Init() != 0)
     {
         cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
@@ -300,7 +296,6 @@ void AffichageGraphique::run() {
     bool ok = true;
 
     Uint32 startime = SDL_GetTicks(), nt;
-    
     while (ok)
     {
         
@@ -319,8 +314,7 @@ void AffichageGraphique::run() {
                 switch (events.key.keysym.scancode)
                 {
                 case SDL_SCANCODE_W:
-                    partie.actionsClavier('z',HAUTEUR-1);
-                    //if (avecson) {Mix_PlayChannel(-1, son, 0);}
+                    partie.actionsClavier('z',HAUTEUR-1);                 
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
@@ -462,15 +456,8 @@ void AffichageGraphique::run2Joueurs() {
 
         while (SDL_PollEvent(&events)) { 
             if (events.type == SDL_QUIT)
-                ok = false; // Si l'utilisateur a cliqué sur la croix de fermeture          else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncee
+                ok = false;
                 switch (events.key.keysym.scancode) {
-                /* case SDL_SCANCODE_W:
-                    partie.actionsClavier2Joueurs('z', HAUTEUR-1);
-                    break;
-                case SDL_SCANCODE_L:
-                    partie.actionsClavier2Joueurs('l', HAUTEUR-1);
-                    break;
-                */
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
                     break;

@@ -4,6 +4,14 @@
 -afficher mode 2 joueurs
 -son
 -affichage beau
+
+
+- diagramme des classes (sdl sprite ?)
+-cahier des charges ?
+- mode 2joueurs clavier
+
+
+
 modifier: 
 
 char WinTXT::getCh()
