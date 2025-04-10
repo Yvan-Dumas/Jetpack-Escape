@@ -11,10 +11,6 @@ const int TAILLE_SPRITE = 32*2;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
 
-float temps()
-{
-    return float(SDL_GetTicks()) / CLOCKS_PER_SEC; // conversion des ms en secondes en divisant par 1000
-}
 
 // ============= CLASS AffichageGraphique =============== //
 
@@ -30,7 +26,7 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-
+    //Initialisation de TTF (utilisé pour le texte)
     if (TTF_Init() != 0)
     {
         cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
@@ -45,15 +41,6 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-    {
-        cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
-        cout << "No sound !!!" << endl;
-        avecson = false;
-    }
-    else
-        avecson = true;
-
 
     // Creation de la fenetre
     window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
@@ -93,49 +80,22 @@ void AffichageGraphique::init() {
     im_fond.loadFromFile("../data/images/background.png", renderer);
 
     // POLICES
-    police1 = TTF_OpenFont("data/polices/policebase1.ttf", 50);
-    if (police1 == nullptr)
-        police1 = TTF_OpenFont("../data/polices/policebase1.ttf", 50);
-    if (police1 == nullptr)
+    VT323 = TTF_OpenFont("../data/polices/VT323.ttf", 50);
+    if (VT323 == nullptr)
     {
-        cout << "Failed to load policebase1.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
+        cout << "Erreur de chargement VT323.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
         SDL_Quit();
         exit(1);
     }
 
-    police2 = TTF_OpenFont("data/polices/policebase2.ttf", 50);
-    if (police2 == nullptr)
-        police2 = TTF_OpenFont("../data/polices/policebase2.ttf", 50);
-    if (police2 == nullptr)
+    PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
+    if (PS2P == nullptr)
     {
-        cout << "Failed to load policebase2.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
+        cout << "Erreur de chargement PS2P.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
         SDL_Quit();
         exit(1);
     }
-
-    VT323 = TTF_OpenFont("data/polices/VT323.ttf", 50);
-    if (VT323 == nullptr)
-        VT323 = TTF_OpenFont("../data/polices/VT323.ttf", 50);
-    if (VT323 == nullptr)
-
-    PS2P = TTF_OpenFont("data/polices/PS2P.ttf", 50);
-    if (PS2P == nullptr)
-        PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
-    if (PS2P == nullptr)
-
-    // SONS
-        if (avecson)
-        {
-            son = Mix_LoadWAV("data/son.wav");
-            if (son == nullptr)
-                son = Mix_LoadWAV("../data/son.wav");
-            if (son == nullptr)
-            {
-                cout << "Failed to load son.wav! SDL_mixer Error: " << Mix_GetError() << endl;
-                avecson = false;
-            }
-        }
-    }
+}
 
 void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
@@ -152,8 +112,8 @@ AffichageGraphique::~AffichageGraphique()
 {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    if (avecson)
-        Mix_Quit();
+    if (VT323) TTF_CloseFont(VT323);
+    if (PS2P) TTF_CloseFont(PS2P);
     SDL_Quit();
 }
 
@@ -222,46 +182,35 @@ void AffichageGraphique::affichage() {
             break;
             } 
         }
-    // Couleur de survol de la souris
-    SDL_Color color = {0, 0, 0, 0};
 
     // Affichage du record de distance
     string texte = "Record: " + partie.record + "m";
-    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 0*TAILLE_SPRITE, color, VT323);
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 0*TAILLE_SPRITE, {255, 255, 0, 255}, VT323);
     
     // Affichage de la distance parcourue
     texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
-    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, color, VT323);
-
-    //Affichage du nombre de pièces récoltées
-    texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
-    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 13.5*TAILLE_SPRITE, color, VT323);
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, {255, 255, 255, 255}, VT323);
 
     // Affichage du nb de vies
     switch (perso1.getNbVies()) {
     case 1:
-        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
         break;
     case 2:
-        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
         break;
     case 3:
-        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
         break;
     case 4:
-        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
         break;
     default:
-        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE/2);
+        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
         break;
     }
 
     // Affichage du carburant
-    std::stringstream stringstream;
-    stringstream << std::fixed << std::setprecision(2) << perso1.carburant;
-    texte = stringstream.str() + "L/3L";
-    renderText(texte.c_str(), 120, 12.8*TAILLE_SPRITE, {10, 10, 10, 255}, VT323);
-
     int niveau = (int)ceil(perso1.carburant);
     switch (niveau) {
     case 3:
@@ -278,13 +227,22 @@ void AffichageGraphique::affichage() {
     default:
         break;
     }
+    // Affichage du carburant (texte)
+    stringstream stringstream;
+    stringstream << fixed << setprecision(2) << perso1.carburant;
+    texte = stringstream.str() + "L/3L";
+    renderText(texte.c_str(), 4*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, {236, 88, 0, 255}, VT323);
+
+    //Affichage du nombre de pièces récoltées
+    texte = to_string(perso1.getNbPieces());
+    im_piece.draw(renderer, 0.5*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, {255, 255, 255, 255}, VT323);
 
     //Affichage d'un message en cas de conversion pièces en vie.
     if(piecenvie) {
         texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
-        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 18*TAILLE_SPRITE, color, VT323);
+        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 14.6*TAILLE_SPRITE, {255, 255, 255, 255}, VT323);
     }
-
 }
 
 void AffichageGraphique::afficherGameOver() {
@@ -295,28 +253,27 @@ void AffichageGraphique::afficherGameOver() {
     SDL_Color blanc = {255, 255, 255, 255};
 
     // Titre
-    renderText("GAME OVER", 700, 200, rouge, police1);
+    renderText("GAME OVER", 700, 200, rouge, PS2P);
 
     // Infos de fin de partie
     const Personnage& perso1 = partie.getPerso1();
     string texte;
 
     texte = "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
-    renderText(texte.c_str(), 700, 300, blanc, police2);
+    renderText(texte.c_str(), 700, 300, blanc, VT323);
 
     texte = "Pieces recoltees : " + to_string(perso1.getNbPieces());
-    renderText(texte.c_str(), 700, 360, blanc, police2);
+    renderText(texte.c_str(), 700, 360, blanc, VT323);
 
     texte = "Record actuel : " + partie.record + "m";
-    renderText(texte.c_str(), 700, 420, blanc, police2);
+    renderText(texte.c_str(), 700, 420, blanc, VT323);
 
-    renderText("Appuyez sur ECHAP pour quitter", 700, 500, blanc, police2);
+    renderText("Appuyez sur ECHAP pour quitter", 700, 500, blanc, VT323);
 
     if (perso1.getDistance() > stoi(getRecord())) {
         partie.sauvegarderFichier(to_string(perso1.getDistance()));
-        renderText("Vous avez realisee le record", 700, 600, blanc, police1);
+        renderText("Vous avez realisee le record", 700, 600, blanc, PS2P);
     }
-
     SDL_RenderPresent(renderer);
 
     // Attente d'une touche pour quitter
@@ -339,7 +296,6 @@ void AffichageGraphique::run() {
     bool ok = true;
 
     Uint32 startime = SDL_GetTicks(), nt;
-    
     while (ok)
     {  
         /*nt = SDL_GetTicks();
@@ -357,8 +313,7 @@ void AffichageGraphique::run() {
                 switch (events.key.keysym.scancode)
                 {
                 case SDL_SCANCODE_W:
-                    partie.actionsClavier('z',HAUTEUR-1);
-                    //if (avecson) {Mix_PlayChannel(-1, son, 0);}
+                    partie.actionsClavier('z',HAUTEUR-1);                 
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
@@ -500,15 +455,8 @@ void AffichageGraphique::run2Joueurs() {
 
         while (SDL_PollEvent(&events)) { 
             if (events.type == SDL_QUIT)
-                ok = false; // Si l'utilisateur a cliqué sur la croix de fermeture          else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncee
+                ok = false;
                 switch (events.key.keysym.scancode) {
-                /* case SDL_SCANCODE_W:
-                    partie.actionsClavier2Joueurs('z', HAUTEUR-1);
-                    break;
-                case SDL_SCANCODE_L:
-                    partie.actionsClavier2Joueurs('l', HAUTEUR-1);
-                    break;
-                */
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
                     break;
