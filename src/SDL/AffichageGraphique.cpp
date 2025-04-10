@@ -11,10 +11,6 @@ const int TAILLE_SPRITE = 32*2;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
 
-float temps()
-{
-    return float(SDL_GetTicks()) / CLOCKS_PER_SEC; // conversion des ms en secondes en divisant par 1000
-}
 
 // ============= CLASS AffichageGraphique =============== //
 
@@ -30,7 +26,7 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-
+    //Initialisation de TTF (utilisé pour le texte)
     if (TTF_Init() != 0)
     {
         cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
@@ -45,15 +41,6 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-    {
-        cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
-        cout << "No sound !!!" << endl;
-        avecson = false;
-    }
-    else
-        avecson = true;
-
 
     // Creation de la fenetre
     window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
@@ -116,25 +103,11 @@ void AffichageGraphique::init() {
     VT323 = TTF_OpenFont("data/polices/VT323.ttf", 50);
     if (VT323 == nullptr)
         VT323 = TTF_OpenFont("../data/polices/VT323.ttf", 50);
-    if (VT323 == nullptr)
 
     PS2P = TTF_OpenFont("data/polices/PS2P.ttf", 50);
     if (PS2P == nullptr)
         PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
-    if (PS2P == nullptr)
 
-    // SONS
-        if (avecson)
-        {
-            son = Mix_LoadWAV("data/son.wav");
-            if (son == nullptr)
-                son = Mix_LoadWAV("../data/son.wav");
-            if (son == nullptr)
-            {
-                cout << "Failed to load son.wav! SDL_mixer Error: " << Mix_GetError() << endl;
-                avecson = false;
-            }
-        }
     }
 
 void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
@@ -152,8 +125,6 @@ AffichageGraphique::~AffichageGraphique()
 {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    if (avecson)
-        Mix_Quit();
     SDL_Quit();
 }
 
@@ -283,7 +254,7 @@ void AffichageGraphique::affichage() {
     //Affichage d'un message en cas de conversion pièces en vie.
     if(piecenvie) {
         texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
-        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 18*TAILLE_SPRITE, color, VT323);
+        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 9*TAILLE_SPRITE, color, VT323);
     }
 
 }
@@ -340,7 +311,6 @@ void AffichageGraphique::run() {
     bool ok = true;
 
     Uint32 startime = SDL_GetTicks(), nt;
-    
     while (ok)
     {
         
@@ -360,7 +330,7 @@ void AffichageGraphique::run() {
                 {
                 case SDL_SCANCODE_W:
                     partie.actionsClavier('z',HAUTEUR-1);
-                    if (avecson) {Mix_PlayChannel(-1, son, 0);}
+                    
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
@@ -502,15 +472,8 @@ void AffichageGraphique::run2Joueurs() {
 
         while (SDL_PollEvent(&events)) { 
             if (events.type == SDL_QUIT)
-                ok = false; // Si l'utilisateur a cliqué sur la croix de fermeture          else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncee
+                ok = false;
                 switch (events.key.keysym.scancode) {
-                /* case SDL_SCANCODE_W:
-                    partie.actionsClavier2Joueurs('z', HAUTEUR-1);
-                    break;
-                case SDL_SCANCODE_L:
-                    partie.actionsClavier2Joueurs('l', HAUTEUR-1);
-                    break;
-                */
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
                     break;
