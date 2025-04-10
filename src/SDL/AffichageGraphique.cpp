@@ -263,7 +263,6 @@ void AffichageGraphique::affichage() {
     renderText(texte.c_str(), 120, 12.8*TAILLE_SPRITE, {10, 10, 10, 255}, VT323);
 
     int niveau = (int)ceil(perso1.carburant);
-    
     switch (niveau) {
     case 3:
         im_carburant3.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
@@ -342,8 +341,7 @@ void AffichageGraphique::run() {
     Uint32 startime = SDL_GetTicks(), nt;
     
     while (ok)
-    {
-        
+    {  
         /*nt = SDL_GetTicks();
         if (nt - startime > 0)
         {*/
@@ -360,7 +358,7 @@ void AffichageGraphique::run() {
                 {
                 case SDL_SCANCODE_W:
                     partie.actionsClavier('z',HAUTEUR-1);
-                    if (avecson) {Mix_PlayChannel(-1, son, 0);}
+                    //if (avecson) {Mix_PlayChannel(-1, son, 0);}
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     ok = false;
