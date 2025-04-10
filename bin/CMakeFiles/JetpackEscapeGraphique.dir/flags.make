@@ -4,11 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-<<<<<<< HEAD
 CXX_INCLUDES = -I/home/yvan/polytech/S4/lifapcd-jetpack-escape/src -isystem /usr/include/SDL2
-=======
-CXX_INCLUDES = -I/home/etu/p2302033/LIFAPCD/lifapcd-jetpack-escape/src -isystem /usr/include/SDL2
->>>>>>> 33da6cf82f38d18d72fe594360c3c3ffe5abae0c
 
 CXX_FLAGS = -std=gnu++17
 

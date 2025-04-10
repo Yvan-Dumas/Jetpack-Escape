@@ -156,7 +156,7 @@ int main() {
         aff.run2Joueurs();
     }
     if (selectedOption == 2) {
-        affichageAide(); 
+        //affichageAide(); 
     }
 
     cleanUp();

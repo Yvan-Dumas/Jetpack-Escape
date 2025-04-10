@@ -35,9 +35,6 @@ class AffichageGraphique {
       TTF_Font *VT323;
       TTF_Font *PS2P;
 
-      Mix_Chunk *son;
-      bool avecson;   
-
       SDLSprite im_perso;
       SDLSprite im_perso2;
 
@@ -46,6 +43,7 @@ class AffichageGraphique {
       SDLSprite im_bloc_sol;
 
       SDLSprite im_obstacle;
+      SDLSprite im_rat;
 
       SDLSprite im_piece;
       SDLSprite im_vie;

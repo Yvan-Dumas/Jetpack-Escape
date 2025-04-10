@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Install script for directory: /home/yvan/polytech/S4/lifapcd-jetpack-escape
-=======
-# Install script for directory: /home/etu/p2302033/LIFAPCD/lifapcd-jetpack-escape
->>>>>>> 33da6cf82f38d18d72fe594360c3c3ffe5abae0c
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +29,7 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
 # Is this installation the result of a crosscompile?
@@ -54,9 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD
 file(WRITE "/home/yvan/polytech/S4/lifapcd-jetpack-escape/bin/${CMAKE_INSTALL_MANIFEST}"
-=======
-file(WRITE "/home/etu/p2302033/LIFAPCD/lifapcd-jetpack-escape/bin/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> 33da6cf82f38d18d72fe594360c3c3ffe5abae0c
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -34,6 +34,10 @@ int Obstacle::getLongueur() const {
     return longueur;
 }
 
+unsigned int Obstacle::getID() const {
+    return idTypeObstacle;
+}
+
 void Obstacle::testObstacle() {
     cout<<"Début des test pour Obstacle"<<endl;
  // Test du constructeur

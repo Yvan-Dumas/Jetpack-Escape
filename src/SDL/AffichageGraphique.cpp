@@ -61,7 +61,8 @@ void AffichageGraphique::init() {
     im_sol.loadFromFile("../data/images/sol32.png", renderer);
     im_bloc_sol.loadFromFile("../data/images/bloc_sol32.png", renderer);
 
-    im_obstacle.loadFromFile("../data/images/obstacle32.png", renderer);
+    im_obstacle.loadFromFile("../data/images/obstacles/obstacle32.png", renderer);
+    im_rat.loadFromFile("../data/images/obstacles/rat32.png", renderer);
 
     im_piece.loadFromFile("../data/images/piece32.png", renderer);
     im_vie.loadFromFile("../data/images/coeur32.png", renderer);
@@ -161,7 +162,14 @@ void AffichageGraphique::affichage() {
         for (int i = 0; i < obsLargeur; i++) {
             for (int j = 0; j < obsLongueur; j++) {
                 if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
-                    im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                    switch (obs.getID()) {
+                        case 4: 
+                            im_rat.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                        break;
+                        default:
+                            im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                        break;
+                    }
                 }
             }
         }
