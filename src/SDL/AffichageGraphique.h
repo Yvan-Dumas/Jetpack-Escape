@@ -64,7 +64,6 @@ class AffichageGraphique {
       int offset_x = 0;
       bool piecenvie = false;
       int debutmessage;
-
  
     public:
         void init(); ///< Initialise l'affichageGraphique
