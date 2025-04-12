@@ -1,5 +1,6 @@
 # LIFAPCD - jetpack escape
 
+- revoir proba apparition
 -Test regression ne fonctionne plus (objet)
 -afficher mode 2 joueurs
 -son

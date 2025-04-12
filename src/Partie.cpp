@@ -43,8 +43,9 @@ string Partie::chargerFichier() {
 
 void Partie::ajouterCarburant(Personnage & perso){
     if (perso.carburant < 3) {
-    perso.carburant = perso.carburant + 2 ; }
-    else {perso.carburant = 3;}
+        perso.carburant = perso.carburant + 1;
+        if (perso.carburant > 3) perso.carburant = 3;
+    }
 }
 
 void Partie::ajouterPiece(Personnage & perso) {
@@ -64,15 +65,15 @@ void Partie::utiliserObjet(Personnage & perso,unsigned int id) {
             ajouterCarburant(perso);
             break;
         case 3: // Pour une vie, incrémente de 1
-            if (perso.getNbVies()<4){
-                perso.setNbVies(perso.getNbVies()+1); }
+            if (perso.getNbVies()<4) {
+                perso.setNbVies(perso.getNbVies()+1); 
+            }
         default:
             break;
     }
 }
 
 bool Partie::bien_place(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
-
     auto superpose = [](int x1, int y1, int w1, int h1,
         int x2, int y2, int w2, int h2) {
     return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2 || y2 + h2 <= y1);
@@ -215,7 +216,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if ((rand())%20==0){
         int id = 1;
-        int poids[] = {20, 20, 2, 20, 10, 5, 7}; // Poids associés
+        int poids[] = {20, 20, 2, 20, 10, 20, 7}; // Poids associés
         int taille = sizeof(poids) / sizeof(poids[0]);
 
         // Calcul de la somme des poids
@@ -261,6 +262,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
                     }
             case 7: { // Création d'un rat 
                 generationObstacle(4, HAUTEUR, LARGEUR);
+                break;
             }
             default:
                 break;

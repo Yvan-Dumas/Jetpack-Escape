@@ -126,7 +126,6 @@ void AffichageGraphique::affichage() {
     // Scroll du fond
     int fondLargeur, fondHauteur;
     SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
-
     for (int x = -fondLargeur + offset_x; x < 1920; x += fondLargeur) {
         for (int y = 0; y < 1080; y += fondHauteur) {
             im_fond.draw(renderer, x, y, fondLargeur, fondHauteur);
@@ -158,7 +157,6 @@ void AffichageGraphique::affichage() {
         int obsY = obs.getY();
         int obsLargeur = obs.getLargeur();
         int obsLongueur = obs.getLongueur();
-
         for (int i = 0; i < obsLargeur; i++) {
             for (int j = 0; j < obsLongueur; j++) {
                 if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
