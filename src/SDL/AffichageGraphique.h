@@ -34,6 +34,7 @@ class AffichageGraphique {
       TTF_Font *police2;
       TTF_Font *VT323;
       TTF_Font *PS2P;
+      SDL_Cursor* curseurPerso;
 
       SDLSprite im_perso;
       SDLSprite im_perso2;

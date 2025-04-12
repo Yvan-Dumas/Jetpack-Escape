@@ -299,11 +299,10 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_ttf.h \
- /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_image.h \
+ /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_ttf.h \
  /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
  /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/SDLSprite.h \
- /usr/include/SDL2/SDL_image.h \
  /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Partie.h \
  /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Personnage.h \
  /usr/include/c++/13/cassert /usr/include/assert.h \

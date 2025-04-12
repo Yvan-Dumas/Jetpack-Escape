@@ -96,6 +96,18 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
+
+    // Curseur personnalisé
+    SDL_Surface* curseurSurface = IMG_Load("../data/images/curseur.png");
+    if (!curseurSurface) {
+        cout << "Erreur chargement curseur: " << IMG_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    } else {
+    curseurPerso = SDL_CreateColorCursor(curseurSurface, 0, 0); 
+    SDL_SetCursor(curseurPerso);
+    SDL_FreeSurface(curseurSurface);
+    }
 }
 
 void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
@@ -115,6 +127,7 @@ AffichageGraphique::~AffichageGraphique()
     SDL_DestroyWindow(window);
     if (VT323) TTF_CloseFont(VT323);
     if (PS2P) TTF_CloseFont(PS2P);
+    if (curseurPerso) SDL_FreeCursor(curseurPerso);
     SDL_Quit();
 }
 
