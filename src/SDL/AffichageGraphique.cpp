@@ -1,16 +1,9 @@
-#include <cassert>
-#include <time.h>
-#include <stdlib.h>
-#include <iostream>
-
 #include "AffichageGraphique.h"
-
 using namespace std;
 
 const int TAILLE_SPRITE = 32*2;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
-
 
 // ============= CLASS AffichageGraphique =============== //
 
@@ -26,6 +19,7 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
+
     //Initialisation de TTF (utilisé pour le texte)
     if (TTF_Init() != 0)
     {
@@ -53,7 +47,7 @@ void AffichageGraphique::init() {
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    // IMAGES
+    // Initialisation images
     im_perso.loadFromFile("../data/images/perso32.png", renderer);
     im_perso2.loadFromFile("../data/images/perso32.png", renderer);
 
@@ -80,7 +74,7 @@ void AffichageGraphique::init() {
     im_carburant3.loadFromFile("../data/images/carburant/carburant332.png", renderer);
     im_fond.loadFromFile("../data/images/background.png", renderer);
 
-    // POLICES
+    // Initialisation des polices
     VT323 = TTF_OpenFont("../data/polices/VT323.ttf", 50);
     if (VT323 == nullptr)
     {
@@ -88,7 +82,6 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-
     PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
     if (PS2P == nullptr)
     {
@@ -121,8 +114,7 @@ void AffichageGraphique::renderText(const char* text, int x, int y, SDL_Color co
     SDL_DestroyTexture(texture);
 }
 
-AffichageGraphique::~AffichageGraphique()
-{
+AffichageGraphique::~AffichageGraphique() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     if (VT323) TTF_CloseFont(VT323);
@@ -132,6 +124,12 @@ AffichageGraphique::~AffichageGraphique()
 }
 
 void AffichageGraphique::affichage() {
+    // couleurs
+    SDL_Color blanc = {255, 255, 255, 255};
+    SDL_Color jaune = {255, 255, 0, 255};
+    SDL_Color orange = {236, 88, 0, 255};
+
+
     // Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
@@ -204,11 +202,11 @@ void AffichageGraphique::affichage() {
 
     // Affichage du record de distance
     string texte = "Record: " + partie.record + "m";
-    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 0*TAILLE_SPRITE, {255, 255, 0, 255}, VT323);
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 0*TAILLE_SPRITE, jaune, VT323);
     
     // Affichage de la distance parcourue
     texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
-    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, {255, 255, 255, 255}, VT323);
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, blanc, VT323);
 
     // Affichage du nb de vies
     switch (perso1.getNbVies()) {
@@ -250,17 +248,17 @@ void AffichageGraphique::affichage() {
     stringstream stringstream;
     stringstream << fixed << setprecision(2) << perso1.carburant;
     texte = stringstream.str() + "L/3L";
-    renderText(texte.c_str(), 4*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, {236, 88, 0, 255}, VT323);
+    renderText(texte.c_str(), 4*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, orange, VT323);
 
     //Affichage du nombre de pièces récoltées
     texte = to_string(perso1.getNbPieces());
     im_piece.draw(renderer, 0.5*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-    renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, {255, 255, 255, 255}, VT323);
+    renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, blanc, VT323);
 
     //Affichage d'un message en cas de conversion pièces en vie.
-    if(piecenvie) {
+    if(piecesEnVie) {
         texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
-        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 14.6*TAILLE_SPRITE, {255, 255, 255, 255}, VT323);
+        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 14.6*TAILLE_SPRITE, blanc, VT323);
     }
 }
 
@@ -268,30 +266,26 @@ void AffichageGraphique::afficherGameOver() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // fond noir
     SDL_RenderClear(renderer);
 
+    // Couleurs
     SDL_Color rouge = {255, 0, 0, 255};
     SDL_Color blanc = {255, 255, 255, 255};
 
-    // Titre
+    // Affichage texte Game Over
     renderText("GAME OVER", 700, 200, rouge, PS2P);
 
     // Infos de fin de partie
     const Personnage& perso1 = partie.getPerso1();
     string texte;
-
     texte = "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
-    renderText(texte.c_str(), 700, 300, blanc, VT323);
-
+    renderText(texte.c_str(), 650, 300, blanc, VT323);
     texte = "Pieces recoltees : " + to_string(perso1.getNbPieces());
-    renderText(texte.c_str(), 700, 360, blanc, VT323);
-
+    renderText(texte.c_str(), 650, 360, blanc, VT323);
     texte = "Record actuel : " + partie.record + "m";
-    renderText(texte.c_str(), 700, 420, blanc, VT323);
-
-    renderText("Appuyez sur ECHAP pour quitter", 700, 500, blanc, VT323);
-
+    renderText(texte.c_str(), 650, 420, blanc, VT323);
+    renderText("Appuyez sur ECHAP pour quitter", 600, 800, blanc, VT323);
     if (perso1.getDistance() > stoi(getRecord())) {
         partie.sauvegarderFichier(to_string(perso1.getDistance()));
-        renderText("Vous avez realisee le record", 700, 600, blanc, PS2P);
+        renderText("Vous avez realisé le record", 650, 600, blanc, PS2P);
     }
     SDL_RenderPresent(renderer);
 
@@ -315,29 +309,20 @@ void AffichageGraphique::run() {
     bool ok = true;
 
     Uint32 startime = SDL_GetTicks(), nt;
-    while (ok)
-    {  
-        /*nt = SDL_GetTicks();
-        if (nt - startime > 0)
-        {*/
-            ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
-            //startime = nt;
-        //}
-
-        while (SDL_PollEvent(&events))
-        { 
+    while (ok) {  
+        ok = partie.actionsAutomatiques(HAUTEUR,LARGEUR);
+        while (SDL_PollEvent(&events)) { 
             if (events.type == SDL_QUIT)
                 ok = false; // Si l'utilisateur a cliqué sur la croix de fermeture
-            else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncee
-                switch (events.key.keysym.scancode)
-                {
-                case SDL_SCANCODE_W:
+            else if (events.type == SDL_KEYDOWN) { // Si une touche est enfoncée
+                switch (events.key.keysym.scancode) {
+                case SDL_SCANCODE_W: // Si la touche z est enfoncée (clavier azerty)
                     partie.actionsClavier('z',HAUTEUR-1);                 
                     break;
-                case SDL_SCANCODE_ESCAPE:
+                case SDL_SCANCODE_ESCAPE: // Si la touche echap est enfoncée
                     ok = false;
                     break;
-                case SDL_SCANCODE_A:
+                case SDL_SCANCODE_A: // Si la touche q est enfoncée (clavier azerty)
                     ok = false;
                     break;
                 default:
@@ -348,20 +333,20 @@ void AffichageGraphique::run() {
         }
         affichage();
 
+        // Défilement de l'arrière plan
         int fondLargeur, fondHauteur;
         SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
         offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
         
-        
+        // Timer pour l'affichage du message
+        if (partie.acheterVieSiPossible()){
+            piecesEnVie = true;
+            debutMessage = SDL_GetTicks();
+        }
+        if (piecesEnVie && SDL_GetTicks()-debutMessage>5000) piecesEnVie = false ; 
+
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
-
-
-        if (partie.acheterVieSiPossible()){
-            piecenvie = true;
-            debutmessage = SDL_GetTicks();
-        }
-        if (piecenvie && SDL_GetTicks()-debutmessage>5000) piecenvie = false ; 
     }
     afficherGameOver();
 }

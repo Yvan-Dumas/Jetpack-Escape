@@ -850,7 +850,6 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o: /home/yv
   /usr/include/SDL2/SDL_messagebox.h \
   /usr/include/SDL2/SDL_metal.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_mouse.h \
   /usr/include/SDL2/SDL_mutex.h \
   /usr/include/SDL2/SDL_pixels.h \
@@ -1630,7 +1629,6 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: /home/yvan/po
   /usr/include/SDL2/SDL_messagebox.h \
   /usr/include/SDL2/SDL_metal.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_mouse.h \
   /usr/include/SDL2/SDL_mutex.h \
   /usr/include/SDL2/SDL_pixels.h \
@@ -2007,6 +2005,8 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: /home/yvan/po
 
 /usr/include/c++/13/cstring:
 
+/home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/SDLSprite.cpp:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/xsavesintrin.h:
@@ -2168,10 +2168,6 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/mainGraphique.cpp.o: /home/yvan/po
 /usr/lib/gcc/x86_64-linux-gnu/13/include/smmintrin.h:
 
 /usr/include/SDL2/SDL_platform.h:
-
-/home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/SDLSprite.cpp:
-
-/usr/include/SDL2/SDL_mixer.h:
 
 /usr/include/SDL2/SDL_metal.h:
 

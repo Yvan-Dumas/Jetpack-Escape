@@ -72,7 +72,7 @@ void AffichageConsole::afficher(WinTXT &win) {
 
     cout << "Vies : " << perso1.getNbVies() << endl;
     cout << "Carburant : [";
-    unsigned int longueurRemplie = ( perso1.carburant * 16) / 5;
+    unsigned int longueurRemplie = ( perso1.carburant * 16) / 3;
     for (unsigned int i = 0; i < 16; i++) {
         if (i < longueurRemplie) {
             cout << "="; // Partie remplie
@@ -80,7 +80,7 @@ void AffichageConsole::afficher(WinTXT &win) {
             cout << " "; // Partie vide
         }
     }
-    cout << "] " << std::fixed << std::setprecision(2) << perso1.carburant << "L" << "/" << 5 << "L" << endl;
+    cout << "] " << std::fixed << std::setprecision(2) << perso1.carburant << "L" << "/3L" << endl;
     cout << "Distance parcourue : " << perso1.getDistance() << "m" << endl;
     cout << "Vous avez récolté " << perso1.getNbPieces() << " pièces" <<endl;
     cout << "Record: " << partie.record << "m" << endl;

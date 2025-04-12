@@ -1,15 +1,15 @@
 # LIFAPCD - jetpack escape
 
-- revoir proba apparition
+-revoir proba apparition
 -Test regression ne fonctionne plus (objet)
 -afficher mode 2 joueurs
 -son
--affichage beau
-
-
-- diagramme des classes (sdl sprite ?)
+-affichage adaptatif ?
+-diagramme des classes (sdl sprite ?)
 -cahier des charges ?
-- mode 2joueurs clavier
+-mode 2joueurs clavier
+-initialisation variables affGraph dans le constructeur ?
+-Pièces récoltées game over ?
 
 
 

@@ -4,32 +4,33 @@
  */
 #ifndef AFFICHAGEGRAPHIQUE_H
 #define AFFICHAGEGRAPHIQUE_H
- 
-#include "SDLSprite.h"
-#include "Partie.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
+
 #include <cassert>
 #include <cmath>
 #include <time.h>
 #include <stdlib.h>
 #include <iomanip>
 #include <sstream>
+#include <iostream>
+
+#include "SDLSprite.h"
+#include "Partie.h"
 
 
 /**
   * @class AffichageGraphique
-  * @brief Affiche l'ensemble du jeu à l'aide d'une bibliothèque graphique
+  * @brief Affiche l'ensemble du jeu à l'aide de la bibliothèque graphique SDL2 
   */
 class AffichageGraphique {
-    private:
-      Partie partie; ///<  La partie en cours
+  private:
+    Partie partie; ///<  La partie en cours
 
-      SDL_Window *window;
-      SDL_Renderer *renderer;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
       TTF_Font *police1;
       TTF_Font *police2;
       TTF_Font *VT323;
@@ -60,20 +61,23 @@ class AffichageGraphique {
       SDLSprite im_carburant2;
       SDLSprite im_carburant3;
       SDLSprite im_fond;
+
       int offset_x = 0;
-      bool piecenvie = false;
-      int debutmessage;
+      bool piecesEnVie = false;
+      int debutMessage;
  
     public:
-        void init(); ///< Initialise l'affichageGraphique
-        ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
-        string getRecord(); ///< Renvoie le record
-        void run(); ///< La procédure qui gère tout le jeu
-        void afficherGameOver(); ///<La procédure qui gère la fin de partie
-        void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font); ///<Pour afficher du texte
-        void affichage(); ///< La procédure qui gère tout l'affichage
+    void init(); ///< Initialise l'affichageGraphique
+    ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
 
-        void affichage2Joueurs(); ///< La procédure qui gère tout l'affichage en mode 2 joueurs
-        void run2Joueurs(); ///< La procédure qui gère tout le jeu en mode 2 joueurs
+    void affichage(); ///< La procédure qui gère tout l'affichage
+    void afficherGameOver(); ///<La procédure qui affiche un message en fin de partie
+    void run(); ///< La procédure qui gère tout le jeu
+    void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font); ///< Procédure pour afficher du texte
+
+    void affichage2Joueurs(); ///< La procédure qui gère tout l'affichage en mode 2 joueurs
+    void run2Joueurs(); ///< La procédure qui gère tout le jeu en mode 2 joueurs
+
+    string getRecord(); ///< Renvoie le record
  };
 #endif

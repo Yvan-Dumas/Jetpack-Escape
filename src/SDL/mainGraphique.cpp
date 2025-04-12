@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+
 #include "AffichageGraphique.h"
 
 using namespace std;
@@ -18,22 +19,25 @@ SDL_Texture* backgroundTexture = nullptr;
 SDL_Texture* boutonTexture = nullptr;
 SDL_Texture* boutonHoverTexture = nullptr;
 
+const char* menuOptions[] = {"1 joueur", "2 joueurs", "Comment jouer ?", "Quitter"};
+const int totalOptions = 4;
 int selectedOption = 0;
 
-const char* menuOptions[] = {"1 joueur", "2 joueur","Comment jouer ?", "Quitter"};
-const int totalOptions = 4;
-
-int initSDL() {
+// Fonction pour l'initialisation des ressources SDL
+int initSDL() { 
+    // Initialisation de la SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("Erreur SDL: %s\n", SDL_GetError());
         return 0;
     }
 
+    //Initialisation de TTF (utilisé pour le texte)
     if (TTF_Init() == -1) {
         printf("Erreur TTF: %s\n", TTF_GetError());
         return 0;
     }
 
+    // Creation de la fenetre
     window = SDL_CreateWindow("Menu SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window) {
         printf("Erreur Window: %s\n", SDL_GetError());
@@ -51,6 +55,7 @@ int initSDL() {
         return 0;
     }    
 
+    // Police personnalisée
     PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 18);
     if (PS2P == nullptr)
     {
@@ -69,6 +74,7 @@ int initSDL() {
     SDL_FreeSurface(curseurSurface);
     }
 
+    // Image de fond avec titre et design du menu
     SDL_Surface* surface = IMG_Load("../data/images/menu/menu_background.png");
     if (!surface) {
         cout << "Erreur chargement image menu: " << IMG_GetError() << endl;
@@ -77,6 +83,7 @@ int initSDL() {
         SDL_FreeSurface(surface);
     }
 
+    // Image bouton
     SDL_Surface* surfaceBtn = IMG_Load("../data/images/menu/bouton.png");
     boutonTexture = SDL_CreateTextureFromSurface(renderer, surfaceBtn);
     SDL_FreeSurface(surfaceBtn);
@@ -84,6 +91,7 @@ int initSDL() {
         cout << "Erreur chargement bouton.png : " << SDL_GetError() << endl;
     }
 
+    // Image bouton survolé
     SDL_Surface* surfaceHover = IMG_Load("../data/images/menu/bouton_hover.png");
     boutonHoverTexture = SDL_CreateTextureFromSurface(renderer, surfaceHover);
     SDL_FreeSurface(surfaceHover);
@@ -106,6 +114,7 @@ void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font)
 }
 
 void renderMenu() {
+    // Affichage de l'image de fond
     if (backgroundTexture) {
         SDL_Rect dst = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_RenderCopy(renderer, backgroundTexture, NULL, &dst);
@@ -116,6 +125,10 @@ void renderMenu() {
 
     // Couleur
     SDL_Color blanc = {255, 255, 255, 255};
+    SDL_Color jaune = {255, 255, 0, 255};
+
+
+    //renderText(recordTexte.c_str(), 250, 200, jaune, PS2P);
 
     // Rendu du menu
     for (int i = 0; i < totalOptions; i++) {
@@ -124,7 +137,7 @@ void renderMenu() {
         SDL_Texture* textureToUse = (i == selectedOption) ? boutonHoverTexture : boutonTexture;
         SDL_RenderCopy(renderer, textureToUse, NULL, &dstRect);
     
-        // Affichage des textes
+        // Affichage centré des textes sur les boutons
         int textLargeur, textHauteur;
         TTF_SizeText(PS2P, menuOptions[i], &textLargeur, &textHauteur);
         int textX = dstRect.x + (dstRect.w - textLargeur) / 2;
@@ -162,7 +175,9 @@ int main() {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
-            } else if (event.type == SDL_KEYDOWN) {
+            }
+            // Sélection des boutons au clavier 
+            else if (event.type == SDL_KEYDOWN) {
                 switch (event.key.keysym.sym) {
                     case SDLK_UP:
                         selectedOption = (selectedOption - 1 + totalOptions) % totalOptions;
@@ -174,10 +189,11 @@ int main() {
                         running = false;
                         break;
                 }
-            } else if (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN) {
+            }
+            // Sélection des boutons à la souris  
+            else if (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN) {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-
                 for (int i = 0; i < totalOptions; i++) {
                     SDL_Rect optionRect = {  260, 250 + i * 80, 280, 70 };
                     if (mouseX >= optionRect.x && mouseX <= optionRect.x + optionRect.w &&
@@ -190,6 +206,14 @@ int main() {
                 }
             }
         }
+/*
+        // Lecture du record via une instance temporaire
+        string recordTexte;
+        {
+            AffichageGraphique temp;
+            recordTexte = "Record: " + temp.getRecord() + "m";
+        }
+*/
         renderMenu();
         SDL_Delay(100);
     }
