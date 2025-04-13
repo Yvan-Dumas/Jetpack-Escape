@@ -48,7 +48,7 @@ void AffichageGraphique::init() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     // Initialisation images
-    im_perso.loadFromFile("../data/images/perso32.png", renderer);
+    im_perso1.loadFromFile("../data/images/perso32.png", renderer);
     im_perso2.loadFromFile("../data/images/perso32.png", renderer);
 
     im_toit.loadFromFile("../data/images/toit32.png", renderer);
@@ -160,7 +160,7 @@ void AffichageGraphique::affichage() {
 
     // Affichage du personnage
     const Personnage& perso1 = partie.getPerso1();
-    im_perso.draw(renderer,   5*TAILLE_SPRITE, (HAUTEUR-perso1.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    im_perso1.draw(renderer,   5*TAILLE_SPRITE, (HAUTEUR-perso1.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
     
     //Placement des obstacles
     for (const Obstacle& obs : partie.getObstacles()) {
@@ -211,19 +211,19 @@ void AffichageGraphique::affichage() {
     // Affichage du nb de vies
     switch (perso1.getNbVies()) {
     case 1:
-        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
+        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
         break;
     case 2:
-        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
+        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
         break;
     case 3:
-        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
+        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
         break;
     case 4:
-        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
+        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
         break;
     default:
-        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 12.3*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE/1.5);
+        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
         break;
     }
 
@@ -231,16 +231,16 @@ void AffichageGraphique::affichage() {
     int niveau = (int)ceil(perso1.carburant);
     switch (niveau) {
     case 3:
-        im_carburant3.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        im_carburant3.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
         break;
     case 2:
-        im_carburant2.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        im_carburant2.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
         break;
     case 1:
-        im_carburant1.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        im_carburant1.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
         break;
     case 0:
-        im_carburant0.draw(renderer, 0.5*TAILLE_SPRITE, 12.8*TAILLE_SPRITE, TAILLE_SPRITE*3, TAILLE_SPRITE);
+        im_carburant0.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
     default:
         break;
     }
@@ -248,17 +248,17 @@ void AffichageGraphique::affichage() {
     stringstream stringstream;
     stringstream << fixed << setprecision(2) << perso1.carburant;
     texte = stringstream.str() + "L/3L";
-    renderText(texte.c_str(), 4*TAILLE_SPRITE, 12.9*TAILLE_SPRITE, orange, VT323);
+    renderText(texte.c_str(), 5*TAILLE_SPRITE,  11.5*TAILLE_SPRITE + 125, orange, VT323);
 
     //Affichage du nombre de pièces récoltées
     texte = to_string(perso1.getNbPieces());
-    im_piece.draw(renderer, 0.5*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-    renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 13.6*TAILLE_SPRITE, blanc, VT323);
+    im_piece.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 180, TAILLE_SPRITE, TAILLE_SPRITE);
+    renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 190, blanc, VT323);
 
     //Affichage d'un message en cas de conversion pièces en vie.
     if(piecesEnVie) {
         texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
-        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 14.6*TAILLE_SPRITE, blanc, VT323);
+        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
     }
 }
 
@@ -352,6 +352,12 @@ void AffichageGraphique::run() {
 }
 
 void AffichageGraphique::affichage2Joueurs() {
+    // couleurs
+    SDL_Color blanc = {255, 255, 255, 255};
+    SDL_Color jaune = {255, 255, 0, 255};
+    SDL_Color orange = {236, 88, 0, 255};
+
+
     // Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
@@ -360,103 +366,190 @@ void AffichageGraphique::affichage2Joueurs() {
     int fondLargeur, fondHauteur;
     SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
     for (int x = -fondLargeur + offset_x; x < 1920; x += fondLargeur) {
-        for (int y = 0; y < 1080; y += fondHauteur) {
-            im_fond.draw(renderer, x, y, fondLargeur, fondHauteur);
-        }
-    }
+       for (int y = 0; y < 1080; y += fondHauteur) {
+           im_fond.draw(renderer, x, y, fondLargeur, fondHauteur);
+       }
+   }
 
-    // Affichage de la bordure supérieure
+    // Affichage de la bordure supérieure (toit)
     for(unsigned int i = 0; i<LARGEUR; i++) {
-        im_toit.draw(renderer, i*TAILLE_SPRITE , 0, TAILLE_SPRITE, TAILLE_SPRITE);
-    }
+       im_toit.draw(renderer, i*TAILLE_SPRITE , 0, TAILLE_SPRITE, TAILLE_SPRITE);
+   }
 
-    // Affichage de la bordure inférieure
+    // Affichage de la bordure inférieure (sol)
     for(unsigned int i = 0; i<LARGEUR; i++) {
-        im_toit.draw(renderer, i*TAILLE_SPRITE , 11*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-    }
+       im_sol.draw(renderer, i*TAILLE_SPRITE , 11*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+   }
+    for(unsigned int i = 0; i<LARGEUR; i++) {
+       for (unsigned int j=12; j<17; j++) {
+           im_bloc_sol.draw(renderer, i*TAILLE_SPRITE , j*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+       }
+   }
 
     // Affichage des personnages
     const Personnage& perso1 = partie.getPerso1();
     const Personnage& perso2 = partie.getPerso2();
-    im_perso.draw(renderer, 5*TAILLE_SPRITE, (HAUTEUR-perso1.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+    im_perso1.draw(renderer, 5*TAILLE_SPRITE, (HAUTEUR-perso1.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
     im_perso2.draw(renderer, 5*TAILLE_SPRITE, (HAUTEUR-perso2.getHauteur())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-
+   
     //Placement des obstacles
     for (const Obstacle& obs : partie.getObstacles()) {
-        int obsX = obs.getX();
-        int obsY = obs.getY();
-        int obsLargeur = obs.getLargeur();
-        int obsLongueur = obs.getLongueur();
-
-        for (int i = 0; i < obsLargeur; i++) {
-            for (int j = 0; j < obsLongueur; j++) {
-                if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
-                    im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-                }
-            }
-        }
-    }
+       int obsX = obs.getX();
+       int obsY = obs.getY();
+       int obsLargeur = obs.getLargeur();
+       int obsLongueur = obs.getLongueur();
+       for (int i = 0; i < obsLargeur; i++) {
+           for (int j = 0; j < obsLongueur; j++) {
+               if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
+                   switch (obs.getID()) {
+                       case 4: 
+                           im_rat.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                       break;
+                       default:
+                           im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                       break;
+                   }
+               }
+           }
+       }
+   }
 
     //Placement des objets
     for (const Objet& obj : partie.getObjets()) {
-        switch (obj.getID()){
-            case 1:
-                im_piece.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-            break;
-            case 2:
-                im_carburant.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-            break;
-            case 3:
-                im_vie.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-            default:
-            break;
-            } 
-        }
-    // Couleur de survol de la souris
-    SDL_Color color = {0, 0, 0, 0};
+       switch (obj.getID()){
+           case 1:
+               im_piece.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+           break;
+           case 2:
+               im_carburant.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+           break;
+           case 3:
+               im_vie.draw(renderer, obj.getX()*TAILLE_SPRITE, (HAUTEUR - obj.getY())*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+           default:
+           break;
+           } 
+    }
 
-    // Afficher les textes
-    string texte = "Vies : " + to_string(perso1.getNbVies());
-    renderText(texte.c_str(), 120, 12*TAILLE_SPRITE, color, police2);
-    texte = "Carburant : " + to_string(static_cast<int>(round(perso1.carburant * 1000))/ 1000.0) + "L";
-    renderText(texte.c_str(), 120, 14*TAILLE_SPRITE, color, police2);
+    // Affichage du record de distance
+    string texte = "Record: " + partie.record + "m";
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 0*TAILLE_SPRITE, jaune, VT323);
+   
+    // Affichage de la distance parcourue
     texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
-    renderText(texte.c_str(), 120, 16*TAILLE_SPRITE, color, police2);
-    texte = "Vous avez recolte " + to_string(perso1.getNbPieces()) + " pieces";
-    renderText(texte.c_str(), 120, 18*TAILLE_SPRITE, color, police2);
-    texte = "Record: " + partie.record + "m";
-    renderText(texte.c_str(), 120, 20*TAILLE_SPRITE, color, police2);
-    
+    renderText(texte.c_str(), 11*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, blanc, VT323);
 
-    //Textes de débugages
-    const vector<Obstacle> tabobstacles = partie.getObstacles();
-    if (!tabobstacles.empty()){
-        const Obstacle& obs = tabobstacles.front();
-        renderText((to_string(obs.getX())+","+to_string(obs.getY())).c_str(),0,14*TAILLE_SPRITE,color,police1);
+    //---- Affichage J1 ----
+    texte =  "J1";
+    renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, blanc, VT323);
+    // Affichage du nb de vies J1
+    switch (perso1.getNbVies()) {
+    case 1:
+        im_vies1.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    case 2:
+        im_vies2.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    case 3:
+        im_vies3.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    case 4:
+        im_vies4.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    default:
+        im_vies0.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
     }
+    // Affichage du carburant J1
+    int niveau = (int)ceil(perso1.carburant);
+    switch (niveau) {
+   case 3:
+       im_carburant3.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+       break;
+   case 2:
+       im_carburant2.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+       break;
+   case 1:
+       im_carburant1.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+       break;
+   case 0:
+       im_carburant0.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+   default:
+       break;
+   }
+    // Affichage du carburant (texte) J1
+    stringstream stringstreamJ1;
+    stringstreamJ1 << fixed << setprecision(2) << perso1.carburant;
+    texte = stringstreamJ1.str() + "L/3L";
+    renderText(texte.c_str(), 5*TAILLE_SPRITE,  11.5*TAILLE_SPRITE + 125, orange, VT323);
+    //Affichage du nombre de pièces récoltées J1
+    texte = to_string(perso1.getNbPieces());
+    im_piece.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 180, TAILLE_SPRITE, TAILLE_SPRITE);
+    renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 190, blanc, VT323);
 
-    const vector<Objet> tabobjet = partie.getObjets();
-    if(!tabobjet.empty()){
-        const Objet& obj = tabobjet.back();
-        renderText((to_string(obj.getX())+","+to_string(obj.getY())).c_str(),0,16*TAILLE_SPRITE,color,police1);
+    // ---- Affichage J2 ----
+    texte =  "J2";
+    renderText(texte.c_str(), 29*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, blanc, VT323);
+    // Affichage du nb de vies J1
+    switch (perso2.getNbVies()) {
+    case 1:
+        im_vies1.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    case 2:
+        im_vies2.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    case 3:
+        im_vies3.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    case 4:
+        im_vies4.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
+    default:
+        im_vies0.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 50, TAILLE_SPRITE*4, TAILLE_SPRITE);
+        break;
     }
-    
-    renderText((to_string(perso1.getHauteur())).c_str(),0,12*TAILLE_SPRITE,color,police1);
+    // Affichage du carburant J2
+    int niveau2 = (int)ceil(perso2.carburant);
+    switch (niveau2) {
+        case 3:
+            im_carburant3.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+        break;
+        case 2:
+            im_carburant2.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+        break;
+        case 1:
+            im_carburant1.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+        break;
+        case 0:
+            im_carburant0.draw(renderer, 25.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 100, TAILLE_SPRITE*4, TAILLE_SPRITE*1.5);
+        default:
+        break;
+    }
+    // Affichage du carburant (texte) J2
+    stringstream stringstreamJ2;
+    stringstreamJ2 << fixed << setprecision(2) << perso2.carburant;
+    texte = stringstreamJ2.str() + "L/3L";
+    renderText(texte.c_str(), 22.5*TAILLE_SPRITE,  11.5*TAILLE_SPRITE + 125, orange, VT323);
+    //Affichage du nombre de pièces récoltées J1
+    texte = to_string(perso1.getNbPieces());
+    im_piece.draw(renderer, 28.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 180, TAILLE_SPRITE, TAILLE_SPRITE);
+    renderText(texte.c_str(), 28*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 190, blanc, VT323);
+
+
+    //Affichage d'un message en cas de conversion pièces en vie. 
+    if(piecesEnVie) {
+        texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
+        renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
+    }
 }
 
 void AffichageGraphique::run2Joueurs() {
     init();
     SDL_Event events;
     bool ok = true;
+
     Uint32 startime = SDL_GetTicks(), nt;
     while (ok){
-        nt = SDL_GetTicks();
-        if (nt - startime > 0)
-        {
-            ok = partie.actionsAutomatiques2Joueurs(HAUTEUR,LARGEUR);
-            startime = nt;
-        }
-
+        ok = partie.actionsAutomatiques2Joueurs(HAUTEUR,LARGEUR);
         while (SDL_PollEvent(&events)) { 
             if (events.type == SDL_QUIT)
                 ok = false;
@@ -482,11 +575,20 @@ void AffichageGraphique::run2Joueurs() {
         }
         affichage2Joueurs();
 
-        int fondLargeur, fondHauteur;
-        SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
-        offset_x = (offset_x - 6 + fondLargeur) % fondLargeur;
-        SDL_RenderPresent(renderer);
-        SDL_Delay(100);
+    // Défilement de l'arrière plan
+    int fondLargeur, fondHauteur;
+    SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
+    offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
+ 
+    // Timer pour l'affichage du message
+    if (partie.acheterVieSiPossible()){
+        piecesEnVie = true;
+        debutMessage = SDL_GetTicks();
+    }
+    if (piecesEnVie && SDL_GetTicks()-debutMessage>5000) piecesEnVie = false ; 
+
+    SDL_RenderPresent(renderer);
+    SDL_Delay(100);
     }
     afficherGameOver();
 }

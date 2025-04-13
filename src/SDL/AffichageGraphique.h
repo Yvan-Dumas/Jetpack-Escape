@@ -37,7 +37,7 @@ class AffichageGraphique {
       TTF_Font *PS2P;
       SDL_Cursor* curseurPerso;
 
-      SDLSprite im_perso;
+      SDLSprite im_perso1;
       SDLSprite im_perso2;
 
       SDLSprite im_toit;
