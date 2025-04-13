@@ -147,33 +147,13 @@ void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR)
     int x = LARGEUR; // Position x de l'objet (bord droit de l'écran).
     unsigned int largeur; 
     unsigned int longueur;
-    switch (id) {
-        case 1: {// Création d'une pièce
-            largeur = 1; 
-            longueur = 1; 
-            break;}
 
-        case 2: { // Création d'un carburant
-            largeur = 1; // Largeur de l'objet.
-            longueur = 1; // Longeur de l'objet.
-            break;
-            }
-        case 3: { // Création d'une vie
-            largeur = 1; // Largeur de l'objet.
-            longueur = 1; // Longeur de l'objet.
-            break;
-                }
-        default:
-            largeur = 1; 
-            longueur = 1;
-            break;
-    }
     while (!bien_place(x, y, largeur, longueur))
     {
         x = x + 1;
     }
     
-    Objet objet1(id, x, y, largeur, longueur);
+    Objet objet1(id, x, y);
             tabObjets.push_back(objet1);
 }
 

@@ -1,6 +1,6 @@
 /**
  *@file Objet.h
- *@brief Définition de la classe Objet
+ *@brief Définition de la classe Objet du jeu JetpackEscape
  */
 
 #ifndef Objet_h
@@ -8,55 +8,59 @@
 
 /**
   * @class Objet
-  * @brief Classe définissant un objet en fonction de son identifiant et de sa position.
+  * @brief Classe définissant un objet collectable dans le jeu. Un objet est constitué d'un type, et d'un couple de coordonnées.
+  * On gère ici son initialisation, son déplacement, et les collisions avec le personnage.
   */
 class Objet {
   private: 
-    unsigned int idTypeObjet; ///< Identifiant de l'objet.
+    unsigned int idTypeObjet; ///< Identifiant du type de l'objet.
     int x; ///< Position x de l'objet.
     int y; ///< Position y de l'objet.
-    unsigned int largeur; ///< Largeur de l'objet.
-    unsigned int longueur; ///< Hauteur y de l'objet.
 
   public:
     /**
      * @brief Constructeur par défaut de la classe Objet
+     * @param id Identifiant du type d'objet.
+     * @param x Position horizontale de l'objet.
+     * @param y Position verticale de l'objet
      */
-    Objet(unsigned int id, int x, int  y, unsigned int  largeur, unsigned int longueur);
+    Objet(unsigned int id, int x, int  y);
         
     /**
-     * @brief Fonction qui renvoie l'identifiant de l'objet si le personnage est en contact avec l'objet.
-     * @param hauteur int Hauteur du personnage.
+     * @brief Détermine si le personnage entre en collision avec l'objet, et quel est son type
+     * @param hauteur Hauteur actuelle du personnage.
+     * @return L'identifiant de l'objet s'il est en collisio avec le personnage, sinon 100.
      */
     unsigned int collecterObjet(int hauteur) const;
 
     /**
-     * @brief Procédure pour actualiser la position de l'objet.
+     * @brief Procédure pour actualiser la position de l'objet. L'objet est déplacé vers la gauche d'une unité de jeu.
      */
     void mettreAJourPosition();
 
     /**
-     * @brief renvoie la position x de l'objet
+     * @brief Accesseur pour obtenir la position horizontale de l'objet.
+     * @return La position x de l'objet.
      */
     int getX() const;
 
     /**
-     * @brief renvoie la position y de l'objet
+     * @brief Accesseur pour obtenir la position verticale de l'objet.
+     * @return La position y de l'objet.
      */
     int getY() const;
 
     /**
-     * @brief renvoie l'ID de l'objet
+     * @brief Accesseur pour obtenir l'identifiant du type d'objet.
+     * @return L'identifiant de l'objet.
      */
     int getID() const;
     
     /**
-     * @brief Effectue une série de tests sur les méthodes de la classe Objet.
-     * Vérifie le bon fonctionnement de toutes les méthodes et la cohérence des données membres.
+     * @brief Effectue une série de tests sur la classe Objet.
     */
     static void testObjet();
-
-
+    
   };
 
 #endif

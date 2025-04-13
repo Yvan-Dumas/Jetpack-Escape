@@ -21,11 +21,14 @@ unsigned int Personnage::getHauteur() const {
 }
 
 void Personnage::monter(unsigned int HAUTEUR) {
-    if (carburant > 0) {  // Vérifier si on a du carburant
+    if (carburant > 0) {  // Vérifier si le personnage a du carburant
+         // Si la vitesse est négative (chute), on la mets en positive, pour pouvoir monter
         if (velociteY < 0) {
             velociteY = 0.5; 
         }
+        // Si la vitesse verticale n'est pas à son maximum, on l'augmente.
         if (velociteY <= 0.5) {velociteY+= 0.5;} 
+        // Si la montée dépasse la hauteur maximale passée en paramètre, on la limite; sinon, on monte
         if (hauteur + velociteY >= HAUTEUR) {
             hauteur = HAUTEUR;
             velociteY = 1;
@@ -36,20 +39,22 @@ void Personnage::monter(unsigned int HAUTEUR) {
         carburant -= 0.005;  // Consommer du carburant
     }
     else {
-        carburant = 0;
+        carburant = 0; // Pour éviter une valeur négative de carburant.
     }
 }
 
 void Personnage::appliquerGravite() {
     if (hauteur > 0) {
+        // Réduction de la vitesse verticale si elle n'est pas trop grande
         if (velociteY >= -0.5){
-        velociteY -= 0.5; }     // Gravité
+            velociteY -= 0.5; 
+        }
         hauteur += velociteY;}  // Appliquer la vitesse verticale
 
-        // Ne pas tomber sous le sol
-        if (hauteur <= 0) {
-            hauteur = 0;
-            velociteY = 0;
+    // Ne pas tomber sous le sol, y = 0
+    if (hauteur <= 0) {
+        hauteur = 0;
+        velociteY = 0;
         }
     }
 
@@ -79,35 +84,47 @@ void Personnage::setNbVies(unsigned int nb) {
 
 
 void Personnage::testPersonnage() {
-    cout << "Début des test pour Personnage"<<endl ;
+    cout << "Début des tests pour la classe Personnage" << endl;
+
     // Test du constructeur
     Personnage p;
-    // Vérification des valeurs initiales
-    assert(p.getHauteur() == 0 && "Test échoué : La hauteur initiale n'est pas correcte");
-    
-    // Test de la méthode setHauteur
-    p.setHauteur(10);
-    assert(p.getHauteur() == 10 && "Test échoué : La hauteur n'a pas été mise à jour correctement");
-    
-    // Test de la méthode monter
-    // On suppose que la hauteur initiale est 10 et que le carburant est suffisant
-    p.monter(15);
-    p.monter(15);
-    assert(p.getHauteur() > 10 && "Test échoué : La montée n'a pas fonctionné correctement");
+    assert(p.getHauteur() == 0 && "Test échoué : hauteur initiale incorrecte");
 
-    // Test de la méthode appliquerGravite
-    // On applique la gravité et on vérifie la diminution de la hauteur
+    // Test setHauteur / getHauteur
     p.setHauteur(10);
-    p.appliquerGravite(); p.appliquerGravite(); p.appliquerGravite();
-    assert(p.getHauteur() < 10.0 && "Test échoué : La gravité n'a pas fonctionné correctement");
-    
-    // Test de la montée avec un manque de carburant
-    p.setHauteur(0);  // Remise à 0 pour tester l'impact du carburant
+    assert(p.getHauteur() == 10 && "Test échoué : setHauteur n'applique pas la bonne hauteur");
+
+    // Test montée avec carburant
+    p.carburant = 1;
+    p.setHauteur(10);
+    p.monter(15);
+    p.monter(15);
+    assert(p.getHauteur() > 10 && "Test échoué : la montée avec carburant n'a pas fonctionée");
+
+    // Test appliquerGravite
+    p.setHauteur(10);
+    p.appliquerGravite();
+    p.appliquerGravite();
+    p.appliquerGravite();
+    assert(p.getHauteur() < 10 && "Test échoué : la gravité ne s'est pas appliquée");
+
+    // Test montée sans carburant
+    p.setHauteur(0);
     p.carburant = 0;
-    p.monter(10); // Plus de carburant pour la deuxième montée
-    assert(p.getHauteur() == 0 && "Test échoué : Le personnage n'aurait pas dû monter sans carburant");
-    
-    // Si tous les tests passent, on affiche un message de succès
-    cout << "Tous les tests ont réussi !" <<endl;
+    p.monter(10);
+    assert(p.getHauteur() == 0 && "Test échoué : montée sans carburant possible");
 
+    // Test get/set pièces
+    p.setNbPieces(5);
+    assert(p.getNbPieces() == 5 && "Test échoué : get/set NbPieces");
+
+    // Test get/set distance
+    p.setDistance(100);
+    assert(p.getDistance() == 100 && "Test échoué : get/set Distance");
+
+    // Test get/set vies
+    p.setNbVies(2);
+    assert(p.getNbVies() == 2 && "Test échoué : get/set NbVies");
+
+    cout << "Tous les tests ont réussi" << endl;
 }

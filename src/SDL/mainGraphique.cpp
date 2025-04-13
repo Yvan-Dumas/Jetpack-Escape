@@ -103,6 +103,7 @@ int initSDL() {
 }
 
 void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
+
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
@@ -111,6 +112,17 @@ void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font)
 
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
+}
+
+string getRecord(){
+    fstream fichier("../data/sauvegarde.txt", ios::in);
+    if(fichier){
+        string contenu;
+        getline(fichier, contenu);
+        fichier.close();
+        return contenu;
+    }
+    else return "erreur lors du chargement du fichier";
 }
 
 void renderMenu() {
@@ -127,8 +139,8 @@ void renderMenu() {
     SDL_Color blanc = {255, 255, 255, 255};
     SDL_Color jaune = {255, 255, 0, 255};
 
-
-    //renderText(recordTexte.c_str(), 250, 200, jaune, PS2P);
+    string texte = "Record: " + getRecord() + "m";
+    renderText(texte.c_str(), 280, 125, jaune, PS2P);
 
     // Rendu du menu
     for (int i = 0; i < totalOptions; i++) {
@@ -147,9 +159,40 @@ void renderMenu() {
     SDL_RenderPresent(renderer);
 }
 
-void affichageAide(){
-    
+void renderAide(){
+   // Affichage de l'image de fond
+    if (backgroundTexture) {
+        SDL_Rect dst = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+        SDL_RenderCopy(renderer, backgroundTexture, NULL, &dst);
+    } else {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // fond noir
+        SDL_RenderClear(renderer);
+    }
+
+    // Couleur
+    SDL_Color blanc = {255, 255, 255, 255};
+    SDL_Color jaune = {255, 255, 0, 255};
+
+    string texte = "Comment jouer ?";
+    renderText(texte.c_str(), 280, 125, jaune, PS2P);
+
+    // Rendu du menu
+    SDL_Rect dstRect = { 260, 250, 280, 250};
+
+    SDL_Texture* textureToUse = boutonTexture;
+    SDL_RenderCopy(renderer, textureToUse, NULL, &dstRect);
+
+    // Affichage centré des textes sur les boutons
+    string commentjouer = "blablabla";
+    int textLargeur, textHauteur;
+    TTF_SizeText(PS2P, commentjouer.c_str(), &textLargeur, &textHauteur);
+    int textX = dstRect.x + (dstRect.w - textLargeur) / 2;
+    int textY = dstRect.y + (dstRect.h - textHauteur) / 2;
+    renderText(commentjouer.c_str(), textX, textY, blanc, PS2P);
+    SDL_RenderPresent(renderer);
 }
+
+
 
 void cleanUp() {
     if (PS2P) TTF_CloseFont(PS2P);
@@ -169,7 +212,7 @@ int main() {
         return -1;
     }
 
-    int running = 1;
+    bool running = true;
     SDL_Event event;
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -205,15 +248,29 @@ int main() {
                     }
                 }
             }
+            if (selectedOption == 2 && running == false) {
+                bool affichage = true;
+
+                while (affichage){
+                    renderAide();
+                    if (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN) {
+                        int mouseX2, mouseY2;
+                        SDL_GetMouseState(&mouseX2, &mouseY2);
+                            SDL_Rect rectanglecroix = {  260, 250 , 280, 70 };
+                            if (mouseX2 >= rectanglecroix.x && mouseX2 <= rectanglecroix.x + rectanglecroix.w &&
+                                mouseY2 >= rectanglecroix.y && mouseY2 <= rectanglecroix.y + rectanglecroix.h) {
+                                if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+                                    affichage = false;
+                                }
+                        }
+                    }
+                
+                }
+                selectedOption = 0;
+                running = true;
+            }
         }
-/*
-        // Lecture du record via une instance temporaire
-        string recordTexte;
-        {
-            AffichageGraphique temp;
-            recordTexte = "Record: " + temp.getRecord() + "m";
-        }
-*/
+
         renderMenu();
         SDL_Delay(100);
     }
@@ -225,9 +282,6 @@ int main() {
     if (selectedOption == 1) {
         AffichageGraphique aff; // Initialise affichage graphique
         aff.run2Joueurs();
-    }
-    if (selectedOption == 2) {
-        //affichageAide(); 
     }
     cleanUp();
     return 0;

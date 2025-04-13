@@ -1,7 +1,7 @@
 CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o: \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.cpp \
+ /home/hugom/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.cpp \
  /usr/include/stdc-predef.h \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
+ /home/hugom/lifapcd-jetpack-escape/src/SDL/AffichageGraphique.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -312,11 +312,11 @@ CMakeFiles/JetpackEscapeGraphique.dir/src/SDL/AffichageGraphique.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc \
  /usr/include/c++/13/bits/istream.tcc \
  /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/iostream \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/SDL/SDLSprite.h \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Partie.h \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Personnage.h \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Obstacle.h \
- /home/yvan/polytech/S4/lifapcd-jetpack-escape/src/Objet.h \
+ /home/hugom/lifapcd-jetpack-escape/src/SDL/SDLSprite.h \
+ /home/hugom/lifapcd-jetpack-escape/src/Partie.h \
+ /home/hugom/lifapcd-jetpack-escape/src/Personnage.h \
+ /home/hugom/lifapcd-jetpack-escape/src/Obstacle.h \
+ /home/hugom/lifapcd-jetpack-escape/src/Objet.h \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
