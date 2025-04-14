@@ -4,9 +4,12 @@
 
 **JetpackEscape** est un jeu développé en C++ utilisant **SDL2**. Il s'agit d'un jeu de type endless runner proposant un mode **1 joueur** et **2 joueurs** où les joueurs doivent éviter des obstacles et en gérant leur carburant. Une version graphique avec SDL2 est proposée, ou bien une version console. Ce projet a été réalisé dans le cadre de l'UE LIFAPCD.
 
+## Auteurs
+Yvan Dumas et Hugo Marconnet , élèves en deuxième année de Peip à Polytech Lyon
+
 ## Compilation
 
-Le projet utilise **CMake** pour la configuration et la génération des exécutables. Il nécessite les bibliothèques **SDL2**, **SDL2_ttf** et **SDL2_image**. Il est éxécutable uniquement sous Linux.
+Le projet utilise **CMake** pour la configuration et la génération des exécutables. Il nécessite les bibliothèques **SDL2**, **SDL2_ttf** et **SDL2_image**. Il est éxécutable uniquement sous Linux ou WSL.
 
 ### Prérequis
 
@@ -29,19 +32,25 @@ sudo apt install build-essential cmake libsdl2-dev libsdl2-ttf-dev libsdl2-image
 
 ### Étapes de compilation
 
-1. Allez dans le dossier de build:
- En vous plaçant à la racine du projet
+1. Téléchargez le projet:
+Ouvrez un terminal la où vous souhaitez télécharger le projet, puis entrez la commande suivante:
+```bash
+git clone https://forge.univ-lyon1.fr/p2308033/lifapcd-jetpack-escape.git
+```
+
+2. Allez dans le dossier de build:
+En vous plaçant à la racine du projet
 ```bash
 cd bin
 ```
 
-2. Générez les fichiers de build avec CMake :
+3. Générez les fichiers de build avec CMake :
 
 ```bash
 cmake ..
 ```
 
-3. Compilez le projet :
+4. Compilez le projet :
 
 ```bash
 make
@@ -65,36 +74,12 @@ Lancez-les avec, par exemple :
 
 ---
 
-## Exécution
-
-Pour jouer au jeu, exécutez l'un des exécutables suivants dans le terminal :
-
-1. **JetpackEscapeConsole** : Lance la version console du jeu.
-2. **JetpackEscapeGraphique** : Lance la version graphique utilisant **SDL2**.
-3. **JetpackEscapeReg** : Lance le mode test de régression.
-
-### Mode 1 joueur :
-- Sélectionnez l'option pour jouer en mode solo.
-- Utilisez les touches **haut/bas/gauche/droite** pour contrôler le personnage.
-- Essayez d'éviter les obstacles et de récupérer des objets pour améliorer votre score et vos chances de survie.
-
-### Mode 2 joueurs :
-- Choisissez le mode multijoueur et contrôlez votre personnage avec **ZQSD** (joueur 1) et **flèches directionnelles** (joueur 2).
-- Le but est d’échapper aux obstacles tout en interagissant avec l’autre joueur.
-
----
-
 ## Contrôles
 
-### Version Console (`JetpackEscapeConsole`):
-- **Flèches directionnelles** : Déplacer le personnage
-- **Espace** : Activer le jetpack
-- **Entrée** : Démarrer une nouvelle partie
-
-### Version Graphique (`JetpackEscapeGraphique`):
-- **Flèches directionnelles** : Déplacer le personnage
-- **Espace** : Activer le jetpack
-- **P** : Mettre en pause le jeu
+- **Z** : Activer le jetpack du premier joueur, en mode un et deux joueurs.
+- **L** : Activer le jetpack du deuxième joueur, en mode deux joueurs.
+- **Q**: Quitter le jeu en mode graphique ou console.
+- **ECHAP**: Permet également de quitter le jeu en mode graphique.
 
 ---
 
