@@ -99,44 +99,45 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
     mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
     int y = dist(gen); // Position y de l'Obstacle.
-    int x = LARGEUR;// Position x de l'Obstacle.
+    int x = LARGEUR;// Position x de l'Obstacle (à droite de l'écran pour l'initialisation)
     unsigned int largeur; 
     unsigned int longueur;
-
     switch (id) {
-        case 1: {// Création d'un obstacle
+        case 1: // Création d'un obstacle
             largeur = 3; 
             longueur = 1;
-            break; }
-        case 2: {// Création d'un obstacle vertical (échaffaudage)
-            largeur = 1; // Largeur de l'objet.
-            longueur = 3; // Longeur de l'objet.
-            break; }
-        case 3: {// Création d'un obstacle (métro)
-            largeur = 16; // Largeur de l'objet.
-            longueur = 5; // Longeur de l'objet.
-            y = 0;
-            break; }
-        case 4: {// Création d'un rat
+            break;
+        case 2: // Création d'un obstacle vertical (échaffaudage)
+            largeur = 1; 
+            longueur = 3;
+            break; 
+        case 3: // Création d'un métro (1ère variation)
+            largeur = 16;
+            longueur = 5;
+            y = 0; // le métro est au sol
+            break; 
+        case 4: // Création d'un rat
             largeur = 1;
             longueur = 1;
-            y = 0;
-            break; }
+            y = 0; // le rat est au sol
+            break;
+        case 5: // Création d'un métro (2ème variation)
+            largeur = 16;
+            longueur = 5;
+            y = 0; // le métro est au sol
+            break;
         default:
             largeur = 1; 
             longueur = 1;
             break;
-
     }
     if (y >= 0 && y + longueur <= HAUTEUR) { // L'obstacle est bien dans la grille        
     while (!bien_place(x, y, largeur, longueur))
     {
         x = x + 10;
     }
-    
     Obstacle obstacle1(id, x, y, largeur, longueur);
-            tabObstacle.push_back(obstacle1);}
-
+    tabObstacle.push_back(obstacle1);}
 }
 
 void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
@@ -193,57 +194,55 @@ void Partie::actionsClavier2Joueurs(const char touche, unsigned int HAUTEUR) {
 bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         // Réinitialisation des paramètres de la partie
         bool enMarche = true;
+
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if ((rand())%20==0){
         int id = 1;
-        int poids[] = {20, 20, 50, 20, 10, 20, 7}; // Poids associés
+        int poids[] = {20, 20, 50, 20, 10, 20, 7 ,50}; // Poids associés
         int taille = sizeof(poids) / sizeof(poids[0]);
-
         // Calcul de la somme des poids
         int sommePoids = 0;
         for (int i = 0; i < taille; i++) {
             sommePoids += poids[i];
         }
-        
         // Tirage aléatoire d'un nombre entre 1 et sommePoids
         int tirage = (rand() % sommePoids) + 1;
-
         int i = 0;
         int cumul = 0;
-        do  {
+        do {
             i++ ;
             cumul = cumul + poids [i-1] ;
         } while(tirage > cumul);
         
         switch (i) {
-            case 1: {// Création d'une obstacle de base
+            case 1: // Création d'une obstacle de base
                 generationObstacle(1,HAUTEUR, LARGEUR);
-                break;}
+                break;
     
-            case 2: { // Création d'un échaffaudage
+            case 2:  // Création d'un échaffaudage
                 generationObstacle(2,HAUTEUR, LARGEUR);
                 break;
-                }
-            case 3: { // Création d'un métro
+                
+            case 3: // Création d'un métro (1ère variation)
                 generationObstacle(3,HAUTEUR, LARGEUR);
                 break;
-                    }
-            case 4: {// Création d'une pièce
+                    
+            case 4: // Création d'une pièce
                 generationObjet(1,HAUTEUR, LARGEUR);
-                break;}
+                break;
     
-            case 5: { // Création d'un carburant
+            case 5: // Création d'un carburant
                 generationObjet(2,HAUTEUR, LARGEUR);
                 break;
-                }
-            case 6: { // Création d'une vie
+            case 6: // Création d'une vie
                 generationObjet(3,HAUTEUR, LARGEUR);
                 break;
-                    }
-            case 7: { // Création d'un rat 
+            case 7: // Création d'un rat 
                 generationObstacle(4, HAUTEUR, LARGEUR);
                 break;
-            }
+            case 8: // Création d'un métro (2ème variation)
+                generationObstacle(5, HAUTEUR, LARGEUR); 
+                break;
             default:
                 break;
         }

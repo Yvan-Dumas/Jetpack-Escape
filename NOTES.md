@@ -2,7 +2,6 @@
 
 -revoir proba apparition
 -afficher mode 2 joueurs
--son
 -affichage adaptatif ?
 -diagramme des classes (sdl sprite ?)
 -cahier des charges ?
@@ -16,6 +15,7 @@
 Questions au prof:
 - affichage adaptatif ?
 - faut il refaire le cahier des charges ?
+-diagramme des classes (sdl sprite ?)
 
 
 

@@ -73,6 +73,7 @@ class AffichageGraphique {
     ~AffichageGraphique(); ///< Le destructeur de AffichageGraphique
 
     void affichage(); ///< La procédure qui gère tout l'affichage
+    void afficherObstacleGrandeImage(SDL_Renderer* renderer, const SDLSprite& im_metro, int obsX, int obsY, int obsLargeur, int obsLongueur);
     void afficherGameOver(); ///<La procédure qui affiche un message en fin de partie
     void run(); ///< La procédure qui gère tout le jeu
     void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font); ///< Procédure pour afficher du texte
