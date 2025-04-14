@@ -113,8 +113,8 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
             longueur = 3; // Longeur de l'objet.
             break; }
         case 3: {// Création d'un obstacle (métro)
-            largeur = 20; // Largeur de l'objet.
-            longueur = 3; // Longeur de l'objet.
+            largeur = 16; // Largeur de l'objet.
+            longueur = 5; // Longeur de l'objet.
             y = 0;
             break; }
         case 4: {// Création d'un rat
@@ -196,7 +196,7 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
         // Génération aléatoire d'obstacles et d'objets à certains intervalles
         if ((rand())%20==0){
         int id = 1;
-        int poids[] = {20, 20, 2, 20, 10, 20, 7}; // Poids associés
+        int poids[] = {20, 20, 50, 20, 10, 20, 7}; // Poids associés
         int taille = sizeof(poids) / sizeof(poids[0]);
 
         // Calcul de la somme des poids
@@ -432,8 +432,8 @@ const Personnage& Partie::getPerso2() const {
 }
 
 bool Partie::acheterVieSiPossible() {
-    if (perso1.getNbPieces() >= 1 && perso1.getNbVies() < 4) {
-        perso1.setNbPieces(perso1.getNbPieces() - 1);
+    if (perso1.getNbPieces() >= 10 && perso1.getNbVies() < 4) {
+        perso1.setNbPieces(perso1.getNbPieces() - 10);
         perso1.setNbVies(perso1.getNbVies() + 1);
         return true;
     }
