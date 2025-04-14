@@ -12,10 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_ttf REQUIRED)  # Recherche de SDL2_ttf
 find_package(SDL2_image REQUIRED) # Recherche de SDL2_image
-find_package(SDL2_mixer REQUIRED) # Recherche de SDL2_mixer
 
 # Inclusion des fichiers d'en-tête
-include_directories(src ${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS})
+include_directories(src ${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
 # Ajout des fichiers sources
 set(SOURCESCONSOLE
@@ -54,6 +53,6 @@ add_executable(JetpackEscapeReg ${SOURCESREGRESSION})
 # Inclusion des fichiers d'en-tête
 include_directories(src)
 
-# Lier les bibliothèques SDL2, SDL2_ttf, SDL2_image et SDL2_mixer pour graphique
-target_link_libraries(JetpackEscapeGraphique SDL2::SDL2 SDL2_ttf::SDL2_ttf SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer)
+# Lier les bibliothèques SDL2, SDL2_ttf, SDL2_image pour version graphique
+target_link_libraries(JetpackEscapeGraphique SDL2::SDL2 SDL2_ttf::SDL2_ttf SDL2_image::SDL2_image)
 

@@ -1,7 +1,6 @@
 # LIFAPCD - jetpack escape
 
 -revoir proba apparition
--Test regression ne fonctionne plus (objet)
 -afficher mode 2 joueurs
 -son
 -affichage adaptatif ?
@@ -12,11 +11,11 @@
 -Pièces récoltées game over ?
 - mode 2 joueurs bug
 - affichage console bug
- - README
 
 
 Questions au prof:
 - affichage adaptatif ?
+- faut il refaire le cahier des charges ?
 
 
 

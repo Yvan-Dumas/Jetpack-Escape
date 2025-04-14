@@ -1,1 +1,158 @@
-# LIFAPCD - jetpack escape
+# LIFAPCD - JetpackEscape
+
+## Description
+
+**JetpackEscape** est un jeu développé en C++ utilisant **SDL2**. Il s'agit d'un jeu de type endless runner proposant un mode **1 joueur** et **2 joueurs** où les joueurs doivent éviter des obstacles et en gérant leur carburant. Une version graphique avec SDL2 est proposée, ou bien une version console. Ce projet a été réalisé dans le cadre de l'UE LIFAPCD.
+
+## Compilation
+
+Le projet utilise **CMake** pour la configuration et la génération des exécutables. Il nécessite les bibliothèques **SDL2**, **SDL2_ttf** et **SDL2_image**. Il est éxécutable uniquement sous Linux.
+
+### Prérequis
+
+Assurez-vous d’avoir installé les éléments suivants :
+
+- Un compilateur C++ compatible C++17
+- CMake ≥ 3.10
+- SDL2
+- SDL2_ttf
+- SDL2_image
+
+Pour la version graphique, un écran 1920 * 1080 est nécéssaire.
+
+Sous Linux, vous pouvez installer les dépendances avec :
+
+```bash
+sudo apt update
+sudo apt install build-essential cmake libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+```
+
+### Étapes de compilation
+
+1. Allez dans le dossier de build:
+ En vous plaçant à la racine du projet
+```bash
+cd bin
+```
+
+2. Générez les fichiers de build avec CMake :
+
+```bash
+cmake ..
+```
+
+3. Compilez le projet :
+
+```bash
+make
+```
+
+### Exécutables générés
+
+Après compilation, vous obtiendrez trois exécutables dans le dossier `bin` :
+
+- `JetpackEscapeConsole` — version console (la bibliothèque winTXT est utilisé, le code est intégré au `src` )
+- `JetpackEscapeGraphique` — version graphique avec SDL2
+- `JetpackEscapeReg` — éxécutable des tests de régression
+
+Lancez-les avec, par exemple :
+
+```bash
+./JetpackEscapeConsole
+./JetpackEscapeGraphique
+./JetpackEscapeReg
+```
+
+---
+
+## Exécution
+
+Pour jouer au jeu, exécutez l'un des exécutables suivants dans le terminal :
+
+1. **JetpackEscapeConsole** : Lance la version console du jeu.
+2. **JetpackEscapeGraphique** : Lance la version graphique utilisant **SDL2**.
+3. **JetpackEscapeReg** : Lance le mode test de régression.
+
+### Mode 1 joueur :
+- Sélectionnez l'option pour jouer en mode solo.
+- Utilisez les touches **haut/bas/gauche/droite** pour contrôler le personnage.
+- Essayez d'éviter les obstacles et de récupérer des objets pour améliorer votre score et vos chances de survie.
+
+### Mode 2 joueurs :
+- Choisissez le mode multijoueur et contrôlez votre personnage avec **ZQSD** (joueur 1) et **flèches directionnelles** (joueur 2).
+- Le but est d’échapper aux obstacles tout en interagissant avec l’autre joueur.
+
+---
+
+## Contrôles
+
+### Version Console (`JetpackEscapeConsole`):
+- **Flèches directionnelles** : Déplacer le personnage
+- **Espace** : Activer le jetpack
+- **Entrée** : Démarrer une nouvelle partie
+
+### Version Graphique (`JetpackEscapeGraphique`):
+- **Flèches directionnelles** : Déplacer le personnage
+- **Espace** : Activer le jetpack
+- **P** : Mettre en pause le jeu
+
+---
+
+## Documentation
+
+La documentation du projet est générée automatiquement grâce à doxygen.
+
+
+1. Assurez-vous d’avoir installé doxygen:
+Sous Linux, vous pouvez installer doxygen avec :
+```bash
+sudo apt update
+sudo apt install doxygen
+```
+
+2. Générez la documentation:
+En vous plaçant à la racine du projet
+```bash
+doxygen doc/doxyfile
+```
+
+3. Accéder à la documenation
+```bash
+cd doc/html
+xdg-open index.html
+```
+
+---
+
+## Architecture du code:
+Pour plus d'informations, se reporter à la documentation doxygen.
+
+- **`src/`** : Contient le code source du projet.
+  - **`src/Personnage.cpp`** : Gestion du personnage.
+  - **`src/Obstacle.cpp`** : Gestion des obstacles dans le jeu.
+  - **`src/Objet.cpp`** : Gestion des objets récupérables dans le jeu.
+  - **`src/Partie.cpp`** : Gestion de la logique de la partie.
+  - **`src/WinTxt.cpp`** : Bibliothèque utilisée pour la version console.
+  - **`src/AffichageConsole.cpp`** : Gestion du rendu de la partie dans la version console.
+  - **`src/mainConsole.cpp`** : Fonction principale pour la version console.  
+  - **`src/mainRegression.cpp`** : Appele les différents tests de régression.
+  - **`src/SDL/`** : Contient les programmes utilisées pour la version graphique.
+    - **`src/mainGraphique.cpp`** : Fonction principale pour la version graphique.
+    - **`src/SDL/AffichageGraphique.cpp`** : Rendu graphique de la partie avec SDL.
+    - **`src/SDL/SDLSprite.cpp`** : Gestion des sprites en SDL2.
+
+- **`bin/`** : Dossier de compilation contenant les exécutables du jeu.
+
+- **`data/`** : Dossier contenant différents fichiers nécéssaires au bon fonctionnement du jeu.
+  - **`data/images/`** : Contient les images utilisées dans la version graphique.
+  - **`data/polices/`** : Contient les polices utilisées dans la version graphique.
+  - **`data/sauvegarde.txt`** : Fichier où est sauvegardé le meilleur score du jeu.
+
+- **`doc/`** : Dossier de documentation.
+  - **`doc/doxyfile`** : Fichier de configuration de doxyfile.
+
+- **`CMakeLists.txt`** : Fichier de configuration de CMake pour compiler le projet.
+- **`README.md`** : Documentation du projet (ce fichier).
+
+---
+
