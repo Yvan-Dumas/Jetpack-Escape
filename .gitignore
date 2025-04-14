@@ -1,0 +1,12 @@
+# Ignorer tout dans le dossier bin/
+bin/
+
+# Sauf le fichier gitkeep pour ne pas avoir a recréer le dossier à chaque fois
+!bin/.gitkeep
+
+
+# Ignorer tout dans le dossier doc/
+doc/*
+
+# Sauf le fichier de configuration Doxygen
+!doc/doxyfile
