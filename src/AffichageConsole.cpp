@@ -69,7 +69,6 @@ void AffichageConsole::afficher(WinTXT &win) {
     }
 
     win.draw();
-
     cout << "Vies : " << perso1.getNbVies() << endl;
     cout << "Carburant : [";
     unsigned int longueurRemplie = ( perso1.carburant * 16) / 3;
@@ -83,7 +82,7 @@ void AffichageConsole::afficher(WinTXT &win) {
     cout << "] " << std::fixed << std::setprecision(2) << perso1.carburant << "L" << "/3L" << endl;
     cout << "Distance parcourue : " << perso1.getDistance() << "m" << endl;
     cout << "Vous avez récolté " << perso1.getNbPieces() << " pièces" <<endl;
-    cout << "Record: " << partie.record << "m" << endl;
+    cout << "Record: " << partie.record << "m" << endl <<endl;
 }
 
 void AffichageConsole::run() {
@@ -92,9 +91,13 @@ void AffichageConsole::run() {
     int c;
     bool ok;
     window.clear();
+    int compteur = 0;
     do 
     {       
-        ok = partie.actionsAutomatiques(HAUTEUR, LARGEUR);
+        if (compteur % 2 == 0) {
+            ok = partie.actionsAutomatiques(HAUTEUR, LARGEUR);
+        }
+        compteur++;
 
         c = window.getCh();
 
@@ -245,9 +248,14 @@ void AffichageConsole::run2Joueurs() {
     int c;
     bool ok;
     window.clear();
+    int compteur = 0 ;
     do 
-    {       
-        ok = partie.actionsAutomatiques2Joueurs(HAUTEUR, LARGEUR);
+    {   
+        if (compteur % 2 == 0) {
+            ok = partie.actionsAutomatiques2Joueurs(HAUTEUR, LARGEUR);
+        }
+
+        compteur++;       
 
         c = window.getCh();
 

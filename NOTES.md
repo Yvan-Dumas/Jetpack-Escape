@@ -9,13 +9,17 @@
 -initialisation variables affGraph dans le constructeur ?
 -Pièces récoltées game over ?
 - mode 2 joueurs bug
-- affichage console bug
 
+-valgrind version finale
+
+- affichage console bug !!
+car durée d'appel à la fonction de montée (récupération des touches) trop lent par rapport à actionsAutomatiques (-->gravité)
+ 
 
 Questions au prof:
 - affichage adaptatif ?
 - faut il refaire le cahier des charges ?
--diagramme des classes (sdl sprite ?)
+- diagramme des classes (sdl sprite ?)
 
 
 
