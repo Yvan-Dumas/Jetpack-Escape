@@ -1,7 +1,7 @@
 #include "AffichageGraphique.h"
 using namespace std;
 
-const int TAILLE_SPRITE = 32;
+const int TAILLE_SPRITE = 32*2;
 const int HAUTEUR = 10;
 const int LARGEUR = 30;
 
