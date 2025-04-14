@@ -9,7 +9,7 @@
 -initialisation variables affGraph dans le constructeur ?
 -Pièces récoltées game over ?
 - mode 2 joueurs bug
-
+-modifier run2Joueurs et actions automatiques2J
 -valgrind version finale
 
 - affichage console bug !!
