@@ -5,7 +5,7 @@
 **JetpackEscape** est un jeu développé en C++ utilisant **SDL2**. Il s'agit d'un jeu de type endless runner proposant un mode **1 joueur** et **2 joueurs** où les joueurs doivent éviter des obstacles et en gérant leur carburant. Une version graphique avec SDL2 est proposée, ou bien une version console. Ce projet a été réalisé dans le cadre de l'UE LIFAPCD.
 
 ## Auteurs
-Yvan Dumas et Hugo Marconnet , élèves en deuxième année de Peip à Polytech Lyon
+Yvan Dumas et Hugo Marconnet, élèves en deuxième année de Peip à Polytech Lyon
 
 ## Compilation
 

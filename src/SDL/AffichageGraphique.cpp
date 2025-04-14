@@ -57,6 +57,8 @@ void AffichageGraphique::init() {
 
     im_obstacle.loadFromFile("../data/images/obstacles/obstacle32.png", renderer);
     im_rat.loadFromFile("../data/images/obstacles/rat32.png", renderer);
+    im_metro1.loadFromFile("../data/images/obstacles/metro132.png", renderer);
+    im_metro2.loadFromFile("../data/images/obstacles/metro32.png", renderer);
 
     im_piece.loadFromFile("../data/images/piece32.png", renderer);
     im_vie.loadFromFile("../data/images/coeur32.png", renderer);
@@ -168,21 +170,37 @@ void AffichageGraphique::affichage() {
         int obsY = obs.getY();
         int obsLargeur = obs.getLargeur();
         int obsLongueur = obs.getLongueur();
-        for (int i = 0; i < obsLargeur; i++) {
-            for (int j = 0; j < obsLongueur; j++) {
-                if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
-                    switch (obs.getID()) {
-                        case 4: 
-                            im_rat.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-                        break;
-                        default:
-                            im_obstacle.draw(renderer, (obsX + i)*TAILLE_SPRITE, (HAUTEUR-(obsY + j))*TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
-                        break;
+    
+        // Cas spécial : métro (ID == 3)
+        if (obs.getID() == 3) {
+            if (obsX >= 0 && obsX < LARGEUR && obsY >= 0 && obsY < HAUTEUR) {
+                im_metro1.draw(renderer, obsX * TAILLE_SPRITE, (HAUTEUR - obsY - obsLongueur + 1) * TAILLE_SPRITE, TAILLE_SPRITE * obsLargeur, TAILLE_SPRITE * obsLongueur);
+            }
+        } else {
+            // Cas général : obstacles normaux ou rats
+            for (int i = 0; i < obsLargeur; i++) {
+                for (int j = 0; j < obsLongueur; j++) {
+                    if (obsX + i >= 0 && obsX + i < LARGEUR && obsY + j >= 0 && obsY + j < HAUTEUR) {
+                        switch (obs.getID()) {
+                            case 4:
+                                im_rat.draw(renderer,
+                                            (obsX + i) * TAILLE_SPRITE,
+                                            (HAUTEUR - (obsY + j)) * TAILLE_SPRITE,
+                                            TAILLE_SPRITE, TAILLE_SPRITE);
+                                break;
+                            default:
+                                im_obstacle.draw(renderer,
+                                                 (obsX + i) * TAILLE_SPRITE,
+                                                 (HAUTEUR - (obsY + j)) * TAILLE_SPRITE,
+                                                 TAILLE_SPRITE, TAILLE_SPRITE);
+                                break;
+                        }
                     }
                 }
             }
         }
     }
+
 
     //Placement des objets
     for (const Objet& obj : partie.getObjets()) {

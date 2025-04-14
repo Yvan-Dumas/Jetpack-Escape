@@ -46,6 +46,8 @@ class AffichageGraphique {
 
       SDLSprite im_obstacle;
       SDLSprite im_rat;
+      SDLSprite im_metro1;
+      SDLSprite im_metro2;
 
       SDLSprite im_piece;
       SDLSprite im_vie;
