@@ -5,13 +5,12 @@ using namespace std;
 const int HAUTEUR = 10;
 const int LARGEUR = 100;
 
-AffichageConsole::AffichageConsole() {}
 
-string AffichageConsole::getRecord(){
+string AffichageConsole::getRecord() const{
     return partie.record;
 }
 
-void AffichageConsole::afficher(WinTXT &win) {
+void AffichageConsole::afficher(WinTXT &win) const{
     win.clear();
     const Personnage& perso1 = partie.getPerso1();
 
@@ -140,7 +139,7 @@ void AffichageConsole::run() {
     }
 }
 
-void AffichageConsole::afficher2Joueurs(WinTXT &win) {
+void AffichageConsole::afficher2Joueurs(WinTXT &win) const{
     win.clear();
     const Personnage& perso1 = partie.getPerso1();
     const Personnage& perso2 = partie.getPerso2();

@@ -29,7 +29,7 @@ class Objet {
     /**
      * @brief Détermine si le personnage entre en collision avec l'objet, et quel est son type
      * @param hauteur Hauteur actuelle du personnage.
-     * @return L'identifiant de l'objet s'il est en collisio avec le personnage, sinon 100.
+     * @return L'identifiant de l'objet s'il est en collision avec le personnage, sinon 100.
      */
     unsigned int collecterObjet(int hauteur) const;
 

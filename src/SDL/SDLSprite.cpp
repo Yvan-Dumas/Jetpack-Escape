@@ -18,6 +18,12 @@ SDLSprite::~SDLSprite()
     m_hasChanged = false;
 }
 
+SDL_Texture* SDLSprite::getTexture() const { 
+    return m_texture; }
+
+void SDLSprite::setSurface(SDL_Surface *surf)  { 
+    if (m_surface!=nullptr) SDL_FreeSurface(m_surface); m_surface = surf; }
+
 void SDLSprite::loadFromFile(const char *filename, SDL_Renderer *renderer)
 {
     m_surface = IMG_Load(filename);

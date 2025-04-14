@@ -32,7 +32,7 @@ class Personnage {
 
     /**
      * @brief Constructeur par défaut de la classe Personnage
-     * Initialise la position Y (la position X est implicite car constante), le carburant, et la vitesse verticale.
+     * @details Initialise la position Y (la position X est implicite car constante), le carburant, et la vitesse verticale.
      */
     Personnage();
 
@@ -51,13 +51,13 @@ class Personnage {
     /**
      * @brief Fonction pour le déplacement vertical du personnage.
      * @param HAUTEUR hauteur maximale (hauteur du toit).
-     * On donne la hauteur maximale en paramètres car on peut avoir à envisager de la changer.
+     * @details On donne la hauteur maximale en paramètres car on peut avoir à envisager de la changer.
      */
     void monter(unsigned int HAUTEUR);
 
     /**
      * @brief Applique la gravité au personnage.
-     * On applique une constante négative à la vélocité verticale du personnage en prennant
+     * @details On applique une constante négative à la vélocité verticale du personnage en prennant
      * en compte sa position Y, que l'on modifie ensuite.
      */
     void appliquerGravite();

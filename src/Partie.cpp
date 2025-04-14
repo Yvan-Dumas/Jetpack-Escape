@@ -8,20 +8,23 @@
 using namespace std;
 
 Partie::Partie() {
+    //Initalisation du personnage 1
     perso1.setDistance(0);
-    perso1.setNbPieces(0);
     perso1.setNbPieces(0);
     perso1.setNbVies(3);
 
+    //Initialisation du personnage 2
+    //Il est initialisé même en mode 1 joueur, mais on ne l'utilise par la suite qu'en mode 2 joueurs.
     perso2.setDistance(0);
     perso2.setNbPieces(0);
-    perso2.setNbPieces(0);
     perso2.setNbVies(3);
+
+    piecesEnVie = false;
 
     record = chargerFichier();
 }
 
-void Partie::sauvegarderFichier(string contenu) {
+void Partie::sauvegarderFichier(const string& contenu) const {
     ofstream fichier("../data/sauvegarde.txt", ios::out | ios::trunc);
     if(fichier){
         fichier << contenu;
@@ -30,7 +33,7 @@ void Partie::sauvegarderFichier(string contenu) {
     else cout << "impossible d'ouvrir le fichier !";
 }
 
-string Partie::chargerFichier() {
+string Partie::chargerFichier() const {
     fstream fichier("../data/sauvegarde.txt", ios::in);
     if(fichier){
         string contenu;
@@ -42,7 +45,7 @@ string Partie::chargerFichier() {
 }
 
 void Partie::ajouterCarburant(Personnage & perso){
-    if (perso.carburant < 3) {
+    if (perso.carburant < 3) { //Si moins de 3L on ajoute 1L, sinon on mets au max=3L
         perso.carburant = perso.carburant + 1;
         if (perso.carburant > 3) perso.carburant = 3;
     }
@@ -64,26 +67,29 @@ void Partie::utiliserObjet(Personnage & perso,unsigned int id) {
         case 2: // Pour du carburant
             ajouterCarburant(perso);
             break;
-        case 3: // Pour une vie, incrémente de 1
+        case 3: // Pour une vie, incrémente de 1 le nombres de vies du personnage.
             if (perso.getNbVies()<4) {
                 perso.setNbVies(perso.getNbVies()+1); 
             }
+            break;
         default:
             break;
     }
 }
 
-bool Partie::bien_place(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
+bool Partie::estBienPlace(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
+    
+    //Fonction interne a estBienPlace pour verifier la superposition
     auto superpose = [](int x1, int y1, int w1, int h1,
         int x2, int y2, int w2, int h2) {
     return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2 || y2 + h2 <= y1);
     };
-    
+    //On vérifie avec l'ensemble des objets générés
     for (const auto& obj : tabObjets) {
         if (superpose(x, y, largeur, longueur, obj.getX(), obj.getY(), 1, 1)) {
         return false;
     }}
-
+    //Et avec l'ensemble des obstacles générés
     for (const auto& obs : tabObstacle) {
         if (superpose(x-1, y-1, largeur+2, longueur+2, 
                   obs.getX() - 1, obs.getY() - 1, 
@@ -132,9 +138,10 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
             break;
     }
     if (y >= 0 && y + longueur <= HAUTEUR) { // L'obstacle est bien dans la grille        
-    while (!bien_place(x, y, largeur, longueur))
+    
+    while (!estBienPlace(x, y, largeur, longueur))
     {
-        x = x + 10;
+        x = x + 10; // Tant que l'obstacle n'est pas bien placé, on le décale sur la droite jusqu'à qu'il y ait de la place.
     }
     Obstacle obstacle1(id, x, y, largeur, longueur);
     tabObstacle.push_back(obstacle1);}
@@ -146,16 +153,16 @@ void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR)
     uniform_int_distribution<int> dist(0, HAUTEUR - 1);
     int y = dist(gen); // Position y de l'objet.
     int x = LARGEUR; // Position x de l'objet (bord droit de l'écran).
-    unsigned int largeur; 
-    unsigned int longueur;
+    unsigned int largeur = 1; 
+    unsigned int longueur = 1;
 
-    while (!bien_place(x, y, largeur, longueur))
+    while (!estBienPlace(x, y, largeur, longueur))
     {
-        x = x + 1;
+        x = x + 1; // Tant que l'objet n'est pas bien placé, on le décale sur la droite jusqu'à qu'il y ait de la place.
     }
     
     Objet objet1(id, x, y);
-            tabObjets.push_back(objet1);
+    tabObjets.push_back(objet1);
 }
 
 const vector<Obstacle>& Partie::getObstacles() const {
@@ -165,6 +172,29 @@ const vector<Obstacle>& Partie::getObstacles() const {
 const vector<Objet>& Partie::getObjets() const{
     return tabObjets;
 }
+
+const Personnage& Partie::getPerso1() const {
+    return perso1;
+}
+
+const Personnage& Partie::getPerso2() const {
+    return perso2;
+}
+
+bool Partie::acheterVieSiPossible() {
+    if (perso1.getNbPieces() >= 10 && perso1.getNbVies() < 4) {
+        perso1.setNbPieces(perso1.getNbPieces() - 10);
+        perso1.setNbVies(perso1.getNbVies() + 1);
+        return true;
+    }
+    if (perso2.getNbPieces() >= 10 && perso2.getNbVies() < 4) {
+        perso2.setNbPieces(perso2.getNbPieces() - 10);
+        perso2.setNbVies(perso2.getNbVies() + 1);
+        return true;
+    }
+    return false;
+}
+
 
 void Partie::actionsClavier(const char touche, unsigned int HAUTEUR) {
     switch (touche)
@@ -192,11 +222,9 @@ void Partie::actionsClavier2Joueurs(const char touche, unsigned int HAUTEUR) {
 }
 
 bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
-        // Réinitialisation des paramètres de la partie
-        bool enMarche = true;
-
-        // Génération aléatoire d'obstacles et d'objets à certains intervalles
-        if ((rand())%20==0){
+    bool enMarche = true; 
+    // Génération pseudo-aléatoire d'obstacles et d'objets à certains intervalles
+    if ((rand())%20==0){
         int id = 1;
         int poids[] = {20, 20, 10, 20, 10, 20, 7 ,10}; // Poids associés
         int taille = sizeof(poids) / sizeof(poids[0]);
@@ -252,36 +280,44 @@ bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
     perso1.setDistance(perso1.getDistance()+1);
     perso1.appliquerGravite();
 
-        // Vérification des collisions avec obstacles
-        for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
-            obstacle->mettreAJourPosition();
-            if (obstacle->getX()+obstacle->getLargeur() <= 0) {
+    // Vérification des collisions avec obstacles
+    for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
+        obstacle->mettreAJourPosition();
+        if (obstacle->getX()+obstacle->getLargeur() <= 0) {
                 obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle s'il sort de l'écran
-            } else if (obstacle->collisionObstacle(perso1.getHauteur())) {
-                perso1.setNbVies(perso1.getNbVies()-1);
-                if (perso1.getNbVies() <= 0) {
-                    enMarche = false;
-                    break;
-                }
-                obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle après collision
-            } else {
+            } 
+        else if (obstacle->collisionObstacle(perso1.getHauteur())) {
+            perso1.setNbVies(perso1.getNbVies()-1);
+            if (perso1.getNbVies() <= 0) {
+                enMarche = false;
+                break;
+            }
+            obstacle = tabObstacle.erase(obstacle); // Supprime l'obstacle après collision
+            } 
+            else {
                 ++obstacle;
             }
         }
 
-        // Vérification des objets ramassés
-        for (auto it = tabObjets.begin(); it != tabObjets.end();) {
-            it->mettreAJourPosition();
-            unsigned int identifiant = it->collecterObjet(perso1.getHauteur());
-            if (it->getX() <= 0) {
-                it = tabObjets.erase(it); // Supprime l'objet s'il sort de l'écran
-            } else if (identifiant !=100) {
-                utiliserObjet(perso1, identifiant); 
-                it = tabObjets.erase(it); // Supprime l'objet après collecte
-            } else {
-                ++it;
+    // Vérification des objets ramassés
+    for (auto it = tabObjets.begin(); it != tabObjets.end();) {
+        it->mettreAJourPosition();
+        unsigned int identifiant = it->collecterObjet(perso1.getHauteur());
+        if (it->getX() <= 0) {
+            it = tabObjets.erase(it); // Supprime l'objet s'il sort de l'écran
+            } 
+        else if (identifiant !=100) {
+            utiliserObjet(perso1, identifiant); 
+            it = tabObjets.erase(it); // Supprime l'objet après collecte
+            } 
+        else {
+            ++it;
             }
         }
+
+    if (acheterVieSiPossible()){
+        piecesEnVie = true;
+    }
     return enMarche ;
 }
 
@@ -290,9 +326,9 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
     bool enMarche = true;
     // Génération aléatoire d'obstacles et d'objets à certains intervalles
     if ((rand())%20==0){
-    int id = 1;
-    int poids[] = {20, 20, 2, 20, 10, 5}; // Poids associés
-    int taille = sizeof(poids) / sizeof(poids[0]);
+        int id = 1;
+        int poids[] = {20, 20, 2, 20, 10, 5}; // Poids associés
+        int taille = sizeof(poids) / sizeof(poids[0]);
 
     // Calcul de la somme des poids
     int sommePoids = 0;
@@ -419,59 +455,57 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
     perso2.setDistance(perso2.getDistance()+1);
     perso1.appliquerGravite();
     perso2.appliquerGravite();
-return enMarche ;
-}
 
-const Personnage& Partie::getPerso1() const {
-    return perso1;
-}
-
-const Personnage& Partie::getPerso2() const {
-    return perso2;
-}
-
-bool Partie::acheterVieSiPossible() {
-    if (perso1.getNbPieces() >= 10 && perso1.getNbVies() < 4) {
-        perso1.setNbPieces(perso1.getNbPieces() - 10);
-        perso1.setNbVies(perso1.getNbVies() + 1);
-        return true;
+    if (acheterVieSiPossible()){
+        piecesEnVie = true;
     }
-    if (perso2.getNbPieces() >= 10 && perso2.getNbVies() < 4) {
-        perso2.setNbPieces(perso2.getNbPieces() - 10);
-        perso2.setNbVies(perso2.getNbVies() + 1);
-        return true;
-    }
-    return false;
+
+    return enMarche ;
 }
+
 
 
 void Partie::testPartie() {
-    /*
-    cout<<"Début des tests pour Partie"<<endl;
-    // Initialisation de la partie
+    cout << "Début des tests pour Partie" << endl;
     Partie partie;
-    
-    // Vérification des paramètres initiaux
-    assert(partie.getHauteurPerso(perso1) == 0 && "Test échoué : La hauteur initiale du personnage n'est pas correcte");
-    assert(partie.getCarburant() == 5 && "Test échoué : Le carburant initial n'est pas correct");
-    assert(partie.getObstacles().empty() && "Test échoué : Il ne devrait y avoir aucun obstacle au début");
-    assert(partie.getObjets().empty() && "Test échoué : Il ne devrait y avoir aucun objet au début");
 
-    // Test de l'ajout d'un carburant
-    partie.ajouterCarburant();
-    assert(partie.getCarburant() == 5 && "Test échoué : Le carburant ne doit pas dépasser 5");
+    // Test valeurs initiales des personnages
+    assert(partie.getPerso1().getNbVies() == 3 && "Erreur : perso1 doit commencer avec 3 vies.");
+    assert(partie.getPerso1().getNbPieces() == 0 && "Erreur : perso1 doit commencer avec 0 pièce.");
+    assert(partie.getPerso1().getDistance() == 0 && "Erreur : perso1 doit commencer avec 0 de distance.");
+    assert(partie.getPerso2().getNbVies() == 3 && "Erreur : perso2 doit commencer avec 3 vies.");
+    assert(partie.getPerso2().getNbPieces() == 0 && "Erreur : perso2 doit commencer avec 0 pièce.");
+    assert(partie.getPerso2().getDistance() == 0 && "Erreur : perso2 doit commencer avec 0 de distance.");
 
-    // Test de la mise à jour des obstacles et objets
-    unsigned int initialObstacleSize = partie.getObstacles().size();
-    unsigned int initialObjetSize = partie.getObjets().size();
+    // Test ajout de pièce
+    partie.ajouterPiece(partie.perso1);
+    assert(partie.getPerso1().getNbPieces() == 1 && "Erreur : perso1 doit avoir 1 pièce après ajout.");
 
-    // Test de la fonction actionsAutomatiques
-    bool enMarche = partie.actionsAutomatiques(100, 50);
-    assert(enMarche && "Test échoué : La partie ne devrait pas être terminée après une action automatique");
-    assert(partie.getObstacles().size() == initialObstacleSize && "Test échoué : Le nombre d'obstacles n'a pas été mis à jour correctement");
-    assert(partie.getObjets().size() == initialObjetSize && "Test échoué : Le nombre d'objets n'a pas été mis à jour correctement");
+    // Test ajout de distance
+    partie.ajouterDistance(partie.perso1);
+    assert(partie.getPerso1().getDistance() == 1 && "Erreur : perso1 doit avoir 1 de distance après ajout.");
 
-    // Si tous les tests passent, on affiche un message de succès
-    cout << "Tous les tests ont réussi !" << endl;
-*/
+    // Test ajout de carburant
+    partie.perso1.carburant = 1;
+    partie.ajouterCarburant(partie.perso1); // -> 2
+    assert(partie.perso1.carburant == 2 && "Erreur : le carburant devrait être 2.");
+    partie.ajouterCarburant(partie.perso1); // -> 3
+    assert(partie.perso1.carburant == 3 && "Erreur : le carburant devrait être 3.");
+    partie.ajouterCarburant(partie.perso1); // reste à 3
+    assert(partie.perso1.carburant == 3 && "Erreur : le carburant ne doit pas dépasser 3.");
+
+    // Test utilisation d’un objet (type 1 = pièce)
+    unsigned int nbPiecesAvant = partie.getPerso1().getNbPieces();
+    partie.utiliserObjet(partie.perso1, 1);
+    assert(partie.getPerso1().getNbPieces() == nbPiecesAvant + 1 && "Erreur : utiliser un objet de type 1 devrait ajouter une pièce.");
+
+    // Test achat de vie
+    partie.perso1.setNbPieces(10);
+    partie.perso1.setNbVies(3);
+    bool achete = partie.acheterVieSiPossible();
+    assert(achete && "Erreur : l'achat de vie aurait dû être possible avec 10 pièces.");
+    assert(partie.getPerso1().getNbVies() == 4 && "Erreur : perso1 devrait avoir 4 vies après l'achat.");
+    assert(partie.getPerso1().getNbPieces() == 0 && "Erreur : perso1 devrait avoir 0 pièce après l'achat.");
+
+    cout << "Tous les tests ont réussi" << endl;
 }

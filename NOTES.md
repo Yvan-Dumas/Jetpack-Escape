@@ -1,6 +1,9 @@
 # LIFAPCD - jetpack escape
 
--revoir proba apparition
+@TODO: revoir proba apparition
+--> trop de vies.
+
+
 -afficher mode 2 joueurs
 -affichage adaptatif ?
 -diagramme des classes (sdl sprite ?)
@@ -10,16 +13,25 @@
 -Pièces récoltées game over ?
 - mode 2 joueurs bug
 -modifier run2Joueurs et actions automatiques2J
+- qu'afficher en version 2 joueurs quand ils sont superposés ?
+
+- bug menu aide
+
+
+@TODO: MODE 2 JOUEUR A METTRE A JOUR
+@TODO: MODE CONSOLE A METTRE A JOUR
+--> ajouter appel à acheter_pieces
+
 -valgrind version finale
 
-- affichage console bug !!
-car durée d'appel à la fonction de montée (récupération des touches) trop lent par rapport à actionsAutomatiques (-->gravité)
  
 
 Questions au prof:
 - affichage adaptatif ?
 - faut il refaire le cahier des charges ?
 - diagramme des classes (sdl sprite ?)
+- ce n'est pas génant de ne pas faire de classe pour les menus
+- test regression sur sdl ? et sur affichage console ?
 
 
 

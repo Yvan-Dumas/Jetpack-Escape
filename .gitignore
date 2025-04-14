@@ -1,5 +1,5 @@
 # Ignorer tout dans le dossier bin/
-bin/
+bin/*
 
 # Sauf le fichier gitkeep pour ne pas avoir a recréer le dossier à chaque fois
 !bin/.gitkeep
@@ -10,3 +10,6 @@ doc/*
 
 # Sauf le fichier de configuration Doxygen
 !doc/doxyfile
+
+#Ignorer tout ce qui est dans le dossier .vscode
+.vscode/

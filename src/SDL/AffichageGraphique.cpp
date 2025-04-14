@@ -293,7 +293,7 @@ void AffichageGraphique::affichage() {
     renderText(texte.c_str(), 1.7*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 190, blanc, VT323);
 
     //Affichage d'un message en cas de conversion pièces en vie.
-    if(piecesEnVie) {
+    if(partie.piecesEnVie) {
         texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
         renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
     }
@@ -376,11 +376,12 @@ void AffichageGraphique::run() {
         offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
         
         // Timer pour l'affichage du message
-        if (partie.acheterVieSiPossible()){
-            piecesEnVie = true;
+        if (partie.piecesEnVie){
             debutMessage = SDL_GetTicks();
         }
-        if (piecesEnVie && SDL_GetTicks()-debutMessage>5000) piecesEnVie = false ; 
+        if (partie.piecesEnVie && SDL_GetTicks()-debutMessage>5000) {
+
+         partie.piecesEnVie = false ; }
 
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
@@ -573,8 +574,8 @@ void AffichageGraphique::affichage2Joueurs() {
 
 
     //Affichage d'un message en cas de conversion pièces en vie. 
-    if(piecesEnVie) {
-        texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
+    if(partie.piecesEnVie) {
+        texte = "Un des joueurs a obtenu une vie en echange de vos 5 pieces";
         renderText(texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
     }
 }
@@ -618,11 +619,11 @@ void AffichageGraphique::run2Joueurs() {
     offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
  
     // Timer pour l'affichage du message
-    if (partie.acheterVieSiPossible()){
-        piecesEnVie = true;
+    if (partie.piecesEnVie){
         debutMessage = SDL_GetTicks();
     }
-    if (piecesEnVie && SDL_GetTicks()-debutMessage>5000) piecesEnVie = false ; 
+    if (partie.piecesEnVie && SDL_GetTicks()-debutMessage>5000) {
+        partie.piecesEnVie = false ; }
 
     SDL_RenderPresent(renderer);
     SDL_Delay(100);

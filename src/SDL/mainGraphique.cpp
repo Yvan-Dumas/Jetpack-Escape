@@ -13,6 +13,7 @@ using namespace std;
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 TTF_Font* PS2P = NULL;
+TTF_Font* PS2Pmini = NULL;
 SDL_Cursor* curseurPerso = nullptr;
 
 SDL_Texture* backgroundTexture = nullptr;
@@ -58,6 +59,14 @@ int initSDL() {
     // Police personnalisée
     PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 18);
     if (PS2P == nullptr)
+    {
+        cout << "Erreur de chargement PS2P.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    PS2Pmini = TTF_OpenFont("../data/polices/PS2P.ttf", 8);
+    if (PS2Pmini == nullptr)
     {
         cout << "Erreur de chargement PS2P.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
         SDL_Quit();
@@ -159,8 +168,9 @@ void renderMenu() {
     SDL_RenderPresent(renderer);
 }
 
-void renderAide(){
-   // Affichage de l'image de fond
+void renderAide() {
+
+    // Affichage de l'image de fond
     if (backgroundTexture) {
         SDL_Rect dst = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_RenderCopy(renderer, backgroundTexture, NULL, &dst);
@@ -173,22 +183,53 @@ void renderAide(){
     SDL_Color blanc = {255, 255, 255, 255};
     SDL_Color jaune = {255, 255, 0, 255};
 
-    string texte = "Comment jouer ?";
-    renderText(texte.c_str(), 280, 125, jaune, PS2P);
+    // Titre
+    string titre = "Comment jouer ?";
+    renderText(titre.c_str(), 280, 125, jaune, PS2P);
 
-    // Rendu du menu
-    SDL_Rect dstRect = { 260, 250, 280, 250};
+    // Texte d’aide
+    string texte =  "Le joueur 1 utilise Z pour voler";
+    string texte2 = "Le joueur 2 utilise L pour voler";
+    string texte3 = "Vous devez eviter les obstacles,";
+    string texte4 = "- le plus longtemps possible";
+    string texte5 = "- sans tomber a cours de carburant,";
+    string texte6 = "- et en ayant toujours une vie.";
 
-    SDL_Texture* textureToUse = boutonTexture;
-    SDL_RenderCopy(renderer, textureToUse, NULL, &dstRect);
+    renderText(texte.c_str(), 245, 300, blanc, PS2Pmini);
+    renderText(texte2.c_str(), 245, 350, blanc, PS2Pmini);
+    renderText(texte3.c_str(), 245, 400, blanc, PS2Pmini);
+    renderText(texte4.c_str(), 245, 425, blanc, PS2Pmini);
+    renderText(texte5.c_str(), 245, 450, blanc, PS2Pmini);
+    renderText(texte6.c_str(), 245, 475, blanc, PS2Pmini);
 
-    // Affichage centré des textes sur les boutons
-    string commentjouer = "blablabla";
+
+
+    // Coordonnées du bouton
+    SDL_Rect retourBtn = {260, 500, 280, 50};
+
+    // Coordonnées souris
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    // Détection hover
+    bool isHover = mouseX >= retourBtn.x && mouseX <= retourBtn.x + retourBtn.w &&
+                   mouseY >= retourBtn.y && mouseY <= retourBtn.y + retourBtn.h;
+
+    // Choix de la texture ou couleur en fonction du hover
+    if (isHover) {
+        SDL_RenderCopy(renderer, boutonHoverTexture, NULL, &retourBtn); //texture hover
+    } else {
+        SDL_RenderCopy(renderer, boutonTexture, NULL, &retourBtn); // texture normale
+    }
+
+    // Texte centré sur le bouton
+    string retour = "Retour au menu";
     int textLargeur, textHauteur;
-    TTF_SizeText(PS2P, commentjouer.c_str(), &textLargeur, &textHauteur);
-    int textX = dstRect.x + (dstRect.w - textLargeur) / 2;
-    int textY = dstRect.y + (dstRect.h - textHauteur) / 2;
-    renderText(commentjouer.c_str(), textX, textY, blanc, PS2P);
+    TTF_SizeText(PS2P, retour.c_str(), &textLargeur, &textHauteur);
+    int textX = retourBtn.x + (retourBtn.w - textLargeur) / 2;
+    int textY = retourBtn.y + (retourBtn.h - textHauteur) / 2;
+    renderText(retour.c_str(), textX, textY, blanc, PS2P);
+
     SDL_RenderPresent(renderer);
 }
 
@@ -212,12 +253,14 @@ int main() {
         return -1;
     }
 
+    bool arret_brutal = false;
     bool running = true;
     SDL_Event event;
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
+                arret_brutal = true;
             }
             // Sélection des boutons au clavier 
             else if (event.type == SDL_KEYDOWN) {
@@ -249,39 +292,54 @@ int main() {
                 }
             }
             if (selectedOption == 2 && running == false) {
-                bool affichage = true;
-
-                while (affichage){
-                    renderAide();
+                bool affichageAide = true;
+            
+                while (affichageAide) {
+                    SDL_PollEvent(&event); //récupérer les événements à chaque tour
+                    
+                    if (event.type == SDL_QUIT) {
+                        affichageAide = false;
+                        running = false; // Pour quitter complètement si on ferme la fenêtre
+                    }
+            
                     if (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN) {
                         int mouseX2, mouseY2;
                         SDL_GetMouseState(&mouseX2, &mouseY2);
-                            SDL_Rect rectanglecroix = {  260, 250 , 280, 70 };
-                            if (mouseX2 >= rectanglecroix.x && mouseX2 <= rectanglecroix.x + rectanglecroix.w &&
-                                mouseY2 >= rectanglecroix.y && mouseY2 <= rectanglecroix.y + rectanglecroix.h) {
-                                if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-                                    affichage = false;
-                                }
+                        SDL_Rect retourBtn = { 260, 500, 280, 50 }; // même rectangle que dans renderAide
+            
+                        if (mouseX2 >= retourBtn.x && mouseX2 <= retourBtn.x + retourBtn.w &&
+                            mouseY2 >= retourBtn.y && mouseY2 <= retourBtn.y + retourBtn.h) {
+                            if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+                                affichageAide = false;
+                            }
+                        }
+                        if (event.type == SDL_KEYDOWN) {
+                            if (event.key.keysym.sym == SDLK_ESCAPE) {
+                                affichageAide = false;
+                            }
                         }
                     }
-                
+                    renderAide();
+                    SDL_Delay(10);
                 }
                 selectedOption = 0;
                 running = true;
             }
+            
         }
 
         renderMenu();
         SDL_Delay(100);
     }
-
-    if (selectedOption == 0) {
-        AffichageGraphique aff; // Initialise affichage graphique
-        aff.run();
-    }
-    if (selectedOption == 1) {
-        AffichageGraphique aff; // Initialise affichage graphique
-        aff.run2Joueurs();
+    if (!arret_brutal) {
+        if (selectedOption == 0) {
+            AffichageGraphique aff; // Initialise affichage graphique
+            aff.run();
+        }
+        if (selectedOption == 1) {
+            AffichageGraphique aff; // Initialise affichage graphique
+            aff.run2Joueurs();
+        } 
     }
     cleanUp();
     return 0;

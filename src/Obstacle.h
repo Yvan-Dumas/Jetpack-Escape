@@ -40,7 +40,7 @@ class Obstacle {
 
     /**
      * @brief Déplace l'obstacle vers la gauche (simulation d'un  mouvement du personnage vers la droite).
-     * À appeler à chaque mise à jour du jeu pour faire défiler l'obstacle à l'écran.
+     * @details À appeler à chaque mise à jour du jeu pour faire défiler l'obstacle à l'écran.
      */
     void mettreAJourPosition();
 
