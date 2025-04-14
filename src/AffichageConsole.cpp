@@ -69,7 +69,6 @@ void AffichageConsole::afficher(WinTXT &win) {
     }
 
     win.draw();
-    cout <<perso1.getHauteur() ;
     cout << "Vies : " << perso1.getNbVies() << endl;
     cout << "Carburant : [";
     unsigned int longueurRemplie = ( perso1.carburant * 16) / 3;
@@ -255,7 +254,7 @@ void AffichageConsole::run2Joueurs() {
         if (compteur % 2 == 0) {
             ok = partie.actionsAutomatiques2Joueurs(HAUTEUR, LARGEUR);
         }
-        
+
         compteur++;       
 
         c = window.getCh();
