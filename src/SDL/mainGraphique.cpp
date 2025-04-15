@@ -7,9 +7,7 @@
 
 using namespace std;
 
-int main() {
-
-    
+int main() { 
     const int totalOptions = 4;
     int selectedOption = 0;
 
@@ -91,7 +89,6 @@ int main() {
                 selectedOption = 0;
                 running = true;
             }
-            
         }
 
         affichage.renderMenu(selectedOption);

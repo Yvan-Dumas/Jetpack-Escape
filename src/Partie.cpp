@@ -213,7 +213,7 @@ void Partie::actionsClavier2Joueurs(const char touche, unsigned int HAUTEUR) {
 
 void Partie::tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR) {
     int id = 1;
-    int poids[] = {20, 20, 10, 20, 10, 20, 7 ,10}; // Poids associés
+    int poids[] = {20, 20, 8, 25, 15, 7, 10, 8}; // Poids associés
     int taille = sizeof(poids) / sizeof(poids[0]);
     // Calcul de la somme des poids
     int sommePoids = 0;

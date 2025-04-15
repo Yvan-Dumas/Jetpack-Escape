@@ -730,5 +730,3 @@ void AffichageGraphique::run2Joueurs() {
     }
     afficherGameOver();
 }
-
-
