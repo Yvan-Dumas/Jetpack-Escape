@@ -167,7 +167,7 @@ void AffichageConsole::affichage2Joueurs(WinTXT &win) const{
             cout << " "; // Partie vide
         }
     }
-    cout << "] " << std::fixed << std::setprecision(2) << perso1.carburant << "L" << "/" << 5 << "L" << endl;
+    cout << "] " << std::fixed << std::setprecision(2) << perso1.carburant << "L" << "/" << 3 << "L" << endl;
     cout << "Nombre de pièces J1: " << perso1.getNbPieces() << " pièces" <<endl;
     cout << "-----------------------------------------------------------" << endl;
 
@@ -181,7 +181,7 @@ void AffichageConsole::affichage2Joueurs(WinTXT &win) const{
             cout << " "; // Partie vide
         }
     }
-    cout << "] " << std::fixed << std::setprecision(2) << perso2.carburant << "L" << "/" << 5 << "L" << endl;
+    cout << "] " << std::fixed << std::setprecision(2) << perso2.carburant << "L" << "/" << 3 << "L" << endl;
     cout << "Nombre de pièces J2: " << perso2.getNbPieces() << " pièces" <<endl;
 
 }
