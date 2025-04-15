@@ -1,18 +1,13 @@
-# LIFAPCD - jetpack escape
+0# LIFAPCD - jetpack escape
 
 @TODO: revoir proba apparition
---> trop de vies.
+--> trop de vies.0.
 
+; 
 
--afficher mode 2 joueurs
--affichage adaptatif ?
--diagramme des classes (sdl sprite ?)
--cahier des charges ?
--mode 2joueurs clavier
--initialisation variables affGraph dans le constructeur ?
--Pièces récoltées game over ?
+-diagramme des classes
+-diagramme de gant
 - mode 2 joueurs bug
--modifier run2Joueurs et actions automatiques2J
 - qu'afficher en version 2 joueurs quand ils sont superposés ?
 
 - bug menu aide
@@ -27,7 +22,7 @@
  
 
 Questions au prof:
-- affichage adaptatif ?
+- affichage adaptatif ? 
 - faut il refaire le cahier des charges ?
 - diagramme des classes (sdl sprite ?)
 - ce n'est pas génant de ne pas faire de classe pour les menus

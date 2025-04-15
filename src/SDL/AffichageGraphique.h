@@ -32,12 +32,19 @@ using namespace std;
  class AffichageGraphique {
  private:
      Partie partie; ///< Partie en cours
+
+     SDL_Window* windowMenu = nullptr; ///< Fenêtre SDL du menu
+     SDL_Renderer* rendererMenu = nullptr; ///< Renderer SDL du menu
+     TTF_Font* PS2Pmini = nullptr; ///< Police plus petite pour l'affichage de l'aide
+     SDL_Texture* backgroundTexture = nullptr; ///< Texture de fond du menu
+     SDL_Texture* boutonTexture = nullptr;     ///< Texture de bouton
+     SDL_Texture* boutonHoverTexture = nullptr; ///< Texture de bouton quand survolé par la souris.
  
-     SDL_Window *window;          ///< Fenêtre principale SDL
-     SDL_Renderer *renderer;      ///< Renderer SDL pour l'affichage
-     TTF_Font *VT323;             ///< Police VT323, police principale du jeu
-     TTF_Font *PS2P;              ///< Police PS2 Pixel, police des menus.
-     SDL_Cursor* curseurPerso;    ///< Curseur personnalisé
+     SDL_Window *window = nullptr;          ///< Fenêtre principale SDL
+     SDL_Renderer *renderer = nullptr;      ///< Renderer SDL pour l'affichage
+     TTF_Font *VT323 = nullptr;             ///< Police VT323, police principale du jeu
+     TTF_Font *PS2P = nullptr;              ///< Police PS2 Pixel, police des menus.
+     SDL_Cursor* curseurPerso = nullptr;    ///< Curseur personnalisé
  
      // Sprites des personnages
      SDLSprite im_perso1;         ///< Sprite du personnage 1
@@ -79,12 +86,28 @@ using namespace std;
       * @brief Initialise l'affichage graphique, les polices, la fenêtre et les sprites.
       */
      void init();
+
+     /**
+      * @brief Initialise l'affichage graphique du menu, les polices et la fenêtre.
+      */
+     int initMenu();
  
      /**
       * @brief Destructeur : libère les ressources SDL.
       */
      ~AffichageGraphique();
- 
+    
+     /**
+      * @brief Affiche le menu du jeu, est appelé dans mainGraphique
+      * @param selectedOption Correspond à l'option actuellement séléctionnée dans le menu, permet d'afficher une texture "hover".
+      */   
+     void renderMenu(int selectedOption);
+
+     /**
+      * @brief Affiche l'aide du jeu, est appelé dans mainGraphique
+      */   
+     void renderAide();
+     
      /**
       * @brief Gère tout l'affichage pour le mode solo.
       */
@@ -117,14 +140,14 @@ using namespace std;
  
      /**
       * @brief Affiche un texte à une position donnée.
-      * 
+      * @param renderer Le renderer SDL utilisé pour l'affichage.
       * @param text Le texte à afficher.
       * @param x Position X du texte.
       * @param y Position Y du texte.
       * @param color Couleur du texte (SDL_Color).
       * @param font Police TTF à utiliser.
       */
-     void renderText(const char* text, int x, int y, SDL_Color color, TTF_Font* font);
+     void renderText(SDL_Renderer* renderer, const char* text, int x, int y, SDL_Color color, TTF_Font* font);
  
      /**
       * @brief Gère l'affichage complet en mode deux joueurs.

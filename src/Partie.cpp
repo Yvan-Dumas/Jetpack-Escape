@@ -101,11 +101,8 @@ bool Partie::estBienPlace(unsigned int x, unsigned int y, unsigned int largeur, 
 }
 
 void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
-    random_device rd;
-    mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
-    int y = dist(gen); // Position y de l'Obstacle.
-    int x = LARGEUR;// Position x de l'Obstacle (à droite de l'écran pour l'initialisation)
+    int y = rand() % (HAUTEUR); // Plage de 0 à HAUTEUR - 1, position y de l'Obstacle.
+    int x = LARGEUR;// Position x de l'obstacle (à droite de l'écran pour l'initialisation)
     unsigned int largeur; 
     unsigned int longueur;
     switch (id) {
@@ -148,10 +145,7 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
 }
 
 void Partie::generationObjet(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> dist(0, HAUTEUR - 1);
-    int y = dist(gen); // Position y de l'objet.
+    int y = rand() % (HAUTEUR); // Plage de 0 à HAUTEUR - 1, position y de l'Obstacle.
     int x = LARGEUR; // Position x de l'objet (bord droit de l'écran).
     unsigned int largeur = 1; 
     unsigned int longueur = 1;
