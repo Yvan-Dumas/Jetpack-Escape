@@ -79,6 +79,12 @@ class Partie {
         */
         bool estBienPlace(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur); ///< Regarde si l'objet / obstacle n'empiete pas sur un autre
 
+        /**
+         * @brief Procédure pour le tirage aléatoire d'un identifiant et la génération d'un obstacle ou d'un objet associé à cette identifiant.
+         * @param HAUTEUR La hauteur de la grille de jeu.
+         * @param LARGEUR La largeur de la grille de jeu.
+         */
+        void tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR);
     public:
 
         string record; ///< Le record de distance parcourue atteint dans le jeu. Récupéré dans le fichier data/sauvegarde.txt lors de l'initialisation.

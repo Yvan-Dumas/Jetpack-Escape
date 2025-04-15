@@ -2,7 +2,6 @@
  *@file Partie.cpp
  *@brief Implémentation de la classe Partie
  */
-
 #include "Partie.h"
 
 using namespace std;
@@ -45,7 +44,7 @@ string Partie::chargerFichier() const {
 }
 
 void Partie::ajouterCarburant(Personnage & perso){
-    if (perso.carburant < 3) { //Si moins de 3L on ajoute 1L, sinon on mets au max=3L
+    if (perso.carburant < 3) { // Si moins de 3L on ajoute 1L, sinon on mets au max=3L
         perso.carburant = perso.carburant + 1;
         if (perso.carburant > 3) perso.carburant = 3;
     }
@@ -77,33 +76,31 @@ void Partie::utiliserObjet(Personnage & perso,unsigned int id) {
     }
 }
 
-bool Partie::estBienPlace(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {
-    
-    //Fonction interne a estBienPlace pour verifier la superposition
+bool Partie::estBienPlace(unsigned int x, unsigned int y, unsigned int largeur, unsigned int longueur) {  
+    // Fonction interne a estBienPlace pour verifier la superposition
     auto superpose = [](int x1, int y1, int w1, int h1,
         int x2, int y2, int w2, int h2) {
     return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2 || y2 + h2 <= y1);
     };
-    //On vérifie avec l'ensemble des objets générés
+    // On vérifie avec l'ensemble des objets générés
     for (const auto& obj : tabObjets) {
         if (superpose(x, y, largeur, longueur, obj.getX(), obj.getY(), 1, 1)) {
         return false;
     }}
-    //Et avec l'ensemble des obstacles générés
+    // Et avec l'ensemble des obstacles générés
     for (const auto& obs : tabObstacle) {
         if (superpose(x-1, y-1, largeur+2, longueur+2, 
                   obs.getX() - 1, obs.getY() - 1, 
                   obs.getLargeur() + 2, obs.getLongueur() + 2)) {
         return false;
     }}
-
     return true;
 }
 
 void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGEUR) {
     random_device rd;
     mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
+    uniform_int_distribution<int> dist(0, HAUTEUR - 1); // Plage de 0 à HAUTEUR - 1
     int y = dist(gen); // Position y de l'Obstacle.
     int x = LARGEUR;// Position x de l'Obstacle (à droite de l'écran pour l'initialisation)
     unsigned int largeur; 
@@ -195,7 +192,6 @@ bool Partie::acheterVieSiPossible() {
     return false;
 }
 
-
 void Partie::actionsClavier(const char touche, unsigned int HAUTEUR) {
     switch (touche)
     {
@@ -221,59 +217,58 @@ void Partie::actionsClavier2Joueurs(const char touche, unsigned int HAUTEUR) {
     }
 }
 
+void Partie::tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR) {
+    int id = 1;
+    int poids[] = {20, 20, 10, 20, 10, 20, 7 ,10}; // Poids associés
+    int taille = sizeof(poids) / sizeof(poids[0]);
+    // Calcul de la somme des poids
+    int sommePoids = 0;
+    for (int i = 0; i < taille; i++) {
+        sommePoids += poids[i];
+    }
+    // Tirage aléatoire d'un nombre entre 1 et sommePoids
+    int tirage = (rand() % sommePoids) + 1;
+    int i = 0;
+    int cumul = 0;
+    do {
+        i++ ;
+        cumul = cumul + poids [i-1] ;
+    } while(tirage > cumul);
+    switch (i) {
+        case 1: // Création d'une obstacle de base
+            generationObstacle(1,HAUTEUR, LARGEUR);
+            break;
+        case 2:  // Création d'un échaffaudage
+            generationObstacle(2,HAUTEUR, LARGEUR);
+            break;
+        case 3: // Création d'un métro (1ère variation)
+            generationObstacle(3,HAUTEUR, LARGEUR);
+            break;
+        case 4: // Création d'une pièce
+            generationObjet(1,HAUTEUR, LARGEUR);
+            break;
+        case 5: // Création d'un carburant
+            generationObjet(2,HAUTEUR, LARGEUR);
+            break;
+        case 6: // Création d'une vie
+            generationObjet(3,HAUTEUR, LARGEUR);
+            break;
+        case 7: // Création d'un rat 
+            generationObstacle(4, HAUTEUR, LARGEUR);
+            break;
+        case 8: // Création d'un métro (2ème variation)
+            generationObstacle(5, HAUTEUR, LARGEUR); 
+            break;
+        default:
+            break;
+    }
+}
+
 bool Partie::actionsAutomatiques(unsigned int HAUTEUR, unsigned int LARGEUR) {
     bool enMarche = true; 
     // Génération pseudo-aléatoire d'obstacles et d'objets à certains intervalles
     if ((rand())%20==0){
-        int id = 1;
-        int poids[] = {20, 20, 10, 20, 10, 20, 7 ,10}; // Poids associés
-        int taille = sizeof(poids) / sizeof(poids[0]);
-        // Calcul de la somme des poids
-        int sommePoids = 0;
-        for (int i = 0; i < taille; i++) {
-            sommePoids += poids[i];
-        }
-        // Tirage aléatoire d'un nombre entre 1 et sommePoids
-        int tirage = (rand() % sommePoids) + 1;
-        int i = 0;
-        int cumul = 0;
-        do {
-            i++ ;
-            cumul = cumul + poids [i-1] ;
-        } while(tirage > cumul);
-        
-        switch (i) {
-            case 1: // Création d'une obstacle de base
-                generationObstacle(1,HAUTEUR, LARGEUR);
-                break;
-    
-            case 2:  // Création d'un échaffaudage
-                generationObstacle(2,HAUTEUR, LARGEUR);
-                break;
-                
-            case 3: // Création d'un métro (1ère variation)
-                generationObstacle(3,HAUTEUR, LARGEUR);
-                break;
-                    
-            case 4: // Création d'une pièce
-                generationObjet(1,HAUTEUR, LARGEUR);
-                break;
-    
-            case 5: // Création d'un carburant
-                generationObjet(2,HAUTEUR, LARGEUR);
-                break;
-            case 6: // Création d'une vie
-                generationObjet(3,HAUTEUR, LARGEUR);
-                break;
-            case 7: // Création d'un rat 
-                generationObstacle(4, HAUTEUR, LARGEUR);
-                break;
-            case 8: // Création d'un métro (2ème variation)
-                generationObstacle(5, HAUTEUR, LARGEUR); 
-                break;
-            default:
-                break;
-        }
+        tirageEtGenerationObstaclesObjets(HAUTEUR, LARGEUR);
     }
 
     // Mise à jour de la distance
@@ -326,57 +321,8 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
     bool enMarche = true;
     // Génération aléatoire d'obstacles et d'objets à certains intervalles
     if ((rand())%20==0){
-        int id = 1;
-        int poids[] = {20, 20, 2, 20, 10, 5}; // Poids associés
-        int taille = sizeof(poids) / sizeof(poids[0]);
-
-    // Calcul de la somme des poids
-    int sommePoids = 0;
-    for (int i = 0; i < taille; i++) {
-        sommePoids += poids[i];
+        tirageEtGenerationObstaclesObjets(HAUTEUR, LARGEUR);
     }
-    
-    // Tirage aléatoire d'un nombre entre 1 et sommePoids
-    int tirage = (rand() % sommePoids) + 1;
-
-    int i = 0;
-    int cumul = 0;
-    do  {
-        i++ ;
-        cumul = cumul + poids [i-1] ;
-    }
-    while(tirage > cumul);
-    
-    switch (i) {
-        case 1: {// Création d'une obstacle de base
-            generationObstacle(1,HAUTEUR, LARGEUR);
-            break;}
-
-        case 2: { // Création d'un échaffaudage
-            generationObstacle(2,HAUTEUR, LARGEUR);
-            break;
-            }
-        case 3: { // Création d'un métro
-            generationObstacle(3,HAUTEUR, LARGEUR);
-            break;
-                }
-        case 4: {// Création d'une pièce
-            generationObjet(1,HAUTEUR, LARGEUR);
-            break;}
-
-        case 5: { // Création d'un carburant
-            generationObjet(2,HAUTEUR, LARGEUR);
-            break;
-            }
-        case 6: { // Création d'une vie
-            generationObjet(3,HAUTEUR, LARGEUR);
-            break;
-                }
-        default:
-            break;
-    }
-}
-
 
     // Vérification des collisions avec obstacles
     for (auto obstacle = tabObstacle.begin(); obstacle != tabObstacle.end();) {
@@ -462,8 +408,6 @@ bool Partie::actionsAutomatiques2Joueurs(unsigned int HAUTEUR, unsigned int LARG
 
     return enMarche ;
 }
-
-
 
 void Partie::testPartie() {
     cout << "Début des tests pour Partie" << endl;

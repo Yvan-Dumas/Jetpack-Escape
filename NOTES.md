@@ -3,20 +3,15 @@
 @TODO: revoir proba apparition
 --> trop de vies.
 
-
 -afficher mode 2 joueurs
--affichage adaptatif ?
 -diagramme des classes (sdl sprite ?)
--cahier des charges ?
--mode 2joueurs clavier
 -initialisation variables affGraph dans le constructeur ?
 -Pièces récoltées game over ?
 - mode 2 joueurs bug
 -modifier run2Joueurs et actions automatiques2J
-- qu'afficher en version 2 joueurs quand ils sont superposés ?
 
 - bug menu aide
-
+rajouter const dans fonc aff graph
 
 @TODO: MODE 2 JOUEUR A METTRE A JOUR
 @TODO: MODE CONSOLE A METTRE A JOUR
@@ -29,10 +24,12 @@
 Questions au prof:
 - affichage adaptatif ?
 - faut il refaire le cahier des charges ?
-- diagramme des classes (sdl sprite ?)
+- diagramme des classes (sdl sprite ?) mettre 1ere et derniere avec ...
 - ce n'est pas génant de ne pas faire de classe pour les menus
 - test regression sur sdl ? et sur affichage console ?
 
+
+décaler affichage menu dans aff graphique
 
 
 modifier: 
