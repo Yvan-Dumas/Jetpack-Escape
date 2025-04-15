@@ -84,6 +84,10 @@ void AffichageConsole::affichage1Joueur(WinTXT &win) const{
     cout << "Distance parcourue : " << perso1.getDistance() << "m" << endl;
     cout << "Nombre de pièces restantes : " << perso1.getNbPieces() << " pièces" <<endl;
     cout << "Record: " << partie.record << "m" << endl <<endl;
+
+    if (partie.piecesEnVie) {
+        cout <<"Vous avez reçu une vie en échange de 5 de vos pieces";
+    }
 }
 
 void AffichageConsole::run() {
@@ -113,6 +117,17 @@ void AffichageConsole::run() {
         }
 
         affichage1Joueur(window);
+        // débutMessage doit être un time_t (entier long)
+        if (partie.piecesEnVie && debutMessage == 0) {
+            debutMessage = time(0);
+        }
+
+        // On affiche le message pendant 5 secondes
+        if (partie.piecesEnVie && time(0) - debutMessage > 5) {
+        partie.piecesEnVie = false;
+        debutMessage = 0;
+        }
+
         usleep(30000); // Pause
     } while (ok);
     window.clear();
@@ -130,6 +145,7 @@ void AffichageConsole::run() {
     }
     cout << "====================================="  << endl;
     cout << "     Merci d'avoir joué !     "  << endl << endl;
+    
 
     if (perso1.getDistance() > stoi(getRecord())) {
         partie.sauvegarderFichier(to_string(perso1.getDistance()));
@@ -183,6 +199,10 @@ void AffichageConsole::affichage2Joueurs(WinTXT &win) const{
     }
     cout << "] " << std::fixed << std::setprecision(2) << perso2.carburant << "L" << "/" << 3 << "L" << endl;
     cout << "Nombre de pièces J2: " << perso2.getNbPieces() << " pièces" <<endl;
+    if (partie.piecesEnVie) {
+        cout <<"Un joueur a reçu une vie en échange de 5 de ses pieces";
+    }
+    
 
 }
 
@@ -222,6 +242,16 @@ void AffichageConsole::run2Joueurs() {
         }
 
         affichage2Joueurs(window);
+        // débutMessage doit être un time_t (entier long)
+        if (partie.piecesEnVie && debutMessage == 0) {
+            debutMessage = time(0);
+        }
+
+        // On affiche le message pendant 5 secondes
+        if (partie.piecesEnVie && time(0) - debutMessage > 5) {
+        partie.piecesEnVie = false;
+        debutMessage = 0;
+        }
 
         usleep(30000); // Pause
     } while (ok);

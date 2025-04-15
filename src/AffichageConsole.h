@@ -24,6 +24,7 @@ class AffichageConsole {
 
   private:
     Partie partie; ///<  Instance de la partie en cours
+    int debutMessage = 0; ///< Time du début du message
 
     /**
      * @brief Procédure pour l'affichage des éléments communs aux 2 modes de jeu.

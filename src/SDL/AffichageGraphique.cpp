@@ -13,21 +13,6 @@ string AffichageGraphique::getRecord(){
 }
 
 void AffichageGraphique::init() {
-    // Initialisation de la SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
-        SDL_Quit();
-        exit(1);
-    }
-
-    //Initialisation de TTF (utilisé pour le texte)
-    if (TTF_Init() != 0)
-    {
-        cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
-        SDL_Quit();
-        exit(1);
-    }
 
     int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
     if (!(IMG_Init(imgFlags) & imgFlags))
@@ -316,13 +301,6 @@ AffichageGraphique::~AffichageGraphique() {
     if (PS2Pmini) TTF_CloseFont(PS2Pmini);
     if (VT323) TTF_CloseFont(VT323);
 
-    if (rendererMenu) SDL_DestroyRenderer(rendererMenu);
-    if (windowMenu) SDL_DestroyWindow(windowMenu);
-    if (curseurPerso) SDL_FreeCursor(curseurPerso);
-    if (backgroundTexture) SDL_DestroyTexture(backgroundTexture);
-    if (boutonTexture) SDL_DestroyTexture(boutonTexture);
-    if (boutonHoverTexture) SDL_DestroyTexture(boutonHoverTexture);
-
     IMG_Quit();
     TTF_Quit();
     SDL_Quit();
@@ -492,12 +470,6 @@ void AffichageGraphique::affichagesCommuns() {
     texte = to_string(perso1.getNbPieces());
     im_piece.draw(renderer, 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 180, TAILLE_SPRITE, TAILLE_SPRITE);
     renderText(renderer, texte.c_str(), 1.7*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 190, blanc, VT323);
-
-    //Affichage d'un message en cas de conversion pièces en vie.
-    if(partie.piecesEnVie) {
-        texte = "Vous avez obtenu une vie en echange de vos 10 pieces";
-        renderText(renderer, texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
-    }
 }
 
 void AffichageGraphique::affichage1Joueur() {
@@ -511,6 +483,12 @@ void AffichageGraphique::affichage1Joueur() {
     string texte;
     texte =  "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
     renderText(renderer, texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE, blanc, VT323);
+    
+    //Affichage d'un message en cas de conversion pièces en vie.
+    if(partie.piecesEnVie) {
+        texte = "Vous avez obtenu une vie en echange de vos 5 pieces";
+        renderText(renderer, texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
+    }
 }
 
 void AffichageGraphique::afficherGameOver() {
@@ -675,7 +653,7 @@ void AffichageGraphique::affichage2Joueurs() {
 
     //Affichage d'un message en cas de conversion pièces en vie. 
     if(partie.piecesEnVie) {
-        texte = "Un des joueurs a obtenu une vie en echange de 10 pieces";
+        texte = "Un des joueurs a obtenu une vie en echange de 5 pieces";
         renderText(renderer, texte.c_str(), 0.5*TAILLE_SPRITE, 11.5*TAILLE_SPRITE + 240, blanc, VT323);
     }
 }
