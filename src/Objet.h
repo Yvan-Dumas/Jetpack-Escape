@@ -2,9 +2,11 @@
  *@file Objet.h
  *@brief Définition de la classe Objet du jeu JetpackEscape
  */
-
 #ifndef Objet_h
 #define Objet_h
+
+#include <iostream>
+#include <cassert>
 
 /**
   * @class Objet
@@ -58,9 +60,8 @@ class Objet {
     
     /**
      * @brief Effectue une série de tests sur la classe Objet.
-    */
+     */
     static void testObjet();
-    
   };
 
 #endif

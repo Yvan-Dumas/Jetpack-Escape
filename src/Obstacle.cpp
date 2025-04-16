@@ -1,20 +1,16 @@
 #include "Obstacle.h"
-#include <iostream>
-#include <cassert>
-using namespace std;
 
+using namespace std;
 
 Obstacle::Obstacle(unsigned int id, int x, int  y, unsigned int  largeur, unsigned int longueur ) 
     : idTypeObstacle(id), x(x), y(y), largeur(largeur), longueur(longueur) {}
  
-
 bool Obstacle::collisionObstacle(int hauteur) const {
     bool abscisse = (x <= 5) && (x + largeur >= 5); // Collision horizontale (coordonnée x = 5 fixe du personnage)
     bool ordonnee = (y <= hauteur) && (y + longueur > hauteur); // Collision verticale en fonction du paramètre hauteur
     return abscisse && ordonnee;
     }
     
-
 void Obstacle::mettreAJourPosition() {
     x -= 1; // L'obstacle se déplace d'une unité de jeu vers la gauche
 }

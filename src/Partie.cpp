@@ -103,7 +103,7 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
     unsigned int largeur; 
     unsigned int longueur;
     switch (id) {
-        case 1: // Création d'un obstacle
+        case 1: // Création d'un obstacle 3x1 horizontal
             largeur = 3; 
             longueur = 1;
             break;
@@ -125,6 +125,11 @@ void Partie::generationObstacle(int id, unsigned int HAUTEUR, unsigned int LARGE
             largeur = 16;
             longueur = 5;
             y = 0; // le métro est au sol
+            break;
+        case 6: // Création d'un panneau d'avertissement
+            largeur = 1;
+            longueur = 1;
+            y = HAUTEUR - 1; // Le panneau est au plafond
             break;
         default:
             largeur = 1; 
@@ -213,7 +218,7 @@ void Partie::actionsClavier2Joueurs(const char touche, unsigned int HAUTEUR) {
 
 void Partie::tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR) {
     int id = 1;
-    int poids[] = {20, 20, 8, 25, 15, 7, 10, 8}; // Poids associés
+    int poids[] = {20, 20, 8, 25, 15, 7, 10, 8, 50}; // Poids associés
     int taille = sizeof(poids) / sizeof(poids[0]);
     // Calcul de la somme des poids
     int sommePoids = 0;
@@ -251,7 +256,10 @@ void Partie::tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR) {
             generationObstacle(4, HAUTEUR, LARGEUR);
             break;
         case 8: // Création d'un métro (2ème variation)
-            generationObstacle(5, HAUTEUR, LARGEUR); 
+            generationObstacle(5, HAUTEUR, LARGEUR);
+            break;
+        case 9: // Création d'un panneau d'avertissement
+            generationObstacle(6, HAUTEUR, LARGEUR);
             break;
         default:
             break;

@@ -1,38 +1,34 @@
- #include "Objet.h"
- #include <iostream>
- #include <cassert>
+#include "Objet.h"
 
- 
- using namespace std;
+using namespace std;
 
+Objet::Objet(unsigned int id, int x, int y): idTypeObjet(id), x(x), y(y) {}
 
- Objet::Objet(unsigned int id, int x, int  y)
-   : idTypeObjet(id), x(x), y(y) {}
- 
- unsigned int Objet::collecterObjet(int hauteur) const {
-   bool abscisse = (x == 5 || x==4); // 5 correspond à la position x du personnage. On vérifie aussi en x = 4 pour plus de facilité
-   bool ordonnee = y == hauteur ;    // Vérification de la correspondance entre la hauteur du personnage et celle de l'objet.
-   if (abscisse && ordonnee){
+unsigned int Objet::collecterObjet(int hauteur) const {
+   bool abscisse = (x == 5 || x == 4); // 5 correspond à la position x du personnage. On vérifie aussi en x = 4 pour plus de facilité
+   bool ordonnee = y == hauteur;       // Vérification de la correspondance entre la hauteur du personnage et celle de l'objet.
+   if (abscisse && ordonnee) {
       return idTypeObjet;
    }
    return 100; // 100 indique que le personnage n'est pas en contact avec un objet
- }
+}
 
 void Objet::mettreAJourPosition() {
-    x -= 1; // L'objet se déplace vers la gauche
- }
+   x -= 1; // L'objet se déplace vers la gauche
+}
 
 int Objet::getX() const {
-    return x;
+   return x;
 }
 
 int Objet::getY() const {
-    return y;
+   return y;
 }
 
 int Objet::getID() const {
    return idTypeObjet;
 }
+
 void Objet::testObjet() {
    cout << "Début des tests pour Objet" << endl;
 

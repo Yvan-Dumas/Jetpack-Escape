@@ -2,7 +2,6 @@
  *@file Personnage.cpp
  *@brief Implémentation de la classe personnage
  */
-
 #include "Personnage.h"
 using namespace std;
 
@@ -81,7 +80,6 @@ unsigned int Personnage::getNbVies() const {
 void Personnage::setNbVies(unsigned int nb) {
     nbVies = nb;
 }
-
 
 void Personnage::testPersonnage() {
     cout << "Début des tests pour la classe Personnage" << endl;

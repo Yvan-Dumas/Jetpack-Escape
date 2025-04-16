@@ -1,7 +1,7 @@
 0# LIFAPCD - jetpack escape
 
 -diagramme des classes
--diagramme de grantt
+-diagramme de gantt
 -Relancement d'une partie apres game over ?
 - bug menu aide
 

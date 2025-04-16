@@ -63,6 +63,7 @@ private:
    SDLSprite im_rat;         ///< Sprite du rat
    SDLSprite im_metro1;      ///< Sprite du métro 1
    SDLSprite im_metro2;      ///< Sprite du métro 2
+   SDLSprite im_panneau_avertissement;    ///< Sprite du panneau d'avertissement
 
    // Sprites des objets et UI
    SDLSprite im_piece; ///< Sprite de l'item pièce

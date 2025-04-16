@@ -129,6 +129,7 @@ void AffichageGraphique::init() {
     im_rat.loadFromFile("../data/images/obstacles/rat32.png", renderer);
     im_metro1.loadFromFile("../data/images/obstacles/metro132.png", renderer);
     im_metro2.loadFromFile("../data/images/obstacles/metro232.png", renderer);
+    im_panneau_avertissement.loadFromFile("../data/images/obstacles/panneau_avertissement32.png", renderer);
 
     im_piece.loadFromFile("../data/images/piece32.png", renderer);
     im_vie.loadFromFile("../data/images/coeur32.png", renderer);
@@ -395,13 +396,18 @@ void AffichageGraphique::affichagesCommuns() {
             case 3: // Métro (1ère variation)
                 afficherObstacleGrandeImage(renderer, im_metro1, obsX, obsY, obsLargeur, obsLongueur);
                 break;
-            case 5: // Métro (2ème variation)
-                afficherObstacleGrandeImage(renderer, im_metro2, obsX, obsY, obsLargeur, obsLongueur);
-                break;
             case 4: // Rat (1 case)
                 if (obsX >= 0 && obsX < LARGEUR && obsY >= 0 && obsY < HAUTEUR) {
                     im_rat.draw(renderer, obsX * TAILLE_SPRITE, (HAUTEUR - obsY) * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
                     }
+                break;
+            case 5: // Métro (2ème variation)
+                afficherObstacleGrandeImage(renderer, im_metro2, obsX, obsY, obsLargeur, obsLongueur);
+                break;
+            case 6: // Panneau d'avertissement
+                if (obsX >= 0 && obsX < LARGEUR && obsY >= 0 && obsY < HAUTEUR) {
+                    im_panneau_avertissement.draw(renderer, obsX * TAILLE_SPRITE, (HAUTEUR - obsY) * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
+                }
                 break;
             default: // Autres obstacles
                 for (int i = 0; i < obsLargeur; i++) {

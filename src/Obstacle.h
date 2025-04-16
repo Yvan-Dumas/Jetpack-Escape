@@ -2,9 +2,11 @@
  *@file Obstacle.h
  *@brief Définition de la classe Obstacle du jeu JetpackEscape
  */
-
 #ifndef Obstacle_h
 #define Obstacle_h
+
+#include <iostream>
+#include <cassert>
 
 /**
   * @class Obstacle
@@ -17,8 +19,8 @@ class Obstacle {
     unsigned int idTypeObstacle; ///< Identifiant du type de l'Obstacle.
     int x;  ///< Coordonnée horizontale (axe x) de l'obstacle.
     int y; ///< Coordonnée verticale (axe y) de l'obstacle
-    unsigned int largeur; ///< Largeur de l'Obstacle selon l'axe x.
-    unsigned int longueur; ///< Longueur y de l'Obstacle selon l'axe y.
+    unsigned int largeur; ///< Largeur de l'obstacle selon l'axe x.
+    unsigned int longueur; ///< Longueur y de l'obstacle selon l'axe y.
 
   public:
     /**
