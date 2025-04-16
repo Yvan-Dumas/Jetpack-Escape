@@ -8,6 +8,69 @@ const int LARGEUR = 30;
 
 // ============= CLASS AffichageGraphique =============== //
 
+AffichageGraphique::AffichageGraphique() {
+    windowMenu = nullptr;
+    rendererMenu = nullptr;
+    PS2Pmini = nullptr;
+    
+    window = nullptr;
+    renderer = nullptr;
+    VT323 = nullptr;
+    PS2PGros = nullptr;
+    PS2P = nullptr;
+    curseurPerso = nullptr;
+
+    offset_x = 0;
+    debutMessage = 0;
+}
+
+AffichageGraphique::~AffichageGraphique() {
+    if (renderer) {
+        SDL_DestroyRenderer(renderer);
+        renderer = nullptr;
+    }
+    if (window) {
+        SDL_DestroyWindow(window);
+        window = nullptr;
+    }
+    if (rendererMenu) {
+        SDL_DestroyRenderer(rendererMenu);
+        rendererMenu = nullptr;
+    }
+    if (windowMenu) {
+        SDL_DestroyWindow(windowMenu);
+        windowMenu = nullptr;
+    }
+    
+    // Fermer les polices avec vérification
+    if (PS2P) {
+        TTF_CloseFont(PS2P);
+        PS2P = nullptr;
+    }
+    if (PS2Pmini) {
+        TTF_CloseFont(PS2Pmini);
+        PS2Pmini = nullptr;
+    }
+    if (PS2PGros) {
+        TTF_CloseFont(PS2PGros);
+        PS2Pmini = nullptr;
+    }
+    if (VT323) {
+        TTF_CloseFont(VT323);
+        VT323 = nullptr;
+    }
+    
+    // pour le curseur personnalisé
+    if (curseurPerso) {
+        SDL_FreeCursor(curseurPerso);
+        curseurPerso = nullptr;
+    }    
+
+    IMG_Quit();
+    TTF_Quit();
+    SDL_Quit();
+}
+
 string AffichageGraphique::getRecord(){
     return partie.record;
 }
@@ -30,7 +93,7 @@ void AffichageGraphique::initSDL(){
         exit(1);
     }
 
-    // Curseur global
+    // Curseur personnalisé
     SDL_Surface* curseurSurface = IMG_Load("../data/images/curseur.png");
     if (!curseurSurface) {
         std::cout << "Erreur chargement curseur: " << IMG_GetError() << std::endl;
@@ -42,7 +105,7 @@ void AffichageGraphique::initSDL(){
 }
 
 void AffichageGraphique::init() {
-    // Creation de la fenetre
+    // Creation de la fenetre de jeu
     window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr)
     {
@@ -83,7 +146,7 @@ void AffichageGraphique::init() {
     im_carburant3.loadFromFile("../data/images/carburant/carburant332.png", renderer);
     im_fond.loadFromFile("../data/images/background.png", renderer);
 
-    // Initialisation des polices
+    // Initialisation polices
     VT323 = TTF_OpenFont("../data/polices/VT323.ttf", 50);
     if (VT323 == nullptr)
     {
@@ -91,6 +154,15 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
+
+    PS2PGros = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
+    if (PS2PGros == nullptr)
+    {
+        cout << "Erreur de chargement PS2P.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
 }
 
 int AffichageGraphique::initMenu() { 
@@ -107,7 +179,7 @@ int AffichageGraphique::initMenu() {
         return 0;
     }
 
-    // Police personnalisée
+    // Polices personnalisées
     PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 18);
     if (PS2P == nullptr)
     {
@@ -116,7 +188,7 @@ int AffichageGraphique::initMenu() {
         exit(1);
     }
 
-    PS2Pmini = TTF_OpenFont("../data/polices/PS2P.ttf", 8);
+    PS2Pmini = TTF_OpenFont("../data/polices/PS2P.ttf", 9);
     if (PS2Pmini == nullptr)
     {
         cout << "Erreur de chargement PS2P.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
@@ -124,6 +196,7 @@ int AffichageGraphique::initMenu() {
         exit(1);
     }
 
+    // Initialisation images menu
     im_backgroundMenu.loadFromFile("../data/images/menu/menu_background.png", rendererMenu);
     im_boutonMenu.loadFromFile("../data/images/menu/bouton.png", rendererMenu);
     im_boutonHoverMenu.loadFromFile("../data/images/menu/bouton_hover.png", rendererMenu);
@@ -136,7 +209,7 @@ void AffichageGraphique::renderMenu(int selectedOption) {
 
     // Affichage de l'image de fond
     if (im_backgroundMenu.getTexture()) {
-        im_backgroundMenu.draw(rendererMenu, 0, 0, 800, 600);  // Dessiner le fond à l'écran
+        im_backgroundMenu.draw(rendererMenu, 0, 0, 800, 600); 
     } else {
         SDL_SetRenderDrawColor(rendererMenu, 0, 0, 0, 255); // fond noir
         SDL_RenderClear(rendererMenu);
@@ -147,7 +220,7 @@ void AffichageGraphique::renderMenu(int selectedOption) {
     SDL_Color jaune = {255, 255, 0, 255};
 
     string texte = "Record: " + getRecord() + "m";
-    renderText(rendererMenu, texte.c_str(), 280, 125, jaune, PS2P);
+    renderText(rendererMenu, texte.c_str(), 285, 125, jaune, PS2P);
 
     // Rendu du menu
     for (int i = 0; i < 4; i++) {
@@ -155,7 +228,6 @@ void AffichageGraphique::renderMenu(int selectedOption) {
     
         // Déterminer quelle texture utiliser pour le bouton
         SDLSprite* buttonSprite = (i == selectedOption) ? &im_boutonHoverMenu : &im_boutonMenu;
-
         if (buttonSprite->getTexture()) {
             buttonSprite->draw(rendererMenu, dstRect.x, dstRect.y, dstRect.w, dstRect.h);
         }
@@ -173,7 +245,7 @@ void AffichageGraphique::renderMenu(int selectedOption) {
 void AffichageGraphique::renderAide(){
     // Affichage de l'image de fond
     if (im_backgroundMenu.getTexture()) {
-        im_backgroundMenu.draw(rendererMenu, 0, 0, 800, 600);  // Dessiner le fond
+        im_backgroundMenu.draw(rendererMenu, 0, 0, 800, 600);
     } else {
         SDL_SetRenderDrawColor(rendererMenu, 0, 0, 0, 255); // fond noir
         SDL_RenderClear(rendererMenu);
@@ -189,20 +261,31 @@ void AffichageGraphique::renderAide(){
 
     // Texte d’aide
     string texte =  "Le joueur 1 utilise Z pour voler";
-    string texte2 = "Le joueur 2 utilise L pour voler";
-    string texte3 = "Vous devez eviter les obstacles,";
-    string texte4 = "- le plus longtemps possible";
-    string texte5 = "- sans tomber a cours de carburant,";
-    string texte6 = "- et en ayant toujours une vie.";
-
-    renderText(rendererMenu, texte.c_str(), 245, 300, blanc, PS2Pmini);
-    renderText(rendererMenu, texte2.c_str(), 245, 350, blanc, PS2Pmini);
-    renderText(rendererMenu, texte3.c_str(), 245, 400, blanc, PS2Pmini);
-    renderText(rendererMenu, texte4.c_str(), 245, 425, blanc, PS2Pmini);
-    renderText(rendererMenu, texte5.c_str(), 245, 450, blanc, PS2Pmini);
-    renderText(rendererMenu, texte6.c_str(), 245, 475, blanc, PS2Pmini);
-
-
+    renderText(rendererMenu, texte.c_str(), 255, 260, blanc, PS2Pmini);
+    texte = "Le joueur 2 utilise L pour voler";
+    renderText(rendererMenu, texte.c_str(), 255, 280, blanc, PS2Pmini);
+    texte = "Objectif: parcourir la plus grande ";
+    renderText(rendererMenu, texte.c_str(), 250, 310, jaune, PS2Pmini);
+    texte = "distance possible !";
+    renderText(rendererMenu, texte.c_str(), 305, 320, jaune, PS2Pmini);
+    texte = "Attention, des obstacles seront ";
+    renderText(rendererMenu, texte.c_str(), 255, 360, blanc, PS2Pmini);
+    texte = "presents tout au long de votre ";
+    renderText(rendererMenu, texte.c_str(), 255, 370, blanc, PS2Pmini);
+    texte = "parcours, evitez les tout en ";
+    renderText(rendererMenu, texte.c_str(), 255, 380, blanc, PS2Pmini);
+    texte = "gerant votre carburant.";
+    renderText(rendererMenu, texte.c_str(), 255, 390, blanc, PS2Pmini);
+    texte = "Differents objets sont ramassables ";
+    renderText(rendererMenu, texte.c_str(), 250, 430, blanc, PS2Pmini);
+    texte = "pour vous aider dans votre ";
+    renderText(rendererMenu, texte.c_str(), 250, 440, blanc, PS2Pmini);
+    texte = "aventure.";
+    renderText(rendererMenu, texte.c_str(), 250, 450, blanc, PS2Pmini);
+    texte = "Si vous ramassez 5 pieces, vous ";
+    renderText(rendererMenu, texte.c_str(), 250, 470, blanc, PS2Pmini);
+    texte = "obtiendrez 1 vie en echange.";
+    renderText(rendererMenu, texte.c_str(), 250, 480, blanc, PS2Pmini);
 
     // Coordonnées du bouton
     SDL_Rect retourBtn = {260, 500, 280, 50};
@@ -244,49 +327,6 @@ void AffichageGraphique::renderText(SDL_Renderer* renderer, const char* text, in
     SDL_DestroyTexture(texture);
 }
 
-AffichageGraphique::~AffichageGraphique() {
-    if (renderer) {
-        SDL_DestroyRenderer(renderer);
-        renderer = nullptr;
-    }
-    if (window) {
-        SDL_DestroyWindow(window);
-        window = nullptr;
-    }
-    if (rendererMenu) {
-        SDL_DestroyRenderer(rendererMenu);
-        rendererMenu = nullptr;
-    }
-    if (windowMenu) {
-        SDL_DestroyWindow(windowMenu);
-        windowMenu = nullptr;
-    }
-    
-    // Fermer les polices avec vérification
-    if (PS2P) {
-        TTF_CloseFont(PS2P);
-        PS2P = nullptr;
-    }
-    if (PS2Pmini) {
-        TTF_CloseFont(PS2Pmini);
-        PS2Pmini = nullptr;
-    }
-    if (VT323) {
-        TTF_CloseFont(VT323);
-        VT323 = nullptr;
-    }
-    
-    // Libérer le curseur
-    if (curseurPerso) {
-        SDL_FreeCursor(curseurPerso);
-        curseurPerso = nullptr;
-    }    
-
-    IMG_Quit();
-    TTF_Quit();
-    SDL_Quit();
-}
-
 void AffichageGraphique::afficherObstacleGrandeImage(SDL_Renderer* renderer, const SDLSprite& im_metro, int obsX, int obsY, int obsLargeur, int obsLongueur) const {
     // Calcul des positions en pixels, en multipliant par la taille des sprites
     int pixelX = obsX * TAILLE_SPRITE;
@@ -318,11 +358,7 @@ void AffichageGraphique::affichagesCommuns() {
     SDL_Color jaune = {255, 255, 0, 255};
     SDL_Color orange = {236, 88, 0, 255};
 
-    // Remplir l'écran de blanc
-    SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
-    SDL_RenderClear(renderer);
-
-    // Scroll du fond
+    // Scroll de l'arrière-plan
     int fondLargeur, fondHauteur;
     SDL_QueryTexture(im_fond.getTexture(), NULL, NULL, &fondLargeur, &fondHauteur);
     for (int x = -fondLargeur + offset_x; x < 1920; x += fondLargeur) {
@@ -367,7 +403,7 @@ void AffichageGraphique::affichagesCommuns() {
                     im_rat.draw(renderer, obsX * TAILLE_SPRITE, (HAUTEUR - obsY) * TAILLE_SPRITE, TAILLE_SPRITE, TAILLE_SPRITE);
                     }
                 break;
-            default: // Autres obstacles (avec boucle largeur x longueur)
+            default: // Autres obstacles
                 for (int i = 0; i < obsLargeur; i++) {
                     for (int j = 0; j < obsLongueur; j++) {
                         int x = obsX + i;
@@ -472,7 +508,7 @@ void AffichageGraphique::affichage1Joueur() {
     }
 }
 
-void AffichageGraphique::afficherGameOver() {
+void AffichageGraphique::afficherGameOver1Joueur() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // fond noir
     SDL_RenderClear(renderer);
 
@@ -481,7 +517,7 @@ void AffichageGraphique::afficherGameOver() {
     SDL_Color blanc = {255, 255, 255, 255};
 
     // Affichage texte Game Over
-    renderText(renderer, "GAME OVER", 700, 200, rouge, PS2P);
+    renderText(renderer, "GAME OVER", 700, 200, rouge, PS2PGros);
 
     // Infos de fin de partie
     const Personnage& perso1 = partie.getPerso1();
@@ -492,7 +528,51 @@ void AffichageGraphique::afficherGameOver() {
     renderText(renderer, texte.c_str(), 650, 360, blanc, VT323);
     texte = "Record actuel : " + partie.record + "m";
     renderText(renderer, texte.c_str(), 650, 420, blanc, VT323);
-    renderText(renderer, "Appuyez sur ECHAP pour quitter", 600, 800, blanc, VT323);
+    renderText(renderer, "Appuyez sur ECHAP pour quitter", 630, 800, blanc, VT323);
+    if (perso1.getDistance() > stoi(getRecord())) {
+        partie.sauvegarderFichier(to_string(perso1.getDistance()));
+        renderText(renderer, "Vous avez realise le record", 650, 600, rouge, VT323);
+    }
+    SDL_RenderPresent(renderer);
+
+    // Attente d'une touche pour quitter
+    SDL_Event event;
+    bool quitter = false;
+    while (!quitter) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT)
+                quitter = true;
+            else if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+                quitter = true;
+        }
+        SDL_Delay(100);
+    }
+}
+
+void AffichageGraphique::afficherGameOver2Joueurs() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // fond noir
+    SDL_RenderClear(renderer);
+
+    // Couleurs
+    SDL_Color rouge = {255, 0, 0, 255};
+    SDL_Color blanc = {255, 255, 255, 255};
+
+    // Affichage texte Game Over
+    renderText(renderer, "GAME OVER", 700, 200, rouge, PS2PGros);
+
+    // Infos de fin de partie
+    const Personnage& perso1 = partie.getPerso1();
+    const Personnage& perso2 = partie.getPerso2();
+    string texte;
+    texte = "Distance parcourue : " + to_string(perso1.getDistance()) + "m";
+    renderText(renderer, texte.c_str(), 650, 300, blanc, VT323);
+    texte = "Nombre de pieces restantes J1 : " + to_string(perso1.getNbPieces());
+    renderText(renderer, texte.c_str(), 650, 360, blanc, VT323);
+    texte = "Nombre de pieces restantes J2 : " + to_string(perso2.getNbPieces());
+    renderText(renderer, texte.c_str(), 650, 400, blanc, VT323);
+    texte = "Record actuel : " + partie.record + "m";
+    renderText(renderer, texte.c_str(), 650, 450, blanc, VT323);
+    renderText(renderer, "Appuyez sur ECHAP pour quitter", 630, 800, blanc, VT323);
     if (perso1.getDistance() > stoi(getRecord())) {
         partie.sauvegarderFichier(to_string(perso1.getDistance()));
         renderText(renderer, "Vous avez realise le record", 650, 600, rouge, VT323);
@@ -559,7 +639,7 @@ void AffichageGraphique::run() {
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
     }
-    afficherGameOver();
+    afficherGameOver1Joueur();
 }
 
 void AffichageGraphique::affichage2Joueurs() {
@@ -687,5 +767,5 @@ void AffichageGraphique::run2Joueurs() {
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
     }
-    afficherGameOver();
+    afficherGameOver2Joueurs();
 }

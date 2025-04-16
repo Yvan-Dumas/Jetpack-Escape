@@ -141,3 +141,14 @@ Pour plus d'informations, se reporter à la documentation doxygen.
 
 ---
 
+## Crédits:
+polices : 
+https://fonts.google.com/specimen/Press+Start+2P
+https://fonts.google.com/specimen/VT323
+https://fr.fonts2u.com/pixel-lcd-7.police?ptext=JETPACK+ESCAPE
+
+Textures:
+https://craftpix.net/freebies/free-gui-for-cyberpunk-pixel-art/?srsltid=AfmBOorN88IlLcF5GHKjpGvR_oqWq6rgVs0UsseLV8I1AnVcNTF66zhI
+https://closeluca.itch.io/heart?download
+
+---

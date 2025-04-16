@@ -1,33 +1,15 @@
 0# LIFAPCD - jetpack escape
 
-@TODO: revoir proba apparition
---> trop de vies
 -diagramme des classes
--diagramme de gant
-- mode 2 joueurs bug
-- qu'afficher en version 2 joueurs quand ils sont superposés ?
-
+-diagramme de grantt
+-Relancement d'une partie apres game over ?
 - bug menu aide
-rajouter const dans fonc aff graph
 
-@TODO: MODE 2 JOUEUR A METTRE A JOUR
 @TODO: MODE CONSOLE A METTRE A JOUR
 --> ajouter appel à acheter_pieces
+--> affichage aide
 
 -valgrind version finale
-
- 
-
-Questions au prof:
-- affichage adaptatif ? 
-- faut il refaire le cahier des charges ?
-- diagramme des classes (sdl sprite ?) mettre 1ere et derniere avec ...
-- ce n'est pas génant de ne pas faire de classe pour les menus
-- test regression sur sdl ? et sur affichage console ?
-
-
-décaler affichage menu dans aff graphique
-
 
 modifier: 
 
