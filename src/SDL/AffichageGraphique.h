@@ -30,15 +30,16 @@ using namespace std;
   * fenêtre, textures, textes, sprites, et logique de rendu en jeu.
   */
 class AffichageGraphique {
-        private:
-        Partie partie; ///< Partie en cours
+   private:
+      Partie partie; ///< Partie en cours
 
-     SDL_Window* windowMenu = nullptr; ///< Fenêtre SDL du menu
-     SDL_Renderer* rendererMenu = nullptr; ///< Renderer SDL du menu
-     TTF_Font* PS2Pmini = nullptr; ///< Police plus petite pour l'affichage de l'aide
-     SDL_Texture* backgroundTexture = nullptr; ///< Texture de fond du menu
-     SDL_Texture* boutonTexture = nullptr;     ///< Texture de bouton
-     SDL_Texture* boutonHoverTexture = nullptr; ///< Texture de bouton quand survolé par la souris.
+      SDL_Window* windowMenu = nullptr; ///< Fenêtre SDL du menu
+      SDL_Renderer* rendererMenu = nullptr; ///< Renderer SDL du menu
+      TTF_Font* PS2Pmini = nullptr; ///< Police plus petite pour l'affichage de l'aide
+
+     SDLSprite im_backgroundMenu;
+     SDLSprite im_boutonMenu;
+     SDLSprite im_boutonHoverMenu;
  
      SDL_Window *window = nullptr;          ///< Fenêtre principale SDL
      SDL_Renderer *renderer = nullptr;      ///< Renderer SDL pour l'affichage
@@ -124,6 +125,12 @@ class AffichageGraphique {
         void affichage2Joueurs();
  
  public:
+
+        /**
+        * @brief Initialise l'affichage graphique, les polices, la fenêtre et les sprites.
+        */
+       void initSDL();
+
      /**
       * @brief Initialise l'affichage graphique du menu, les polices et la fenêtre.
       */
@@ -176,4 +183,3 @@ class AffichageGraphique {
  };
  
 #endif
- 

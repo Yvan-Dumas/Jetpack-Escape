@@ -1,8 +1,4 @@
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-
 #include "AffichageGraphique.h"
 
 using namespace std;
@@ -12,10 +8,12 @@ int main() {
     int selectedOption = 0;
 
     AffichageGraphique affichage;
+    affichage.initSDL();
     
     if (!affichage.initMenu()) {
         return -1;
     }
+
     bool arret_brutal = false; //arret brutal permet de bien fermer l'entiereté du jeu si on appuie sur la croix.
     bool running = true;
     SDL_Event event;
@@ -102,5 +100,6 @@ int main() {
             affichage.run2Joueurs();
         } 
     }
+    
     return 0;
 }

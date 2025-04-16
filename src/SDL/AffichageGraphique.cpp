@@ -12,16 +12,36 @@ string AffichageGraphique::getRecord(){
     return partie.record;
 }
 
-void AffichageGraphique::init() {
+void AffichageGraphique::initSDL(){
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        std::cout << "Erreur SDL: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
 
-    int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
-    if (!(IMG_Init(imgFlags) & imgFlags))
-    {
-        cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
+    if (TTF_Init() == -1) {
+        std::cout << "Erreur TTF: " << TTF_GetError() << std::endl;
         SDL_Quit();
         exit(1);
     }
 
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+        std::cout << "Erreur SDL_image: " << IMG_GetError() << std::endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    // Curseur global
+    SDL_Surface* curseurSurface = IMG_Load("../data/images/curseur.png");
+    if (!curseurSurface) {
+        std::cout << "Erreur chargement curseur: " << IMG_GetError() << std::endl;
+    } else {
+        curseurPerso = SDL_CreateColorCursor(curseurSurface, 0, 0); 
+        SDL_SetCursor(curseurPerso);
+        SDL_FreeSurface(curseurSurface);
+    } 
+}
+
+void AffichageGraphique::init() {
     // Creation de la fenetre
     window = SDL_CreateWindow("JetpackEscape", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr)
@@ -71,40 +91,9 @@ void AffichageGraphique::init() {
         SDL_Quit();
         exit(1);
     }
-    PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 50);
-    if (PS2P == nullptr)
-    {
-        cout << "Erreur de chargement PS2P.ttf! SDL_TTF Error: " << TTF_GetError() << endl;
-        SDL_Quit();
-        exit(1);
-    }
-
-    // Curseur personnalisé
-    SDL_Surface* curseurSurface = IMG_Load("../data/images/curseur.png");
-    if (!curseurSurface) {
-        cout << "Erreur chargement curseur: " << IMG_GetError() << endl;
-        SDL_Quit();
-        exit(1);
-    } else {
-    curseurPerso = SDL_CreateColorCursor(curseurSurface, 0, 0); 
-    SDL_SetCursor(curseurPerso);
-    SDL_FreeSurface(curseurSurface);
-    }
 }
 
 int AffichageGraphique::initMenu() { 
-    // Initialisation de la SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("Erreur SDL: %s\n", SDL_GetError());
-        return 0;
-    }
-
-    //Initialisation de TTF (utilisé pour le texte)
-    if (TTF_Init() == -1) {
-        printf("Erreur TTF: %s\n", TTF_GetError());
-        return 0;
-    }
-
     // Creation de la fenetre
     windowMenu = SDL_CreateWindow("Menu SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     if (!windowMenu) {
@@ -117,11 +106,6 @@ int AffichageGraphique::initMenu() {
         printf("Erreur Renderer: %s\n", SDL_GetError());
         return 0;
     }
-
-    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
-        printf("Erreur SDL_image: %s\n", IMG_GetError());
-        return 0;
-    }    
 
     // Police personnalisée
     PS2P = TTF_OpenFont("../data/polices/PS2P.ttf", 18);
@@ -140,53 +124,19 @@ int AffichageGraphique::initMenu() {
         exit(1);
     }
 
-    // Curseur personnalisé
-    SDL_Surface* curseurSurface = IMG_Load("../data/images/curseur.png");
-    if (!curseurSurface) {
-        cout << "Erreur chargement curseur: " << IMG_GetError() << endl;
-    } else {
-    curseurPerso = SDL_CreateColorCursor(curseurSurface, 0, 0); 
-    SDL_SetCursor(curseurPerso);
-    SDL_FreeSurface(curseurSurface);
-    }
-
-    // Image de fond avec titre et design du menu
-    SDL_Surface* surface = IMG_Load("../data/images/menu/menu_background.png");
-    if (!surface) {
-        cout << "Erreur chargement image menu: " << IMG_GetError() << endl;
-    } else {
-        backgroundTexture = SDL_CreateTextureFromSurface(rendererMenu, surface);
-        SDL_FreeSurface(surface);
-    }
-
-    // Image bouton
-    SDL_Surface* surfaceBtn = IMG_Load("../data/images/menu/bouton.png");
-    boutonTexture = SDL_CreateTextureFromSurface(rendererMenu, surfaceBtn);
-    SDL_FreeSurface(surfaceBtn);
-    if (!boutonTexture) {
-        cout << "Erreur chargement bouton.png : " << SDL_GetError() << endl;
-    }
-
-    // Image bouton survolé
-    SDL_Surface* surfaceHover = IMG_Load("../data/images/menu/bouton_hover.png");
-    boutonHoverTexture = SDL_CreateTextureFromSurface(rendererMenu, surfaceHover);
-    SDL_FreeSurface(surfaceHover);
-    if (!boutonHoverTexture) {
-        cout << "Erreur chargement bouton_hover.png : " << SDL_GetError() << endl;
-    }
+    im_backgroundMenu.loadFromFile("../data/images/menu/menu_background.png", rendererMenu);
+    im_boutonMenu.loadFromFile("../data/images/menu/bouton.png", rendererMenu);
+    im_boutonHoverMenu.loadFromFile("../data/images/menu/bouton_hover.png", rendererMenu);
 
     return 1;
 }
 
 void AffichageGraphique::renderMenu(int selectedOption) {
-
     const char* menuOptions[] = {"1 joueur", "2 joueurs", "Comment jouer ?", "Quitter"};
 
     // Affichage de l'image de fond
-    
-    if (backgroundTexture) {
-        SDL_Rect dst = {0, 0, 800, 600};
-        SDL_RenderCopy(rendererMenu, backgroundTexture, NULL, &dst);
+    if (im_backgroundMenu.getTexture()) {
+        im_backgroundMenu.draw(rendererMenu, 0, 0, 800, 600);  // Dessiner le fond à l'écran
     } else {
         SDL_SetRenderDrawColor(rendererMenu, 0, 0, 0, 255); // fond noir
         SDL_RenderClear(rendererMenu);
@@ -203,8 +153,12 @@ void AffichageGraphique::renderMenu(int selectedOption) {
     for (int i = 0; i < 4; i++) {
         SDL_Rect dstRect = { 260, 250 + i * 80, 280, 70};
     
-        SDL_Texture* textureToUse = (i == selectedOption) ? boutonHoverTexture : boutonTexture;
-        SDL_RenderCopy(rendererMenu, textureToUse, NULL, &dstRect);
+        // Déterminer quelle texture utiliser pour le bouton
+        SDLSprite* buttonSprite = (i == selectedOption) ? &im_boutonHoverMenu : &im_boutonMenu;
+
+        if (buttonSprite->getTexture()) {
+            buttonSprite->draw(rendererMenu, dstRect.x, dstRect.y, dstRect.w, dstRect.h);
+        }
     
         // Affichage centré des textes sur les boutons
         int textLargeur, textHauteur;
@@ -217,11 +171,9 @@ void AffichageGraphique::renderMenu(int selectedOption) {
 }
 
 void AffichageGraphique::renderAide(){
-
     // Affichage de l'image de fond
-    if (backgroundTexture) {
-        SDL_Rect dst = {0, 0, 800, 600};
-        SDL_RenderCopy(rendererMenu, backgroundTexture, NULL, &dst);
+    if (im_backgroundMenu.getTexture()) {
+        im_backgroundMenu.draw(rendererMenu, 0, 0, 800, 600);  // Dessiner le fond
     } else {
         SDL_SetRenderDrawColor(rendererMenu, 0, 0, 0, 255); // fond noir
         SDL_RenderClear(rendererMenu);
@@ -264,12 +216,12 @@ void AffichageGraphique::renderAide(){
                    mouseY >= retourBtn.y && mouseY <= retourBtn.y + retourBtn.h;
 
     // Choix de la texture ou couleur en fonction du hover
-    if (isHover) {
-        SDL_RenderCopy(rendererMenu, boutonHoverTexture, NULL, &retourBtn); //texture hover
-    } else {
-        SDL_RenderCopy(rendererMenu, boutonTexture, NULL, &retourBtn); // texture normale
-    }
+    SDLSprite* buttonSprite = isHover ? &im_boutonHoverMenu : &im_boutonMenu;
 
+    // Affichage du bouton Retour avec la texture choisie
+    if (buttonSprite->getTexture()) {
+        buttonSprite->draw(rendererMenu, retourBtn.x, retourBtn.y, retourBtn.w, retourBtn.h);
+    }
     // Texte centré sur le bouton
     string retour = "Retour au menu";
     int textLargeur, textHauteur;
@@ -280,7 +232,6 @@ void AffichageGraphique::renderAide(){
 
     SDL_RenderPresent(rendererMenu);
 }
-
 
 void AffichageGraphique::renderText(SDL_Renderer* renderer, const char* text, int x, int y, SDL_Color color, TTF_Font* font) {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
@@ -294,12 +245,42 @@ void AffichageGraphique::renderText(SDL_Renderer* renderer, const char* text, in
 }
 
 AffichageGraphique::~AffichageGraphique() {
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-
-    if (PS2P) TTF_CloseFont(PS2P);
-    if (PS2Pmini) TTF_CloseFont(PS2Pmini);
-    if (VT323) TTF_CloseFont(VT323);
+    if (renderer) {
+        SDL_DestroyRenderer(renderer);
+        renderer = nullptr;
+    }
+    if (window) {
+        SDL_DestroyWindow(window);
+        window = nullptr;
+    }
+    if (rendererMenu) {
+        SDL_DestroyRenderer(rendererMenu);
+        rendererMenu = nullptr;
+    }
+    if (windowMenu) {
+        SDL_DestroyWindow(windowMenu);
+        windowMenu = nullptr;
+    }
+    
+    // Fermer les polices avec vérification
+    if (PS2P) {
+        TTF_CloseFont(PS2P);
+        PS2P = nullptr;
+    }
+    if (PS2Pmini) {
+        TTF_CloseFont(PS2Pmini);
+        PS2Pmini = nullptr;
+    }
+    if (VT323) {
+        TTF_CloseFont(VT323);
+        VT323 = nullptr;
+    }
+    
+    // Libérer le curseur
+    if (curseurPerso) {
+        SDL_FreeCursor(curseurPerso);
+        curseurPerso = nullptr;
+    }    
 
     IMG_Quit();
     TTF_Quit();
