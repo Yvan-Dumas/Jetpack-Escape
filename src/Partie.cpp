@@ -173,12 +173,12 @@ const Personnage& Partie::getPerso2() const {
 }
 
 bool Partie::acheterVieSiPossible() {
-    if (perso1.getNbPieces() >= 10 && perso1.getNbVies() < 4) {
+    if (perso1.getNbPieces() >= 5 && perso1.getNbVies() < 4) {
         perso1.setNbPieces(perso1.getNbPieces() - 10);
         perso1.setNbVies(perso1.getNbVies() + 1);
         return true;
     }
-    if (perso2.getNbPieces() >= 10 && perso2.getNbVies() < 4) {
+    if (perso2.getNbPieces() >= 5 && perso2.getNbVies() < 4) {
         perso2.setNbPieces(perso2.getNbPieces() - 10);
         perso2.setNbVies(perso2.getNbVies() + 1);
         return true;

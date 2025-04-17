@@ -48,7 +48,7 @@ int main() {
         return -1;
     }
 
-    bool arretBrutal = false;
+    bool arretBrutal = false; // Permetde fermer le jeu quand l'utilisateur appuie sur la croix
     bool menuActif = true;
     SDL_Event event;
     while (menuActif) {
@@ -82,18 +82,15 @@ int main() {
                 }
             }
         }
-
         // Afficher l'aide
         if (selectedOption == 2 && !arretBrutal && !menuActif) {
             afficherAide(affichage);
             selectedOption = 0;
             menuActif = true;
         }
-
         affichage.renderMenu(selectedOption);
         SDL_Delay(100);
     }
-
     if (!arretBrutal) {
         if (selectedOption == 0) {
             affichage.run();
