@@ -5,9 +5,9 @@
 **JetpackEscape** est un jeu développé en C++ utilisant **SDL2**. Il s'agit d'un jeu de type endless runner proposant un mode **1 joueur** et **2 joueurs** où les joueurs doivent éviter des obstacles et en gérant leur carburant pour aller le plus loin possible. Une version **graphique** avec SDL2 est proposée, ou bien une version **console**, utilisant WinTxt. Ce projet a été réalisé dans le cadre de l'UE LIFAPCD.
 
 ## Auteurs
-Yvan Dumas et Hugo Marconnet, élèves en deuxième année de Peip à Polytech Lyon
-numéros étudiants : p2302033 et p2308033
-identifiant du projet sur la Forge - Univ Lyon 1 : 38536
+Yvan Dumas et Hugo Marconnet, élèves en deuxième année de Peip à Polytech Lyon  
+numéros étudiants : p2302033 et p2308033  
+identifiant du projet sur la Forge - Univ Lyon 1 : 38536  
 
 ## Compilation
 
@@ -144,12 +144,12 @@ Pour plus d'informations, se reporter à la documentation doxygen.
 
 ## Crédits:
 polices : 
-https://fonts.google.com/specimen/Press+Start+2P
-https://fonts.google.com/specimen/VT323
-https://fr.fonts2u.com/pixel-lcd-7.police?ptext=JETPACK+ESCAPE
+https://fonts.google.com/specimen/Press+Start+2P  
+https://fonts.google.com/specimen/VT323  
+https://fr.fonts2u.com/pixel-lcd-7.police?ptext=JETPACK+ESCAPE  
 
 Textures:
-https://craftpix.net/freebies/free-gui-for-cyberpunk-pixel-art/?srsltid=AfmBOorN88IlLcF5GHKjpGvR_oqWq6rgVs0UsseLV8I1AnVcNTF66zhI
-https://closeluca.itch.io/heart?download
+https://craftpix.net/freebies/free-gui-for-cyberpunk-pixel-art/?srsltid=AfmBOorN88IlLcF5GHKjpGvR_oqWq6rgVs0UsseLV8I1AnVcNTF66zhI  
+https://closeluca.itch.io/heart?download  
 
 ---
