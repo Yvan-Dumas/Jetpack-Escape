@@ -2,10 +2,12 @@
 
 ## Description
 
-**JetpackEscape** est un jeu développé en C++ utilisant **SDL2**. Il s'agit d'un jeu de type endless runner proposant un mode **1 joueur** et **2 joueurs** où les joueurs doivent éviter des obstacles et en gérant leur carburant. Une version **graphique** avec SDL2 est proposée, ou bien une version **console**, utilisant WinTxt. Ce projet a été réalisé dans le cadre de l'UE LIFAPCD.
+**JetpackEscape** est un jeu développé en C++ utilisant **SDL2**. Il s'agit d'un jeu de type endless runner proposant un mode **1 joueur** et **2 joueurs** où les joueurs doivent éviter des obstacles et en gérant leur carburant pour aller le plus loin possible. Une version **graphique** avec SDL2 est proposée, ou bien une version **console**, utilisant WinTxt. Ce projet a été réalisé dans le cadre de l'UE LIFAPCD.
 
 ## Auteurs
 Yvan Dumas et Hugo Marconnet, élèves en deuxième année de Peip à Polytech Lyon
+numéros étudiants : p2302033 et p2308033
+identifiant du projet sur la Forge - Univ Lyon 1 : 38536
 
 ## Compilation
 
@@ -87,7 +89,6 @@ Lancez-les avec, par exemple :
 
 La documentation du projet est générée automatiquement grâce à doxygen.
 
-
 1. Assurez-vous d’avoir installé doxygen:
 Sous Linux, vous pouvez installer doxygen avec :
 ```bash
@@ -120,7 +121,7 @@ Pour plus d'informations, se reporter à la documentation doxygen.
   - **`src/WinTxt.cpp`** : Bibliothèque utilisée pour la version console.
   - **`src/AffichageConsole.cpp`** : Gestion du rendu de la partie dans la version console.
   - **`src/mainConsole.cpp`** : Fonction principale pour la version console.  
-  - **`src/mainRegression.cpp`** : Appele les différents tests de régression.
+  - **`src/mainRegression.cpp`** : Appelle les différents tests de régression.
   - **`src/SDL/`** : Contient les programmes utilisées pour la version graphique.
     - **`src/mainGraphique.cpp`** : Fonction principale pour la version graphique.
     - **`src/SDL/AffichageGraphique.cpp`** : Rendu graphique de la partie avec SDL.
@@ -128,7 +129,7 @@ Pour plus d'informations, se reporter à la documentation doxygen.
 
 - **`bin/`** : Dossier de compilation contenant les exécutables du jeu.
 
-- **`data/`** : Dossier contenant différents fichiers nécéssaires au bon fonctionnement du jeu.
+- **`data/`** : Dossier contenant différents fichiers nécessaires au bon fonctionnement du jeu.
   - **`data/images/`** : Contient les images utilisées dans la version graphique.
   - **`data/polices/`** : Contient les polices utilisées dans la version graphique.
   - **`data/sauvegarde.txt`** : Fichier où est sauvegardé le meilleur score du jeu.

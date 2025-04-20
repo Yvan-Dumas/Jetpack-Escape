@@ -179,12 +179,12 @@ const Personnage& Partie::getPerso2() const {
 
 bool Partie::acheterVieSiPossible() {
     if (perso1.getNbPieces() >= 5 && perso1.getNbVies() < 4) {
-        perso1.setNbPieces(perso1.getNbPieces() - 10);
+        perso1.setNbPieces(perso1.getNbPieces() - 5);
         perso1.setNbVies(perso1.getNbVies() + 1);
         return true;
     }
     if (perso2.getNbPieces() >= 5 && perso2.getNbVies() < 4) {
-        perso2.setNbPieces(perso2.getNbPieces() - 10);
+        perso2.setNbPieces(perso2.getNbPieces() - 5);
         perso2.setNbVies(perso2.getNbVies() + 1);
         return true;
     }
@@ -218,7 +218,7 @@ void Partie::actionsClavier2Joueurs(const char touche, unsigned int HAUTEUR) {
 
 void Partie::tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR) {
     int id = 1;
-    int poids[] = {20, 20, 8, 25, 15, 7, 10, 8, 50}; // Poids associés
+    int poids[] = {20, 20, 8, 25, 15, 7, 10, 8, 12}; // Poids associés
     int taille = sizeof(poids) / sizeof(poids[0]);
     // Calcul de la somme des poids
     int sommePoids = 0;
@@ -449,7 +449,7 @@ void Partie::testPartie() {
     partie.perso1.setNbPieces(10);
     partie.perso1.setNbVies(3);
     bool achete = partie.acheterVieSiPossible();
-    assert(achete && "Erreur : l'achat de vie aurait dû être possible avec 10 pièces.");
+    assert(achete && "Erreur : l'achat de vie aurait dû être possible avec 5 pièces.");
     assert(partie.getPerso1().getNbVies() == 4 && "Erreur : perso1 devrait avoir 4 vies après l'achat.");
     assert(partie.getPerso1().getNbPieces() == 0 && "Erreur : perso1 devrait avoir 0 pièce après l'achat.");
 

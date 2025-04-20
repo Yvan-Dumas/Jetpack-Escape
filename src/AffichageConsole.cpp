@@ -117,11 +117,10 @@ void AffichageConsole::run() {
         }
 
         affichage1Joueur(window);
-        // débutMessage doit être un time_t (entier long)
+
         if (partie.piecesEnVie && debutMessage == 0) {
             debutMessage = time(0);
         }
-
         // On affiche le message pendant 5 secondes
         if (partie.piecesEnVie && time(0) - debutMessage > 5) {
         partie.piecesEnVie = false;

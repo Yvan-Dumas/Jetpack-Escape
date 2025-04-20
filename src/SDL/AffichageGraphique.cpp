@@ -639,12 +639,14 @@ void AffichageGraphique::run() {
         offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
         
         // Timer pour l'affichage du message
-        if (partie.piecesEnVie){
-            debutMessage = SDL_GetTicks();
+        if (partie.piecesEnVie && debutMessage == 0) {
+            debutMessage = time(0);
         }
-        if (partie.piecesEnVie && SDL_GetTicks()-debutMessage>5000) {
-
-         partie.piecesEnVie = false ; }
+        // On affiche le message pendant 5 secondes
+        if (partie.piecesEnVie && time(0) - debutMessage > 5) {
+        partie.piecesEnVie = false;
+        debutMessage = 0;
+        }
 
         SDL_RenderPresent(renderer);
         SDL_Delay(100);
@@ -768,11 +770,14 @@ void AffichageGraphique::run2Joueurs() {
     offset_x = (offset_x - 50 + fondLargeur) % fondLargeur;
  
     // Timer pour l'affichage du message
-    if (partie.piecesEnVie){
-        debutMessage = SDL_GetTicks();
+    if (partie.piecesEnVie && debutMessage == 0) {
+        debutMessage = time(0);
     }
-    if (partie.piecesEnVie && SDL_GetTicks()-debutMessage>5000) {
-        partie.piecesEnVie = false ; }
+    // On affiche le message pendant 5 secondes
+    if (partie.piecesEnVie && time(0) - debutMessage > 5) {
+    partie.piecesEnVie = false;
+    debutMessage = 0;
+    }
 
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
