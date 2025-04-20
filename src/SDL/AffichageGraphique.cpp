@@ -126,6 +126,7 @@ void AffichageGraphique::init() {
 
     im_obstacle.loadFromFile("../data/images/obstacles/obstacle32.png", renderer);
     im_obstacle3x1.loadFromFile("../data/images/obstacles/obstacle3x132.png", renderer);
+    im_obstacle1x3.loadFromFile("../data/images/obstacles/obstacle1x332.png", renderer);
     im_rat.loadFromFile("../data/images/obstacles/rat32.png", renderer);
     im_metro1.loadFromFile("../data/images/obstacles/metro132.png", renderer);
     im_metro2.loadFromFile("../data/images/obstacles/metro232.png", renderer);
@@ -328,7 +329,7 @@ void AffichageGraphique::renderText(SDL_Renderer* renderer, const char* text, in
     SDL_DestroyTexture(texture);
 }
 
-void AffichageGraphique::afficherObstacleGrandeImage(SDL_Renderer* renderer, const SDLSprite& im_metro, int obsX, int obsY, int obsLargeur, int obsLongueur) const {
+void AffichageGraphique::afficherObstacleGrandeImage(SDL_Renderer* renderer, const SDLSprite& im, int obsX, int obsY, int obsLargeur, int obsLongueur) const {
     // Calcul des positions en pixels, en multipliant par la taille des sprites
     int pixelX = obsX * TAILLE_SPRITE;
     int pixelY = (HAUTEUR - obsY - obsLongueur + 1) * TAILLE_SPRITE; 
@@ -349,7 +350,7 @@ void AffichageGraphique::afficherObstacleGrandeImage(SDL_Renderer* renderer, con
 
     // On affiche seulement si une partie de l'image est visible
     if (srcRect.w > 0 && srcRect.h > 0) {
-        SDL_RenderCopy(renderer, im_metro.getTexture(), &srcRect, &dstRect);
+        SDL_RenderCopy(renderer, im.getTexture(), &srcRect, &dstRect);
     }
 }
 
@@ -392,6 +393,9 @@ void AffichageGraphique::affichagesCommuns() {
         switch (obs.getID()) {
             case 1: // Obstacle 3x1
                 afficherObstacleGrandeImage(renderer, im_obstacle3x1, obsX, obsY, obsLargeur, obsLongueur);
+                break;
+            case 2: // Obstacle 1x3
+                afficherObstacleGrandeImage(renderer, im_obstacle1x3, obsX, obsY, obsLargeur, obsLongueur);
                 break;
             case 3: // Métro (1ère variation)
                 afficherObstacleGrandeImage(renderer, im_metro1, obsX, obsY, obsLargeur, obsLongueur);

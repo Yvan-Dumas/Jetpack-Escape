@@ -85,6 +85,19 @@ class Partie {
          * @param LARGEUR La largeur de la grille de jeu.
          */
         void tirageEtGenerationObstaclesObjets(int HAUTEUR, int LARGEUR);
+
+        /**
+        * @brief Mutateur : augmente le carburant du personnage de 1 litres.
+        * @param p Référence au personnage auquel on souhaite augmenter le carburant.
+        */
+       void ajouterCarburant(Personnage & p);
+
+        /**
+        * @brief Achète une vie si le personnage a suffisamment de pièces (plus de 10 pièces et moins de 4 vie).
+        * @return true si une vie a été achetée, false sinon.
+        */
+       bool acheterVieSiPossible();
+
     public:
 
         string record; ///< Le record de distance parcourue atteint dans le jeu. Récupéré dans le fichier data/sauvegarde.txt lors de l'initialisation.
@@ -95,12 +108,6 @@ class Partie {
         * @details Initialise les structures du jeu.
         */
         Partie();
-
-        /**
-        * @brief Mutateur : augmente le carburant du personnage de 1 litres.
-        * @param p Référence au personnage auquel on souhaite augmenter le carburant.
-        */
-        void ajouterCarburant(Personnage & p);
 
         /**
         * @brief Sauvegarde le record de la partie dans data/sauvegarde.txt
@@ -173,12 +180,6 @@ class Partie {
         * @return Une référence constante vers le personnage 2.
         */
         const Personnage& getPerso2() const;
-
-        /**
-        * @brief Achète une vie si le personnage a suffisamment de pièces (plus de 10 pièces et moins de 4 vie).
-        * @return true si une vie a été achetée, false sinon.
-        */
-        bool acheterVieSiPossible();
 
         /**
         * @brief Effectue une série de tests sur la classe Partie.

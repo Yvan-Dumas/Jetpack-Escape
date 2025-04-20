@@ -60,6 +60,7 @@ private:
    // Sprites des obstacles
    SDLSprite im_obstacle;    ///< Sprite des obstacles de base
    SDLSprite im_obstacle3x1; ///< Sprite des obstacles de taille 3x1
+   SDLSprite im_obstacle1x3; ///< Sprite des obstacles de taille 1x3
    SDLSprite im_rat;         ///< Sprite du rat
    SDLSprite im_metro1;      ///< Sprite du métro 1
    SDLSprite im_metro2;      ///< Sprite du métro 2

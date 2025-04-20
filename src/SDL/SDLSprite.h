@@ -3,11 +3,13 @@
  * @brief Définition de la classe SDLSprite
  */
 
- #ifndef _SDLSPRITE_H
- #define _SDLSPRITE_H
+#ifndef _SDLSPRITE_H
+#define _SDLSPRITE_H
  
- #include <SDL2/SDL.h>
- #include <SDL2/SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <iostream>
+#include <cstring>
  
  /**
   * @class SDLSprite
