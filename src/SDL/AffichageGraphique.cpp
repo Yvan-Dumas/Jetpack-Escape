@@ -42,7 +42,7 @@ AffichageGraphique::~AffichageGraphique() {
         windowMenu = nullptr;
     }
     
-    // Fermer les polices avec vérification
+    // Pour les polices
     if (PS2P) {
         TTF_CloseFont(PS2P);
         PS2P = nullptr;

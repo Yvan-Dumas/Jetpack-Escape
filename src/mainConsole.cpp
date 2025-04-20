@@ -22,9 +22,9 @@ int main() {
     cout << "                   =========================================================" << endl;
     cout << "                   |    @ : Le joueur, c'est vous                          |" << endl;
     cout << "                   |    X : Un obstacle, à éviter !                        |" << endl;
-    cout << "                   |    o : Une pièce, pour faire grimper le score         |" << endl;
-    cout << "                   |    C : Du carburant, pour ne pas finir cloué au sol   |" << endl;
-    cout << "                   |    V : Une vie, pour oublier les obstacles            |" << endl;
+    cout << "                   |    o : Une pièce                                      |" << endl;
+    cout << "                   |    C : Du carburant                                   |" << endl;
+    cout << "                   |    V : Une vie                                        |" << endl;
     cout << "                   =========================================================" << endl;
     cin >> choix;
     switch(choix) {
