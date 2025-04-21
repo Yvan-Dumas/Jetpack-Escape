@@ -6,7 +6,7 @@
 
 ## Auteurs
 Yvan Dumas et Hugo Marconnet, élèves en deuxième année de Peip à Polytech Lyon  
-numéros étudiants : p2302033 et p2308033  
+numéros étudiants : 12302033 et 12308033  
 identifiant du projet sur la Forge - Univ Lyon 1 : 38536  
 
 ## Compilation
