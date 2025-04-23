@@ -446,7 +446,7 @@ void Partie::testPartie() {
     assert(partie.getPerso1().getNbPieces() == nbPiecesAvant + 1 && "Erreur : utiliser un objet de type 1 devrait ajouter une pièce.");
 
     // Test achat de vie
-    partie.perso1.setNbPieces(10);
+    partie.perso1.setNbPieces(5);
     partie.perso1.setNbVies(3);
     bool achete = partie.acheterVieSiPossible();
     assert(achete && "Erreur : l'achat de vie aurait dû être possible avec 5 pièces.");
